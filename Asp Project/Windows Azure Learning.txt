@@ -1,0 +1,4 @@
+http://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-get-started/
+http://blogs.msdn.com/b/sajoshi/archive/2010/05/31/windows-azure-step-by-step-tutorial-post-1-introduction.aspx
+http://windowsazure4beginner.com/
+http://www.microsoftvirtualacademy.com/product-training/microsoft-azure
