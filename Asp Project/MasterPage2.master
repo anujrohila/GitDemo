@@ -1,0 +1,116 @@
+<%@ Master Language="VB" CodeFile="MasterPage2.master.vb" Inherits="MasterPage2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="iecss.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="main_container">
+            <div class="top_bar"></div>
+            <div id="header">
+                <div id="logo">
+                    <a href="Home.aspx">
+                        <img src="images/logo.png" alt="" title="" border="0" width="220" height="120" /></a>
+                </div>
+                <div class="oferte_content">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                <asp:LoginName ID="LoginName1" runat="server" FormatString="Welcome : {0}" />
+                            </td>
+                            <td>
+                                <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" Font-Size="10">Change Password</asp:LinkButton>
+                                |
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LoginText="Login" Font-Size="10"
+                                    LogoutText="Logout" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- end of oferte_content-->
+            </div>
+            <div class="top_bar"></div>
+            <div id="main_content">
+                <div id="menu_tab">
+                    <ul class="menu">
+                        <li><a href="Home.aspx" class="nav1">Home </a></li>
+                        <li><a href="sitemap.aspx" class="nav2">Sitemap</a></li>
+                        <li><a href="createaccount.aspx" class="nav3">Create Account</a></li>
+                        <li><a href="#" class="nav2">About Us</a></li>
+                        <li><a href="Shopingcart.aspx" class="nav2">Shoping Cart</a></li>
+                        <li><a href="contact.aspx" class="nav6">Contact Us</a></li>
+                        <li><a href="faq.aspx" class="nav2">FAQ</a></li>
+                        <li><a href="SOption.aspx" class="nav5">Shipping</a></li>
+                    </ul>
+                </div>
+                <!-- end of menu tab -->
+                <div class="crumb_navigation">
+                    Navigation:<asp:SiteMapPath ID="SiteMapPath1" runat="server" Style="position: relative">
+                    </asp:SiteMapPath>
+                </div>
+                <div class="left_content">
+                    <div class="title_box">Categories</div>
+                    <ul class="left_menu">
+                        <li class="odd">&nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT [Name] FROM [cat]"></asp:SqlDataSource>
+                            <asp:DataList ID="DataList1" runat="server" BackColor="White" BorderColor="#E7E7FF"
+                                BorderStyle="None" BorderWidth="1px" DataSourceID="SqlDataSource1"
+                                GridLines="Horizontal" Height="192px" Style="position: relative" Width="200px">
+                                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                                <SelectedItemStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="position: relative"
+                                        Text='<%# Eval("Name") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                                <AlternatingItemStyle BackColor="#F7F7F7" />
+                                <ItemStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                            </asp:DataList>
+                    </ul>
+                    <div class="title_box">Special Products</div>
+                    <div class="border_box">
+                        <div class="product_title"><a href="">Motorola 156 MX-VL</a></div>
+                        <div class="product_img">
+                            <a href="">
+                                <img src="images/laptop.png" alt="" title="" border="0" /></a>
+                        </div>
+                        <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                    </div>
+                    <div class="banner_adds">
+                        <a href="www.amf.com">
+                            <img src="images/bann2.jpg" alt="" title="" border="0" style="width: 128px" /></a>&nbsp;
+                    </div>
+                </div>
+                <!-- end of left content -->
+                <div class="center_content" style="width: 440px; height: 360px;" id="DIV2">
+                    <div class="center_title_bar" id="DIV1">Latest Products</div>
+                    <div class="prod_box" style="width: 536px; height: 304px; position: relative;">
+                        <div class="bottom_prod_box" style="width: 520px; position: relative; height: 200px">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of center content -->
+                <div class="right_content" style="height: 488px; left: 132px; position: relative; top: 4px;">
+                    <div class="title_box">Manufacturers</div>
+                    &nbsp;&nbsp;
+       <div style="z-index: 101; left: 8px; width: 184px; position: relative; top: -6px; height: 336px">
+           <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+           </asp:ContentPlaceHolder>
+       </div>
+                </div>
+                <!-- end of right content -->
+            </div>
+            <!-- end of main content -->
+        </div>
+        <!-- end of main_container -->
+    </form>
+</body>
+</html>

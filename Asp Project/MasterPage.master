@@ -1,0 +1,75 @@
+<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="iecss.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="main_container">
+            <div class="top_bar">
+            </div>
+            <div id="header">
+                <div id="logo">
+                    <a href="Home.aspx">
+                        <img src="images/logo.png" alt="" title="" border="0" width="225" height="120" /></a>
+                </div>
+                <div style="left: 2px; color: #ffffff; position: relative;">
+                    Welcome&nbsp;
+                   <asp:LoginName ID="LoginName1" runat="server"></asp:LoginName>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<asp:LoginStatus Style="LEFT: 4px; POSITION: relative; TOP: 9px" ID="LoginStatus1" runat="server" LoginImageUrl="~/buttons/button_login.png" LogoutImageUrl="~/buttons/button_logout.png" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx"></asp:LoginStatus>
+                            &nbsp;&nbsp;
+                   <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" ForeColor="Lime">Change Password</asp:LinkButton>
+                </div>
+            </div>
+            <div id="main_content">
+
+                <div id="menu_tab">
+                    <ul class="menu">
+                        <li><a href="Home.aspx" class="nav1">Home </a></li>
+                        <li><a href="sitemap.aspx" class="nav2">Sitemap</a></li>
+                        <li><a href="createaccount.aspx" class="nav3">Create Account</a></li>
+                        <li><a href="#" class="nav2">About Us</a></li>
+                        <li><a href="Shopingcart.aspx" class="nav2">Shoping Cart</a></li>
+                        <li><a href="contact.aspx" class="nav6">Contact Us</a></li>
+                        <li><a href="faq.aspx" class="nav2">FAQ</a></li>
+                        <li><a href="SOption.aspx" class="nav5">Shipping</a></li>
+                    </ul>
+
+                    <div class="right_menu_corner"></div>
+                </div>
+                <!-- end of menu tab -->
+
+                <div class="crumb_navigation">
+                    Navigation:<asp:SiteMapPath ID="SiteMapPath1" runat="server" Style="left: 0px; position: relative">
+                    </asp:SiteMapPath>
+                </div>
+                <!-- end of left content -->
+
+
+                <div class="center_content" style="width: 984px; height: 336px;" id="DIV2">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+
+
+
+
+
+
+                </div>
+                <!-- end of center content -->
+
+                <!-- end of right content -->
+
+
+            </div>
+            <!-- end of main content -->
+        </div>
+    </form>
+</body>
+</html>
