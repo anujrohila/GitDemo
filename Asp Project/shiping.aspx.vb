@@ -18,7 +18,7 @@ Partial Class shiping
                 cmd.CommandText = "select max(id) from Shiping"
                 id = cmd.ExecuteScalar + 1
             End If
-            cmd.CommandText = "insert into Shiping values(" & id & ",'" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox3.Text & "','" & Date.Now & "'," & Session("tot") & ",'" & User.Identity.Name & "')"
+            cmd.CommandText = "insert into Shiping values(" & id & ",'" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox3.Text & "',SYSDATETIME()," & Session("tot") & ",'" & User.Identity.Name & "')"
             cmd.ExecuteNonQuery()
             ds.Tables.RemoveAt(0)
             cmd.CommandText = "select * from tempShoping where sid='" & Session.SessionID & "'"
@@ -38,22 +38,20 @@ Partial Class shiping
                     MsgBox(ex.ToString)
                 End Try
             Next
-            MsgBox("Thanks for purchasing your products will be delivered in 7 days", MsgBoxStyle.OkOnly, "Thank You")
+            'MsgBox("Thanks for purchasing your products will be delivered in 7 days", MsgBoxStyle.OkOnly, "Thank You")
             cmd.CommandText = "delete from tempShoping where sid='" & Session.SessionID & "'"
             cmd.ExecuteNonQuery()
             con.Close()
-            Response.Redirect("Paypal.htm")
+            Response.Redirect("OrderSuccess.aspx?oid=" + id.ToString())
         End If
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("t") <> "u" Then
-            MsgBox("Sorry You Cannot View This Page !!!!!!!")
-            Response.Redirect("Home.aspx")
+            Response.Redirect("UnauthorizedAccess.aspx")
         Else
             If User.Identity.Name = "" Then
-                MsgBox("You Need To Login For The Shipping Process")
-                Response.Redirect("Home.aspx")
+                Response.Redirect("login.aspx")
             Else
                 Dim con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString)
                 con.Open()
@@ -62,8 +60,8 @@ Partial Class shiping
                 Dim ds As New Data.DataSet
                 da.Fill(ds)
                 If ds.Tables(0).Rows.Count = 0 Then
-                    MsgBox("You Need To Add Products On The Shoping Cart")
-                    Response.Redirect("Home.aspx")
+                    lblMessage.Text = "No product found for shippment.Please add product."
+                    ImageButton1.Visible = False
                 End If
             End If
         End If

@@ -52,7 +52,7 @@ Partial Class Shopingcart
             If User.Identity.Name = "" Then
                 Response.Redirect("login.aspx")
             Else
-                Response.Redirect("SOption.aspx")
+                Response.Redirect("shiping.aspx")
             End If
         End If
 
