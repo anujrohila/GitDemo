@@ -1,20 +1,53 @@
-<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="abtusadmin.aspx.vb" Inherits="abtusadmin" title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="abtusadmin.aspx.vb" Inherits="abtusadmin" Title="Untitled Page" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/buttons/button_add.png"
-                Style="position: relative" />
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_preview.png"
-                Style="position: relative" /></asp:View>
+            <table cellpadding="5">
+                <tr>
+                    <td>
+                        <asp:Label ID="Label7" runat="server"
+                            Text="Enter Title : "></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="TextBox1" runat="server" Width="379px"></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                            ErrorMessage="Please enter your title." Display="Dynamic"
+                            ControlToValidate="TextBox1" ValidationGroup="aboutus"></asp:RequiredFieldValidator>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label8" runat="server"
+                            Text="Description : "></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="TextBox2" runat="server" Height="136px"
+                            Width="383px"></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ErrorMessage="Please enter description." Display="Dynamic"
+                            ControlToValidate="TextBox2" ValidationGroup="aboutus"></asp:RequiredFieldValidator>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/buttons/button_save.png"
+                            ValidationGroup="aboutus" />
+                        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_back.png" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </asp:View>
         <asp:View ID="View2" runat="server">
             <asp:Label ID="Label1" runat="server" Style="position: relative" Text="Enter Title : "></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server" Style="left: 91px; position: relative;
-                top: 7px" Width="379px"></asp:TextBox>
+
             <br />
             <br />
             <br />
-            <asp:TextBox ID="TextBox2" runat="server" Height="136px" Style="left: 145px; position: relative;
-                top: 15px" Width="383px"></asp:TextBox><br />
+            <br />
             <asp:Label ID="Label2" runat="server" Style="left: 1px; position: relative; top: -122px"
                 Text="Enter Description : " Width="100px"></asp:Label><br />
             <br />
@@ -59,7 +92,8 @@
                     <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" />
                     <asp:BoundField DataField="descr" HeaderText="descr" SortExpression="descr" />
                 </Columns>
-            </asp:GridView><asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/buttons/button_back.png"
+            </asp:GridView>
+            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/buttons/button_back.png"
                 Style="left: 7px; position: relative; top: 0px" />
         </asp:View>
     </asp:MultiView>

@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
     <link href="iecss.css" rel="stylesheet" type="text/css" />
@@ -11,65 +11,47 @@
 </head>
 <body>
     <form id="form1" runat="server">
-      <div id="main_container" style="width: 978px">
-	<div class="top_bar" style="width: 999px">
-    
-    </div>
-	<div id="header" style="width: 1001px">
-        
-        <div id="logo">
-            <a href="Home.aspx"><img src="images/logo.png" alt="" title="" border="0" width="237" height="140" /></a>
-	    </div>
-        
-       <DIV 
-style="LEFT: 2px; COLOR: #ffffff; POSITION: relative; TOP: 128px; HEIGHT: 44px; z-index: 100;" 
-class="oferte_content">Welcome&nbsp;
-           <asp:LoginName id="LoginName1" runat="server"></asp:LoginName>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LoginStatus style="LEFT: 4px; POSITION: relative; TOP: 9px" id="LoginStatus1" runat="server" LogoutImageUrl="~/buttons/button_logout.png" LoginImageUrl="~/buttons/button_login.png" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx"></asp:LoginStatus>
-           &nbsp;
-           <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" ForeColor="Lime">Change Password</asp:LinkButton></DIV>
-        
-
-    </div>
-    
-   <div id="main_content"> 
-   
-            <div id="menu_tab" style="width: 1004px">
-                    <ul class="menu" style="width: 1004px; height: 50px; z-index: 101; left: 0px; position: absolute; top: 211px;">
+        <div id="main_container" style="width: 978px">
+            <div class="top_bar" style="width: 1000px">
+            </div>
+            <div id="header" style="width: 1001px">
+                <div id="logo">
+                    <a href="Home.aspx">
+                        <img src="images/logo.png" alt="" title="" border="0" width="220" height="120" /></a>
+                </div>
+            </div>
+            <div class="top_bar" style="width: 1000px">
+            </div>
+            <div id="main_content">
+                <div id="menu_tab" style="width: 1000px">
+                    <ul class="menu" style="width: 1000px; height: 50px;">
                         <li><a href="homeadmin.aspx" class="nav1">Home</a> </li>
-                         <li><a href="Categoryadmin.aspx" class="nav2" style="width: 1px; left: -1px; position: relative; top: 0px;">Category</a></li>
-                         <li><a href="Manufactureradmin.aspx" class="nav2" style="width: 1px; left: 10px; position: relative; top: 0px;">Manufacturer</a></li>
-                         <li><a href="productadmin.aspx" class="nav4" style="width: 40px; left: 53px; position: relative; top: 1px;">Products</a></li>
-                         <li><a href="Descriptionadmin.aspx" class="nav4" style="width: 56px; left: 54px; position: relative; top: 0px;">Discription</a></li>
-                         <li><a href="Contactadmin.aspx" class="nav6" style="left: 49px; position: relative; top: 0px">Contact Us</a></li>
-                         <li><a href="Faqadmin.aspx" class="nav2" style="left: 43px; position: relative; top: 0px">FAQ</a></li>
-                         <li><a href="abtusadmin.aspx" class="nav2" style="left: 41px; position: relative; top: 0px">About Us</a></li>
-                         <li><a href="Shipingadmin.aspx" class="nav5" style="left: 36px; position: relative; top: 0px">Shiping</a>&nbsp;</li><li></li>
+                        <li><a href="Categoryadmin.aspx" class="nav2">Category</a></li>
+                        <li><a href="Manufactureradmin.aspx" class="nav2">Manufacturer</a></li>
+                        <li><a href="productadmin.aspx" class="nav4">Products</a></li>
+                        <li><a href="Descriptionadmin.aspx" class="nav4">Discription</a></li>
+                        <li><a href="Contactadmin.aspx" class="nav6">Contact Us</a></li>
+                        <li><a href="Faqadmin.aspx" class="nav2">FAQ</a></li>
+                        <li><a href="abtusadmin.aspx" class="nav2">About Us</a></li>
+                        <li><a href="Shipingadmin.aspx" class="nav5">Shiping</a>&nbsp;</li>
+                        <li></li>
                     </ul>
-                    </div> 
-<!-- end of menu tab -->
-            
-    <!-- end of left content -->
-   
-   
-   <div class="center_content" style="width: 984px; height: 336px;" id="DIV2">
-       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-       </asp:ContentPlaceHolder>
- 
- 
- 
- 
-    
-    
-   
-   </div><!-- end of center content -->
-   
-   <!-- end of right content -->   
-   
-            
-   </div><!-- end of main content -->
-
-
-</div>
+                </div>
+                <div class="center_content" style="width: 984px; height: 336px;" id="DIV2">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div
+            style="LEFT: 2px; COLOR: #ffffff; POSITION: relative; TOP: 128px; HEIGHT: 44px; z-index: 100;"
+            class="oferte_content">
+            Welcome&nbsp;
+                   <asp:LoginName ID="LoginName1" runat="server"></asp:LoginName>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LoginStatus Style="LEFT: 4px; POSITION: relative; TOP: 9px" ID="LoginStatus1" runat="server" LogoutImageUrl="~/buttons/button_logout.png" LoginImageUrl="~/buttons/button_login.png" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx"></asp:LoginStatus>
+            &nbsp;
+                   <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" ForeColor="Lime">Change Password</asp:LinkButton>
+        </div>
     </form>
 </body>
 </html>

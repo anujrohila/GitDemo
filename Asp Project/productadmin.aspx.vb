@@ -53,4 +53,8 @@ Partial Class productadmin
         MultiView1.ActiveViewIndex = 2
     End Sub
 
+    Protected Sub ImageButton2_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles ImageButton2.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+
 End Class

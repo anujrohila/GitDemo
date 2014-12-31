@@ -1,43 +1,92 @@
-<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="productadmin.aspx.vb" Inherits="productadmin" title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="productadmin.aspx.vb" Inherits="productadmin" Title="Untitled Page" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             &nbsp;<asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/buttons/button_add.png" />
-            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/buttons/button_preview.png" /></asp:View>
+            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/buttons/button_preview.png" />
+        </asp:View>
         <asp:View ID="View2" runat="server">
-            <asp:Label ID="Label1" runat="server" Style="position: relative" Text="Select Category"></asp:Label>
-            <asp:DropDownList ID="Catagory" runat="server" Style="left: 8px; position: relative;
-                top: 0px" DataSourceID="cat" DataTextField="Name" DataValueField="cat_id">
-            </asp:DropDownList>
-            <asp:DropDownList ID="Manufacturer" runat="server" Style="left: 205px; position: relative;
-                top: 1px" DataSourceID="Man" DataTextField="Name" DataValueField="id">
-            </asp:DropDownList>
-            <asp:Label ID="Label2" runat="server" Style="position: relative" Text="Select Manufacturer"></asp:Label><br />
             <asp:SqlDataSource ID="cat" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                 SelectCommand="SELECT [Name], [cat_id] FROM [cat]"></asp:SqlDataSource>
             <asp:SqlDataSource ID="Man" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                 SelectCommand="SELECT [id], [Name] FROM [Man]"></asp:SqlDataSource>
-            <br />
-            <asp:Label ID="Label3" runat="server" Style="position: relative" Text="Product Name :"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server" Style="left: 48px; position: relative;
-                top: 0px"></asp:TextBox><br />
-            <br />
-            <asp:Label ID="Label4" runat="server" Style="position: relative" Text="Upload Image : "></asp:Label>
-            <asp:FileUpload ID="FileUpload2" runat="server" Style="left: 48px; position: relative;
-                top: 0px" Width="256px" /><br />
-            <asp:Label ID="Label5" runat="server" Style="left: 0px; position: relative; top: 16px"
-                Text="Amount : " Width="72px"></asp:Label>
-            <asp:TextBox ID="TextBox2" runat="server" Style="left: 48px; position: relative;
-                top: 16px"></asp:TextBox><br />
-            <br />
-            <br />
-            <asp:Label ID="Label6" runat="server" Style="left: -3px; position: relative; top: -105px"
-                Text="Brief Description : " Width="98px"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server" Height="118px" Style="left: 22px; position: relative;
-                top: 0px" Width="417px"></asp:TextBox><br />
-            <br />
-            &nbsp;<asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/buttons/button_save.png" />
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_back.png" /></asp:View>
+            <table cellpadding="5">
+                <tr>
+                    <td>
+                        <asp:Label ID="Label7" runat="server"
+                            Text="Select Category : "></asp:Label></td>
+                    <td>
+                        <asp:DropDownList ID="Catagory" runat="server"
+                            DataSourceID="cat" DataTextField="Name" DataValueField="cat_id">
+                        </asp:DropDownList>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label8" runat="server"
+                            Text="Select Manufacturer : "></asp:Label></td>
+                    <td>
+                        <asp:DropDownList ID="Manufacturer" runat="server"
+                            DataSourceID="Man" DataTextField="Name" DataValueField="id">
+                        </asp:DropDownList>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label9" runat="server"
+                            Text="Product Name : "></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                            ErrorMessage="Please enter product name." ControlToValidate="TextBox1"
+                            ValidationGroup="product" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label1" runat="server"
+                            Text="Upload Image : "></asp:Label></td>
+                    <td>
+                        <asp:FileUpload ID="FileUpload2" runat="server" Width="256px" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label2" runat="server"
+                            Text="Amount : "></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ErrorMessage="Please enter product amount." ControlToValidate="TextBox2"
+                            ValidationGroup="product" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">
+                        <asp:Label ID="Label3" runat="server"
+                            Text="Brief Description : "></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="TextBox3" runat="server" Height="118px" Width="417px"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                            ErrorMessage="Please enter product description." ControlToValidate="TextBox3" Display="Dynamic" ValidationGroup="product"></asp:RequiredFieldValidator></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/buttons/button_save.png" ValidationGroup="product" />
+                        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_back.png" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </asp:View>
         <asp:View ID="View3" runat="server">
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues"
                 ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Product] WHERE [id] = @original_id AND [Name] = @original_Name AND [Amount] = @original_Amount"
@@ -63,19 +112,24 @@
                 </InsertParameters>
             </asp:SqlDataSource>
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
-                AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1">
+                AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
                 <Columns>
-                    <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
+                    <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" Visible="false" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
                     <asp:CommandField ButtonType="Image" CancelImageUrl="~/buttons/cancel.jpg" DeleteImageUrl="~/buttons/button_delete.png"
                         EditImageUrl="~/buttons/button_edit.png" ShowDeleteButton="True" ShowEditButton="True"
                         UpdateImageUrl="~/buttons/button_save.png" />
                 </Columns>
+                <FooterStyle BackColor="White" ForeColor="#333333" />
+                <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+                <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="White" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
             <br />
-            &nbsp;
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/buttons/button_back.png" /></asp:View>
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/buttons/button_back.png" />
+        </asp:View>
     </asp:MultiView>
 </asp:Content>
 

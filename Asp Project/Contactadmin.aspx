@@ -1,5 +1,6 @@
-<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Contactadmin.aspx.vb" Inherits="Contactadmin" title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Contactadmin.aspx.vb" Inherits="Contactadmin" Title="Untitled Page" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues"
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Contact Us] WHERE [id] = @original_id AND [notes] = @original_notes AND [phone] = @original_phone AND [mail] = @original_mail AND [address] = @original_address"
         InsertCommand="INSERT INTO [Contact Us] ([notes], [phone], [mail], [address], [id]) VALUES (@notes, @phone, @mail, @address, @id)"
@@ -32,15 +33,14 @@
         </InsertParameters>
     </asp:SqlDataSource>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id"
-        DataSourceID="SqlDataSource1">
+        DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double"
+         BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
         <Columns>
-            <asp:CommandField ButtonType="Image" CancelImageUrl="~/buttons/cancel.jpg" EditImageUrl="~/buttons/button_edit.png"
-                ShowEditButton="True" UpdateImageUrl="~/buttons/button_save.png" />
-            <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
+            <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" Visible="false" />
             <asp:TemplateField HeaderText="notes" SortExpression="notes">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Height="102px" Text='<%# Bind("notes") %>'
-                        TextMode="MultiLine" Width="451px"></asp:TextBox>
+                        TextMode="MultiLine" Width="300"></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Height="65px" Text='<%# Bind("notes") %>' Width="451px"></asp:Label>
@@ -65,7 +65,14 @@
                         Width="221px"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:CommandField ButtonType="Image" CancelImageUrl="~/buttons/cancel.jpg" EditImageUrl="~/buttons/button_edit.png"
+                ShowEditButton="True" UpdateImageUrl="~/buttons/button_save.png" />
         </Columns>
+        <FooterStyle BackColor="White" ForeColor="#333333" />
+        <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="White" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
 </asp:Content>
 
