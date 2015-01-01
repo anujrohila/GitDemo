@@ -37,7 +37,7 @@
                         <li></li>
                     </ul>
                 </div>
-                <div class="center_content" style="width: 984px; height: 336px;" id="DIV2">
+                <div class="center_content" style="width: 980px; min-height: 400px; background-color: #F1F1F1;" id="DIV2">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>

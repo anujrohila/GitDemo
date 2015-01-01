@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Faqadmin.aspx.vb" Inherits="Faqadmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <h1 style="color:orange;">FAQ</h1>
+    <hr />
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/buttons/button_add.png" />

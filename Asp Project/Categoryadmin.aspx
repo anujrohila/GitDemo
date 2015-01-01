@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Categoryadmin.aspx.vb" Inherits="Categoryadmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h1 style="color:orange;">Category</h1>
+    <hr />
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_add.png" />&nbsp;<asp:ImageButton
@@ -47,8 +49,7 @@
             </asp:SqlDataSource>
             <br />
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
-                AutoGenerateColumns="False" DataKeyNames="cat_id" DataSourceID="SqlDataSource1"
-                PageSize="15" Width="328px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
+                AutoGenerateColumns="False" DataKeyNames="cat_id" DataSourceID="SqlDataSource1" Width="328px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
                 <Columns>
                     <asp:BoundField DataField="cat_id" HeaderText="cat_id" ReadOnly="True" SortExpression="cat_id" Visible="false" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" FooterStyle-Font-Bold="true"   />

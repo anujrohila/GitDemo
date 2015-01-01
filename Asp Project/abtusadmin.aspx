@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="abtusadmin.aspx.vb" Inherits="abtusadmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h1 style="color: orange;">About US</h1>
+    <hr />
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             <table cellpadding="5">

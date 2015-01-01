@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Manufactureradmin.aspx.vb" Inherits="Manufactureradmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h1 style="color:orange;">Manufacturer</h1>
+    <hr />
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             &nbsp;
@@ -47,8 +49,7 @@
                 </InsertParameters>
             </asp:SqlDataSource>
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
-                AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1"
-                PageSize="15" Width="328px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
+                AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" Width="328px" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" Visible="false" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" FooterStyle-Font-Bold="true" />

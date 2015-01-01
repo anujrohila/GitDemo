@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="productadmin.aspx.vb" Inherits="productadmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h1 style="color: orange;">Product</h1>
+    <hr />
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             &nbsp;<asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/buttons/button_add.png" />
@@ -112,11 +114,13 @@
                 </InsertParameters>
             </asp:SqlDataSource>
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
-                AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
+                AutoGenerateColumns="False" DataKeyNames="id" 
+                DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" 
+                BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" Visible="false" />
-                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                    <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" />
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" ItemStyle-Width="300" />
+                    <asp:BoundField DataField="Amount" HeaderText="Amount" SortExpression="Amount" ItemStyle-Width="150"/>
                     <asp:CommandField ButtonType="Image" CancelImageUrl="~/buttons/cancel.jpg" DeleteImageUrl="~/buttons/button_delete.png"
                         EditImageUrl="~/buttons/button_edit.png" ShowDeleteButton="True" ShowEditButton="True"
                         UpdateImageUrl="~/buttons/button_save.png" />

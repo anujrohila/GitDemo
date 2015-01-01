@@ -1,5 +1,8 @@
-<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Shipingadmin.aspx.vb" Inherits="Shipingadmin" title="Untitled Page" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Shipingadmin.aspx.vb" Inherits="Shipingadmin" Title="Untitled Page" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h1 style="color: orange;">Shipping</h1>
+    <hr />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server"
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Shiping] WHERE [id] = @original_id"
         InsertCommand="INSERT INTO [Shiping] ([id], [name], [address], [phone], [orderdate], [Total], [uname]) VALUES (@id, @name, @address, @phone, @orderdate, @Total, @uname)"
@@ -28,16 +31,15 @@
         </InsertParameters>
     </asp:SqlDataSource>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
-        AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1">
+        AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" EnableModelValidation="True" GridLines="Horizontal">
         <Columns>
-            <asp:CommandField ButtonType="Image" SelectImageUrl="~/buttons/button_preview.png"
-                ShowSelectButton="True" />
+
             <asp:TemplateField HeaderText="id" SortExpression="id">
                 <EditItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("id") %>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("id") %>' Visible="false"></asp:Label>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("id") %>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("id") %>' Visible="false"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
@@ -46,9 +48,16 @@
             <asp:BoundField DataField="orderdate" HeaderText="orderdate" SortExpression="orderdate" />
             <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
             <asp:BoundField DataField="uname" HeaderText="uname" SortExpression="uname" />
+            <asp:CommandField ButtonType="Image" SelectImageUrl="~/buttons/button_preview.png"
+                ShowSelectButton="True" />
             <asp:CommandField ButtonType="Image" DeleteImageUrl="~/buttons/button_delete.png"
                 ShowDeleteButton="True" />
         </Columns>
+        <FooterStyle BackColor="White" ForeColor="#333333" />
+        <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
+        <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="White" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
 </asp:Content>
 

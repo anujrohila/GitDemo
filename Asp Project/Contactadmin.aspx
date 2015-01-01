@@ -1,6 +1,8 @@
 <%@ Page Language="VB" MasterPageFile="~/adminmaster.master" AutoEventWireup="false" CodeFile="Contactadmin.aspx.vb" Inherits="Contactadmin" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <h1 style="color:orange;">Contact US</h1>
+    <hr />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues"
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Contact Us] WHERE [id] = @original_id AND [notes] = @original_notes AND [phone] = @original_phone AND [mail] = @original_mail AND [address] = @original_address"
         InsertCommand="INSERT INTO [Contact Us] ([notes], [phone], [mail], [address], [id]) VALUES (@notes, @phone, @mail, @address, @id)"
