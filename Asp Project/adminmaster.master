@@ -19,6 +19,20 @@
                     <a href="Home.aspx">
                         <img src="images/logo.png" alt="" title="" border="0" width="220" height="120" /></a>
                 </div>
+                <table style="width: 740px;">
+                    <tr>
+                        <td style="width: 240px"></td>
+                        <td style="width: 250px; text-align: right">
+                            <asp:LoginName ID="LoginName2" runat="server" FormatString="Welcome : {0}" />
+                        </td>
+                        <td style="width: 250px; text-align: right">
+                            <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" Font-Size="10">Change Password</asp:LinkButton>
+                            |
+                                <asp:LoginStatus ID="LoginStatus2" runat="server" LoginText="Login" Font-Size="10"
+                                    LogoutText="Logout" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx" />
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="top_bar" style="width: 1000px">
             </div>
@@ -43,15 +57,7 @@
                 </div>
             </div>
         </div>
-        <div
-            style="LEFT: 2px; COLOR: #ffffff; POSITION: relative; TOP: 128px; HEIGHT: 44px; z-index: 100;"
-            class="oferte_content">
-            Welcome&nbsp;
-                   <asp:LoginName ID="LoginName1" runat="server"></asp:LoginName>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LoginStatus Style="LEFT: 4px; POSITION: relative; TOP: 9px" ID="LoginStatus1" runat="server" LogoutImageUrl="~/buttons/button_logout.png" LoginImageUrl="~/buttons/button_login.png" LogoutAction="Redirect" LogoutPageUrl="logoutpage.aspx"></asp:LoginStatus>
-            &nbsp;
-                   <asp:LinkButton ID="LinkButton1" runat="server" EnableTheming="True" ForeColor="Lime">Change Password</asp:LinkButton>
-        </div>
+
     </form>
 </body>
 </html>

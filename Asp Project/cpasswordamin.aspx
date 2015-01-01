@@ -14,20 +14,20 @@
         <tr>
             <td style="width: 179px">
                 <asp:Label ID="Label1" runat="server" Text="Old Paasword :"></asp:Label></td>
-            <td style="width: 221px">
+            <td>
                 <asp:TextBox ID="TextBox1" runat="server" Width="179px" TextMode="Password"></asp:TextBox></td>
         </tr>
         <tr>
             <td style="width: 179px">
                 <asp:Label ID="Label2" runat="server" Text="New Paasword :"></asp:Label></td>
-            <td style="width: 221px">
-                <asp:TextBox ID="TextBox2" runat="server" Width="178px" TextMode="Password"></asp:TextBox></td>
+            <td>
+                <asp:TextBox ID="TextBox2" runat="server"  TextMode="Password"></asp:TextBox></td>
         </tr>
         <tr>
             <td style="width: 179px">
                 <asp:Label ID="Label3" runat="server" Text="Confirm New Paasword :"></asp:Label></td>
-            <td style="width: 221px">
-                <asp:TextBox ID="TextBox3" runat="server" Width="178px" TextMode="Password"></asp:TextBox></td>
+            <td>
+                <asp:TextBox ID="TextBox3" runat="server"  TextMode="Password"></asp:TextBox></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -47,7 +47,7 @@
         <tr>
             <td style="width: 179px">
                 &nbsp;<asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/buttons/button_save.png" /></td>
-            <td style="width: 221px">
+            <td>
                 <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/buttons/cancel.jpg" CausesValidation="False" /></td>
         </tr>
     </table>
