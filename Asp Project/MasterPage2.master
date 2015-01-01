@@ -75,7 +75,7 @@
                             </asp:DataList>
                         </li>
                     </ul>
-                    <div class="title_box">Special Products</div>
+                   <%-- <div class="title_box">Special Products</div>
                     <div class="border_box">
                         <div class="product_title"><a href="">Motorola 156 MX-VL</a></div>
                         <div class="product_img">
@@ -87,7 +87,7 @@
                     <div class="banner_adds">
                         <a href="www.amf.com">
                             <img src="images/bann2.jpg" alt="" title="" border="0" style="width: 128px" /></a>&nbsp;
-                    </div>
+                    </div>--%>
                 </div>
                 <!-- end of left content -->
                 <div class="center_content" style="width: 440px; height: 360px;" id="DIV2">
