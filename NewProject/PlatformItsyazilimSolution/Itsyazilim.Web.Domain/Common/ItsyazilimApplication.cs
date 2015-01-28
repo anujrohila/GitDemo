@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 
 namespace Itsyazilim.Web.Domain
 {
@@ -17,6 +18,14 @@ namespace Itsyazilim.Web.Domain
             get
             {
                 return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["WebUrlPrefix"]);
+            }
+        }
+
+        public static ResourceManager ResourceScript
+        {
+            get
+            {
+                return Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources.ResourceManager;
             }
         }
     }
