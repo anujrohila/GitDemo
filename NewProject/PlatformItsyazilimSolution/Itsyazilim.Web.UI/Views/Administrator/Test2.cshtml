@@ -1,0 +1,162 @@
+﻿@model platform.ltsyazilim.com.Firm
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test2</title>
+</head>
+<body>
+    <div>
+        <h4>Firm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirmName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirmName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CountyId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CountyId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phone1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phone2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fax)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fax)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MobilePhone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MobilePhone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.WebSite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.WebSite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TaxOffice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TaxOffice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TaxNo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TaxNo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsApproved)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ApprovedBy)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ApprovedBy)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ApprovedOn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ApprovedOn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedOn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedOn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedOn)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FirmId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

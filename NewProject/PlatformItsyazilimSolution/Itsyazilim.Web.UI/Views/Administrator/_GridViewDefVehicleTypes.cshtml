@@ -1,0 +1,151 @@
+﻿@{
+        var grid = Html.DevExpress().GridView(settings =>
+        {
+            settings.Name = "GridViewDefVehicleTypes";
+            settings.CallbackRouteValues = new { Controller = "Administrator", Action = "GridViewDefVehicleTypes" };
+
+            settings.ControlStyle.Font.Name = "OpenSans";
+            settings.Styles.AlternatingRow.BackColor = System.Drawing.Color.White;
+
+            settings.Settings.ShowFilterBar = GridViewStatusBarMode.Auto;
+            settings.Settings.ShowFilterRow = true;
+            settings.SettingsBehavior.EnableRowHotTrack = true;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.ShowOnStatusBar;
+            settings.Styles.RowHotTrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#D9ECED");
+            settings.Styles.RowHotTrack.ForeColor = System.Drawing.Color.Black;
+            settings.SettingsBehavior.AllowDragDrop = true;
+
+            settings.SettingsPager.Visible = true;
+            settings.Settings.ShowGroupPanel = false;
+            settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefVehicleTypesAddNew" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefVehicleTypesUpdate" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefVehicleTypesDelete" };
+            settings.SettingsBehavior.ConfirmDelete = true;
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.VisibleIndex = 10;
+            settings.CommandColumn.Width = 120;
+            settings.CommandColumn.Caption = " ";
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsText.ConfirmDelete = "Araç türü sistemden kaldırılacak. Onaylıyor musunuz?";
+
+
+            settings.SettingsPopup.EditForm.AllowResize = false;
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsText.PopupEditFormCaption = "Araç Türü Tanımlama";
+
+            settings.SettingsEditing.EditFormColumnCount = 1;
+            settings.SettingsPopup.EditForm.Width = 300;
+
+            settings.Styles.Cell.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+            settings.KeyFieldName = "VehicleTypeId";
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleTypeId";
+                column.Visible = false;
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+                column.ShowInCustomizationForm = false;
+
+            });
+            settings.Columns.Add(column =>
+            {
+                column.Name = "Index";
+                column.Width = 40;
+                column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+                column.CellStyle.ForeColor = System.Drawing.Color.Maroon;
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+                column.ShowInCustomizationForm = false;
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleTypeName";
+                column.Caption = "Araç Türü";
+                column.VisibleIndex = 1;
+                column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+                column.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+                column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleWidth";
+                column.Caption = "Genişlik (m)";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+                column.PropertiesEdit.DisplayFormatString = "0.00";
+
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleLength";
+                column.Caption = "Uzunluk (m)";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+                column.PropertiesEdit.DisplayFormatString = "0.00";
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleHeight";
+                column.Caption = "Yükseklik (m)";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+                column.PropertiesEdit.DisplayFormatString = "0.00";
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleVolume";
+                column.Caption = "Hacim (m³)";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+                column.PropertiesEdit.DisplayFormatString = "0.00";
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleDesi";
+                column.Caption = "Desi";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+                column.PropertiesEdit.Style.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            });
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VehicleWeight";
+                column.Caption = "Ağırlık (kg)";
+                column.VisibleIndex = 2;
+                column.Width = 100;
+            });
+
+            settings.CustomColumnDisplayText = (sender, e) =>
+            {
+                if (e.Column.Name == "Index")
+                {
+                    e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+                    
+                }
+            };
+            settings.CellEditorInitialize = (s, e) =>
+            {
+                ASPxEdit editor = (ASPxEdit)e.Editor;
+                editor.ValidationSettings.Display = Display.Dynamic;
+            };
+
+
+        });
+
+        if (ViewData["EditError"] != null)
+        {
+            grid.SetEditErrorText((string)ViewData["EditError"]);
+        }
+    }
+    @grid.Bind(Model).GetHtml()

@@ -1,0 +1,19 @@
+﻿@using Itsyazilim.Web.UI.Models;
+@model Itsyazilim.Web.UI.Models.FirmViewModel
+@Html.DevExpress().ComboBoxFor(m => m.CountyId,
+    settings =>
+    {
+        settings.Name = "CountyId";
+        settings.ControlStyle.CssClass = "DevExInput";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.ControlStyle.Font.Name = "Arial";
+        settings.ControlStyle.Font.Size = 10;
+        settings.Properties.ValidationSettings.Display = DevExpress.Web.Display.Dynamic;
+
+        settings.SelectedIndex = 0;
+        settings.CallbackRouteValues = new { Controller = "Data", Action = "GetCounties" };
+        settings.Properties.TextField = "DCountyName";
+        settings.Properties.ValueField = "DCountyId";
+        settings.Properties.DropDownButton.Visible = false;
+    }
+    ).BindList(ViewData["Counties"]).GetHtml()

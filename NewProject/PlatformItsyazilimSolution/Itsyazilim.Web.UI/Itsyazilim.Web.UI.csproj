@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -351,17 +353,137 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\BaseApplication\BaseController.cs" />
+    <Compile Include="Controllers\CommunicationController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\FormElementSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManageMailingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ContentFactory.cs" />
     <Compile Include="Helpers\CookieManager.cs" />
     <Compile Include="Helpers\GlobalizeUrls.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdministratorSelectFirmDetails_Result.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdministratorSelectFirms_Result.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdministratorSelectUnApprovedFirmDetails_Result.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdministratorSelectUnapprovedFirms_Result.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdministratorViewModel.cs" />
+    <Compile Include="Models\C_OrderEndPositions.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_OrderStartPositions.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\DefLocationCities.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefLocationCounties.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefLocationCountries.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefLocationRegions.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefOrderTypes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefProductPackages.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefProductProperties.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefProductTypes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefProductUnits.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefVehicleTypes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Firms.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LogMembershipCheckPasswordRenewalCodes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogMembershipLogins.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogMembershipRegisterCheckCodes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogMembershipRegisterReSendCodes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogMembershipSendPasswordRenewalCodes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogSystemMailSend.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LtsWebModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LtsWebModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LtsWebModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LtsWebModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LtsWebModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageSelectCountyListForTreeView_Result.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MapFirmToUser.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Membership.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MembershipPasswordRenewals.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetails.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderProductProperties.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderRoutes.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders.cs">
+      <DependentUpon>LtsWebModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\CommonFunctions.cs" />
@@ -592,6 +714,15 @@
     <Content Include="Content\Images\Logo\Logo.png" />
     <Content Include="Content\Images\Logo\LogoIcon.png" />
     <Content Include="Content\Images\Membership\_default.png" />
+    <Content Include="Content\Styles\AweSomeIcons.css" />
+    <Content Include="Content\Styles\bootstrap.css" />
+    <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\GlyphIcons.css" />
+    <Content Include="Content\Styles\smartadmin-production.min.css" />
+    <Content Include="Content\Styles\System.css" />
+    <Content Include="Content\Styles\_Default.css" />
+    <Content Include="Content\Styles\_Layout.css" />
+    <Content Include="Content\Styles\_Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -649,6 +780,23 @@
     <Content Include="Content\Fonts\OpenSans-Regular.ttf" />
     <Content Include="Content\Fonts\OpenSans-Semibold.ttf" />
     <Content Include="Content\Fonts\OpenSans-SemiboldItalic.ttf" />
+    <EntityDeploy Include="Models\LtsWebModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LtsWebModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LtsWebModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LtsWebModel.edmx</DependentUpon>
+      <LastGenOutput>LtsWebModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LtsWebModel.edmx.diagram">
+      <DependentUpon>LtsWebModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LtsWebModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LtsWebModel.edmx</DependentUpon>
+      <LastGenOutput>LtsWebModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -673,13 +821,62 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Old.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_PartialLogin.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\PasswordRenewal.cshtml" />
+    <Content Include="Views\Account\PasswordRenewalChange.cshtml" />
+    <Content Include="Views\Account\PasswordRenewalCheck.cshtml" />
+    <Content Include="Views\Account\PasswordRenewalResult.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegisterReSendActivateCode.cshtml" />
+    <Content Include="Views\Account\RegisterReSendActivateCodeResult.cshtml" />
+    <Content Include="Views\Account\RegisterResult.cshtml" />
+    <Content Include="Views\Account\RegisterVerify.cshtml" />
+    <Content Include="Views\Administrator\DefProductPackages.cshtml" />
+    <Content Include="Views\Administrator\DefProductProperties.cshtml" />
+    <Content Include="Views\Administrator\DefProductTypes.cshtml" />
+    <Content Include="Views\Administrator\DefProductUnits.cshtml" />
+    <Content Include="Views\Administrator\DefVehicleTypes.cshtml" />
+    <Content Include="Views\Administrator\FirmApproval.cshtml" />
+    <Content Include="Views\Administrator\FirmDetails.cshtml" />
+    <Content Include="Views\Administrator\FirmList.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Administrator\Test.cshtml" />
+    <Content Include="Views\Administrator\Test2.cshtml" />
+    <Content Include="Views\Administrator\UnApprovedFirmDetails.cshtml" />
+    <Content Include="Views\Administrator\UnApprovedFirmList.cshtml" />
+    <Content Include="Views\Administrator\_GridViewDefProductPackages.cshtml" />
+    <Content Include="Views\Administrator\_GridViewDefProductProperties.cshtml" />
+    <Content Include="Views\Administrator\_GridViewDefProductTypes.cshtml" />
+    <Content Include="Views\Administrator\_GridViewDefProductUnits.cshtml" />
+    <Content Include="Views\Administrator\_GridViewDefVehicleTypes.cshtml" />
+    <Content Include="Views\Administrator\_GridViewFirmList.cshtml" />
+    <Content Include="Views\Administrator\_GridViewUnApprovedFirmList.cshtml" />
+    <Content Include="Views\Administrator\_ParitalGridViewFirmList.cshtml" />
+    <Content Include="Views\Data\GetCounties.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Manage\AddFirm.cshtml" />
+    <Content Include="Views\Manage\AddOrder.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\Logout.cshtml" />
+    <Content Include="Views\Manage\WaitingFirm.cshtml" />
+    <Content Include="Views\Manage\WaitingFirmApproval.cshtml" />
+    <Content Include="Views\Manage\_AddOrderType1.cshtml" />
+    <Content Include="Views\Manage\_AddOrderType2.cshtml" />
+    <Content Include="Views\Manage\_AddOrderType3.cshtml" />
+    <Content Include="Views\Manage\_AddOrderType4.cshtml" />
+    <Content Include="Views\Manage\_TreeListOrderFromWhere.cshtml" />
+    <Content Include="Views\Shared\_Administrator.cshtml" />
+    <Content Include="Views\Shared\_Default.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -928,6 +1125,9 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Email.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

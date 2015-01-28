@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Itsyazilim.Web.UI.Models;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(LoginViewModel model)
         {
-            var str = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
+            if (Request.IsAuthenticated) return RedirectToAction("Index", "Manage");
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Hakkımızda";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "İletişim sayfası";
 
             return View();
         }

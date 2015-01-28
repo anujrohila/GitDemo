@@ -1,0 +1,163 @@
+﻿@model System.Collections.IEnumerable
+
+@{
+    ViewBag.Title = "Sipariş Ekle";
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Yeni Sipariş
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @*<h3 style="padding-left:15px">
+        Sistemi kullanmaya başlamanız için, şirket bilgilerinizi tanımlamanız gerekiyor.
+        Lütfen aşağıdaki formdaki bilgileri eksiksiz doldurun.
+    </h3>*@
+</div>
+@Html.Action("_TreeListOrderFromWhere", Model);
+<br /><br />
+
+
+@Html.DevExpress().TreeList(
+            settings =>
+            {
+                settings.Name = "treeList44gg";
+                settings.CallbackRouteValues = new { Controller = "Manage", Action = "_TreeListOrderFromWhere" };
+                settings.Width = 200;
+                settings.Height = 200;
+
+                settings.Settings.ShowColumnHeaders = false;
+                settings.AutoGenerateColumns = false;
+                settings.KeyFieldName = "CountyID";
+                settings.ParentFieldName = "CityID";
+                settings.Columns.Add("Name", "İlçe");
+                settings.RootValue = 0;
+                settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+
+                settings.SettingsCookies.Enabled = true;
+                settings.SettingsSelection.Enabled = true;
+                settings.SettingsSelection.Recursive = true;
+                settings.SettingsSelection.AllowSelectAll = true;
+                settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+            }
+  ).Bind(Itsyazilim.Web.UI.Models.DataProvider.GetCounties()).GetHtml()
+
+<script>
+    $(document).find("a[ActionLink='AddOrder']").parent().addClass("active");
+
+    function LoadOrderPanel(OrderTypeId) {
+        $.ajax({
+            url: "AddOrderType" + OrderTypeId,
+            success: function (data) {
+                $("#OrderPanel").html(data);
+            }
+        });
+    }
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <i class="fa fa-reorder" style="padding: 0px 10px 0px 10px"></i>Sipariş Ekle
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <hr />
+</div>
+
+<div class="padding-10" style="width:800px">
+
+    <div class="smart-form">
+        <fieldset class="padding-top-0" style="background-color: transparent">
+            <div class="form-horizontal">
+
+                <h1>Talep Türü Seçiniz</h1><br />
+                @Html.DevExpress().ComboBox(settings =>
+                        {
+                            settings.Name = "OrderTypeId";
+                            settings.ControlStyle.CssClass = "DevExInput";
+                            settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                            settings.ControlStyle.Font.Name = "Arial";
+                            settings.ControlStyle.Font.Size = 10;
+                            settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                            settings.Properties.ValidationSettings.Display = Display.Dynamic;
+                            settings.ShowModelErrors = true;
+
+                            settings.Properties.ValueType = typeof(int);
+                            settings.Properties.TextField = "OrderTypeName";
+                            settings.Properties.ValueField = "OrderTypeId";
+                            settings.SelectedIndex = -1;
+                            settings.Properties.NullText = "Seçiniz";
+                            settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ LoadOrderPanel(s.GetValue());}";
+                        }
+                        ).BindList(Itsyazilim.Web.UI.Models.DataProvider.GetDefOrderTypes()).GetHtml()
+
+            </div>
+            <br />
+            <div id="OrderPanel"></div>
+
+
+        </fieldset>
+        <div class="form-horizontal">
+            @*@Html.DevExpress().ListBox(
+                    listBoxSettings =>
+                    {
+                        listBoxSettings.Name = "checkListBox";
+                        listBoxSettings.ControlStyle.Border.BorderWidth = 0;
+                        listBoxSettings.ControlStyle.BorderBottom.BorderWidth = 1;
+                        listBoxSettings.ControlStyle.BorderBottom.BorderColor = System.Drawing.Color.FromArgb(0xDCDCDC);
+                        listBoxSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                        listBoxSettings.Height = 100;
+
+                        listBoxSettings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+                        listBoxSettings.Properties.ValueField = "CountyId";
+                        listBoxSettings.Properties.TextField = "Name";
+                    }
+                ).BindList(Itsyazilim.Web.UI.Models.DataProvider.GetCountyListForTreeView()).GetHtml()*@
+
+
+            <br /><br /><br />
+
+
+            @*@Html.DevExpress().TreeList(
+                          settings =>
+                          {
+                              settings.Name = "treeList";
+                              settings.Width = 500;
+                              settings.CallbackRouteValues = new { Controller = "ManageController", Action = "TreeListCountyList" };
+
+
+                              settings.AutoGenerateColumns = false;
+                              settings.KeyFieldName = "CountyID";
+                              settings.ParentFieldName = "CityID";
+                              settings.Columns.Add("Name", "İlçe");
+                              settings.RootValue = 0;
+
+                              settings.SettingsCookies.StoreExpandedNodes = true;
+                              settings.SettingsBehavior.AutoExpandAllNodes = true;
+                              settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+
+                              settings.SettingsCookies.Enabled = true;
+                              settings.SettingsCookies.StoreExpandedNodes = true;
+                              settings.SettingsCookies.StoreSelection = true;
+
+                              settings.SettingsSelection.Enabled = true;
+                              settings.SettingsSelection.Recursive = true;
+                              settings.SettingsSelection.AllowSelectAll = true;
+
+                          }
+                ).Bind(Itsyazilim.Web.UI.Models.DataProvider.GetCountyListForTreeView()).GetHtml();*@
+        </div>
+    </div>
+
+</div>

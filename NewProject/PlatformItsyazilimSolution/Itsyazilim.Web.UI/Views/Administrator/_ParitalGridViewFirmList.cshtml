@@ -1,0 +1,90 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Settings.ShowFilterBar = GridViewStatusBarMode.Auto;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.EnableRowHotTrack = true;
+        settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.ShowOnStatusBar;
+
+        settings.Styles.RowHotTrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFDFD991");
+        settings.Styles.RowHotTrack.ForeColor = System.Drawing.Color.Black;
+
+        settings.Styles.AlternatingRow.BackColor = System.Drawing.Color.White;
+        settings.Name = "GridViewFirmList";
+        settings.CallbackRouteValues = new { Controller = "Administrator", Action = "ParitalGridViewFirmList" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Administrator", Action = "ParitalGridViewFirmListAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Administrator", Action = "ParitalGridViewFirmListUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Administrator", Action = "ParitalGridViewFirmListDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.VisibleIndex = 2;
+        settings.CommandColumn.Caption = " ";
+        settings.CommandColumn.Width = 150;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "FirmId";
+
+        
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Styles.Header.Font.Bold = true;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "FirmId";
+            column.Visible = false;
+            column.EditFormSettings.Visible = DefaultBoolean.False;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "FirmName";
+            column.Caption = "Firma Ýsmi";
+            column.VisibleIndex = 1;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.VisibleIndex = 1;
+            column.FieldName = "IsApproved";
+            column.Caption = "Onay Durumu";
+            column.ColumnType = MVCxGridViewColumnType.CheckBox; column.Width = 150;
+            column.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            column.SetDataItemTemplateContent(c =>
+            {
+                ViewContext.Writer.Write("<a href='UnApprovedFirmDetails/" + DataBinder.Eval(c.DataItem, "FirmId").ToString() + "'>Detaylar</a>");
+            });
+        });
+
+
+        settings.CustomColumnDisplayText = (sender, e) =>
+        {
+            if (e.Column.Name == "Index")
+            {
+                e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+            }
+            if (e.Column.FieldName == "FirmId")
+            {
+                e.DisplayText = "<a href=''>";
+            }
+        };
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+
+
+
+
+}
+@grid.Bind(Model).GetHtml()
+
+
