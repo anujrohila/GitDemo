@@ -41,10 +41,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assemblers\C_OrderEndPositionsAssembler.cs" />
+    <Compile Include="Assemblers\C_OrderStartPositionsAssembler.cs" />
+    <Compile Include="Assemblers\DefLocationCityAssembler.cs" />
+    <Compile Include="Assemblers\DefLocationCountryAssembler.cs" />
+    <Compile Include="Assemblers\DefLocationCountyAssembler.cs" />
+    <Compile Include="Assemblers\DefLocationRegionAssembler.cs" />
+    <Compile Include="Assemblers\DefOrderTypeAssembler.cs" />
+    <Compile Include="Assemblers\DefProductPackageAssembler.cs" />
+    <Compile Include="Assemblers\DefProductPropertyAssembler.cs" />
+    <Compile Include="Assemblers\DefProductTypeAssembler.cs" />
+    <Compile Include="Assemblers\DefProductUnitAssembler.cs" />
+    <Compile Include="Assemblers\DefVehicleTypeAssembler.cs" />
+    <Compile Include="Assemblers\FirmAssembler.cs" />
+    <Compile Include="Assemblers\LogMembershipCheckPasswordRenewalCodeAssembler.cs" />
+    <Compile Include="Assemblers\LogMembershipLoginAssembler.cs" />
+    <Compile Include="Assemblers\LogMembershipRegisterCheckCodeAssembler.cs" />
+    <Compile Include="Assemblers\LogMembershipRegisterReSendCodeAssembler.cs" />
+    <Compile Include="Assemblers\LogMembershipSendPasswordRenewalCodeAssembler.cs" />
+    <Compile Include="Assemblers\LogSystemMailSendAssembler.cs" />
+    <Compile Include="Assemblers\MapFirmToUserAssembler.cs" />
+    <Compile Include="Assemblers\MembershipAssembler.cs" />
+    <Compile Include="Assemblers\MembershipPasswordRenewalAssembler.cs" />
+    <Compile Include="Assemblers\OrderAssembler.cs" />
+    <Compile Include="Assemblers\OrderDetailAssembler.cs" />
+    <Compile Include="Assemblers\OrderProductPropertyAssembler.cs" />
+    <Compile Include="Assemblers\OrderRouteAssembler.cs" />
     <Compile Include="Common\ItsyazilimApplication.cs" />
     <Compile Include="Common\CommonModel.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\PageHeaderModel.cs" />
+    <Compile Include="DTO\C_OrderEndPositionsDTO.cs" />
+    <Compile Include="DTO\C_OrderStartPositionsDTO.cs" />
+    <Compile Include="DTO\DefLocationCityDTO.cs" />
+    <Compile Include="DTO\DefLocationCountryDTO.cs" />
+    <Compile Include="DTO\DefLocationCountyDTO.cs" />
+    <Compile Include="DTO\DefLocationRegionDTO.cs" />
+    <Compile Include="DTO\DefOrderTypeDTO.cs" />
+    <Compile Include="DTO\DefProductPackageDTO.cs" />
+    <Compile Include="DTO\DefProductPropertyDTO.cs" />
+    <Compile Include="DTO\DefProductTypeDTO.cs" />
+    <Compile Include="DTO\DefProductUnitDTO.cs" />
+    <Compile Include="DTO\DefVehicleTypeDTO.cs" />
+    <Compile Include="DTO\FirmDTO.cs" />
+    <Compile Include="DTO\LogMembershipCheckPasswordRenewalCodeDTO.cs" />
+    <Compile Include="DTO\LogMembershipLoginDTO.cs" />
+    <Compile Include="DTO\LogMembershipRegisterCheckCodeDTO.cs" />
+    <Compile Include="DTO\LogMembershipRegisterReSendCodeDTO.cs" />
+    <Compile Include="DTO\LogMembershipSendPasswordRenewalCodeDTO.cs" />
+    <Compile Include="DTO\LogSystemMailSendDTO.cs" />
+    <Compile Include="DTO\MapFirmToUserDTO.cs" />
+    <Compile Include="DTO\MembershipDTO.cs" />
+    <Compile Include="DTO\MembershipPasswordRenewalDTO.cs" />
+    <Compile Include="DTO\OrderDetailDTO.cs" />
+    <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="DTO\OrderProductPropertyDTO.cs" />
+    <Compile Include="DTO\OrderRouteDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ItsyazilimWebResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -62,6 +114,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ItsyazilimWebResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Itsyazilim.Web.Database\Itsyazilim.Web.Database.csproj">
+      <Project>{34127d9a-034d-4485-b323-b85274ff4306}</Project>
+      <Name>Itsyazilim.Web.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
