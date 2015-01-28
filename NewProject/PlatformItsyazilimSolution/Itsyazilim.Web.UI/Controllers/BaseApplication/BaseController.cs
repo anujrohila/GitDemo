@@ -15,7 +15,7 @@ namespace Itsyazilim.Web.UI
         /// Object Name will be ``
         /// </summary>
         /// <returns></returns>
-        public JavaScriptResult OrderManagementResource()
+        public JavaScriptResult ItsyazilimResource()
         {
             return ResourceJavaScripter.GetResourceScript(OrderManagementApplicationWebUI.ResourceScript);
 
