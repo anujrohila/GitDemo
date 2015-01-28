@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head id="Head1" runat="server">
+    <title></title>
+    <style>
+    body{
+	font-family:Arial;
+	font-size:12px;
+	}
+
+    .Header
+    {
+	    color: #444;
+		font-weight:bold;
+		vertical align:top;
+		padding 5px;
+    }
+    
+    </Styles>
+</head>
+<body>
+    <form id="form1" runat="server">
+	<table cellpadding="5" cellspacing="5" width="100%" style="background-color:#333;border:1px solid #333;">
+	<tr><td>
+                <span id="LogoTextGlos" style="border-right: 2px solid #777; font-size: 35px;
+                    color: #fff; font-family: Candara; font-weight: bold;">Glos</span><span id="LogoTextApp"
+                        style="font-size: 35px; color: #ddd; font-family: Candara; font-weight: bold;">App</span>
+                <span id="Span1" style="font-size: 16px;
+                    color: #fff; font-family: Arial;">System Error</span>
+    </td></tr></table>
+	   
+            <table cellspacing="5" style="border:1px solid #333;" width="100%">
+                <tr>
+                    <td class="Header" style="width: 90px">
+                        Date
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %Date%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header">
+                        Error Source
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %Source%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header" valign="top">
+                        Error Message
+                    </td>
+                    <td class="Header" valign="top">
+                        :
+                    </td>
+                    <td>
+                        %Message%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header">
+                        URL
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %URL%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header">
+                        AliasId
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %AliasId%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header">
+                        IP
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %IP%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Header">
+                        Culture
+                    </td>
+                    <td class="Header">
+                        :
+                    </td>
+                    <td>
+                        %Culture%
+                    </td>
+                </tr>
+				  <tr>
+                    <td class="Header">
+                    </td>
+                    <td class="Header">
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+				  <tr>
+                    <td class="Header">
+                    </td>
+                    <td class="Header">
+                    </td>
+                    <td style="color:red; font-weight:bold">
+                        %DatabaseError%
+                    </td>
+                </tr>
+            </table>
+       
+    </form>
+</body>
+</html>

@@ -10,6 +10,7 @@ namespace Itsyazilim.Web.UI.Controllers
     {
         public ActionResult Index()
         {
+            var str = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
             return View();
         }
 
