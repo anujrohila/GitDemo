@@ -1,0 +1,1183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LtsyazilimDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="_OrderEndPositions">
+          <Key>
+            <PropertyRef Name="OrderEndPositionId" />
+          </Key>
+          <Property Name="OrderEndPositionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" Nullable="false" />
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_OrderStartPositions">
+          <Key>
+            <PropertyRef Name="OrderStartPositionId" />
+          </Key>
+          <Property Name="OrderStartPositionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" Nullable="false" />
+          <Property Name="CountyId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CountryId" Type="tinyint" Nullable="false" />
+          <Property Name="LocalCode" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCounties">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CityId" Type="smallint" Nullable="false" />
+          <Property Name="LocalCode" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCountries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationRegions">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CountryId" Type="tinyint" Nullable="false" />
+          <Property Name="LocalCode" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefOrderTypes">
+          <Key>
+            <PropertyRef Name="OrderTypeId" />
+          </Key>
+          <Property Name="OrderTypeId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DefProductPackages">
+          <Key>
+            <PropertyRef Name="ProductPackageId" />
+          </Key>
+          <Property Name="ProductPackageId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductPackageName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="DefProductProperties">
+          <Key>
+            <PropertyRef Name="ProductPropertyId" />
+          </Key>
+          <Property Name="ProductPropertyId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductPropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="DefProductTypes">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="DefProductUnits">
+          <Key>
+            <PropertyRef Name="ProductUnitId" />
+          </Key>
+          <Property Name="ProductUnitId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductUnitName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="DefVehicleTypes">
+          <Key>
+            <PropertyRef Name="VehicleTypeId" />
+          </Key>
+          <Property Name="VehicleTypeId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="VehicleWidth" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleLength" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleHeight" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleVolume" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="VehicleDesi" Type="int" Nullable="false" />
+          <Property Name="VehicleWeight" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Firms">
+          <Key>
+            <PropertyRef Name="FirmId" />
+          </Key>
+          <Property Name="FirmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountyId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone1" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="17" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="17" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="17" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="64" />
+          <Property Name="TaxOffice" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TaxNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedBy" Type="int" />
+          <Property Name="ApprovedOn" Type="smalldatetime" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="LogMembershipCheckPasswordRenewalCodes">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="Result" Type="tinyint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogMembershipLogins">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="Result" Type="tinyint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogMembershipRegisterCheckCodes">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="Result" Type="tinyint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogMembershipRegisterReSendCodes">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="Result" Type="tinyint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogMembershipSendPasswordRenewalCodes">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="Result" Type="tinyint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogSystemMailSend">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" />
+          <Property Name="ErrorMessage" Type="nvarchar" MaxLength="500" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MapFirmToUser">
+          <Key>
+            <PropertyRef Name="MapId" />
+          </Key>
+          <Property Name="MapId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="30" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="RoleId" Type="tinyint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" />
+          <Property Name="LastLoginDate" Type="smalldatetime" />
+          <Property Name="LastPasswordChangeDate" Type="smalldatetime" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="VerifyOn" Type="smalldatetime" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="MembershipPasswordRenewals">
+          <Key>
+            <PropertyRef Name="RenewalId" />
+          </Key>
+          <Property Name="RenewalId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ActivateCode" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="15" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="bigint" Nullable="false" />
+          <Property Name="OrderRouteId" Type="bigint" Nullable="false" />
+          <Property Name="OrderDetailType" Type="bit" Nullable="false" />
+          <Property Name="LoadProductPackageId" Type="tinyint" Nullable="false" />
+          <Property Name="LoadProductTypeId" Type="smallint" Nullable="false" />
+          <Property Name="LoadProductWeight" Type="int" Nullable="false" />
+          <Property Name="LoadProductVolume" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LoadProductVisibleVolume" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LoadProductVolumeVisibleUnitId" Type="tinyint" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="OrderProductProperties">
+          <Key>
+            <PropertyRef Name="OrderProductPropertiesId" />
+          </Key>
+          <Property Name="OrderProductPropertiesId" Type="bigint" Nullable="false" />
+          <Property Name="OrderDetailId" Type="bigint" />
+          <Property Name="ProductPropertyId" Type="smallint" />
+        </EntityType>
+        <EntityType Name="OrderRoutes">
+          <Key>
+            <PropertyRef Name="OrderRootId" />
+          </Key>
+          <Property Name="OrderRootId" Type="bigint" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" />
+          <Property Name="StartCountyId" Type="int" />
+          <Property Name="EndCountyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="OrderTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="VehicleTypeId" Type="tinyint" />
+          <Property Name="DepartureDate" Type="smalldatetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="DepartureDateType" Type="tinyint" Nullable="false" />
+          <Property Name="ArrivalDate" Type="smalldatetime" />
+          <Property Name="ArrivalDateType" Type="tinyint" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="smalldatetime" />
+        </EntityType>
+        <Function Name="AdministratorSelectFirmDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirmId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AdministratorSelectFirms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="AdministratorSelectUnApprovedFirmDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirmId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AdministratorSelectUnapprovedFirms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ManageSelectCountyListForTreeView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LtsyazilimDatabaseModelStoreContainer">
+          <EntitySet Name="_OrderEndPositions" EntityType="Self._OrderEndPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_OrderStartPositions" EntityType="Self._OrderStartPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefLocationCities" EntityType="Self.DefLocationCities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefLocationCounties" EntityType="Self.DefLocationCounties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefLocationCountries" EntityType="Self.DefLocationCountries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefLocationRegions" EntityType="Self.DefLocationRegions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefOrderTypes" EntityType="Self.DefOrderTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefProductPackages" EntityType="Self.DefProductPackages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefProductProperties" EntityType="Self.DefProductProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefProductTypes" EntityType="Self.DefProductTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefProductUnits" EntityType="Self.DefProductUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefVehicleTypes" EntityType="Self.DefVehicleTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firms" EntityType="Self.Firms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMembershipCheckPasswordRenewalCodes" EntityType="Self.LogMembershipCheckPasswordRenewalCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMembershipLogins" EntityType="Self.LogMembershipLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMembershipRegisterCheckCodes" EntityType="Self.LogMembershipRegisterCheckCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMembershipRegisterReSendCodes" EntityType="Self.LogMembershipRegisterReSendCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMembershipSendPasswordRenewalCodes" EntityType="Self.LogMembershipSendPasswordRenewalCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogSystemMailSend" EntityType="Self.LogSystemMailSend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MapFirmToUser" EntityType="Self.MapFirmToUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership" EntityType="Self.Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembershipPasswordRenewals" EntityType="Self.MembershipPasswordRenewals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderProductProperties" EntityType="Self.OrderProductProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderRoutes" EntityType="Self.OrderRoutes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LtsyazilimDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_OrderEndPositions">
+          <Key>
+            <PropertyRef Name="OrderEndPositionId" />
+          </Key>
+          <Property Name="OrderEndPositionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_OrderStartPositions">
+          <Key>
+            <PropertyRef Name="OrderStartPositionId" />
+          </Key>
+          <Property Name="OrderStartPositionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+          <Property Name="CountyId" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCity">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryId" Type="Byte" Nullable="false" />
+          <Property Name="LocalCode" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCounty">
+          <Key>
+            <PropertyRef Name="CountyId" />
+          </Key>
+          <Property Name="CountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int16" Nullable="false" />
+          <Property Name="LocalCode" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefLocationRegion">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryId" Type="Byte" Nullable="false" />
+          <Property Name="LocalCode" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefOrderType">
+          <Key>
+            <PropertyRef Name="OrderTypeId" />
+          </Key>
+          <Property Name="OrderTypeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DefProductPackage">
+          <Key>
+            <PropertyRef Name="ProductPackageId" />
+          </Key>
+          <Property Name="ProductPackageId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductPackageName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DefProductProperty">
+          <Key>
+            <PropertyRef Name="ProductPropertyId" />
+          </Key>
+          <Property Name="ProductPropertyId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductPropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DefProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DefProductUnit">
+          <Key>
+            <PropertyRef Name="ProductUnitId" />
+          </Key>
+          <Property Name="ProductUnitId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductUnitName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DefVehicleType">
+          <Key>
+            <PropertyRef Name="VehicleTypeId" />
+          </Key>
+          <Property Name="VehicleTypeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VehicleWidth" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleLength" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleHeight" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="VehicleVolume" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="VehicleDesi" Type="Int32" Nullable="false" />
+          <Property Name="VehicleWeight" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="FirmId" />
+          </Key>
+          <Property Name="FirmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountyId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone1" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone2" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePhone" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TaxOffice" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaxNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedBy" Type="Int32" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogMembershipCheckPasswordRenewalCode">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Byte" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogMembershipLogin">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Byte" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogMembershipRegisterCheckCode">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Byte" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogMembershipRegisterReSendCode">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Byte" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogMembershipSendPasswordRenewalCode">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Byte" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogSystemMailSend">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="MapFirmToUser">
+          <Key>
+            <PropertyRef Name="MapId" />
+          </Key>
+          <Property Name="MapId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="RoleId" Type="Byte" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="0" />
+          <Property Name="LastPasswordChangeDate" Type="DateTime" Precision="0" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VerifyOn" Type="DateTime" Precision="0" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MembershipPasswordRenewal">
+          <Key>
+            <PropertyRef Name="RenewalId" />
+          </Key>
+          <Property Name="RenewalId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivateCode" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int64" Nullable="false" />
+          <Property Name="OrderRouteId" Type="Int64" Nullable="false" />
+          <Property Name="OrderDetailType" Type="Boolean" Nullable="false" />
+          <Property Name="LoadProductPackageId" Type="Byte" Nullable="false" />
+          <Property Name="LoadProductTypeId" Type="Int16" Nullable="false" />
+          <Property Name="LoadProductWeight" Type="Int32" Nullable="false" />
+          <Property Name="LoadProductVolume" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LoadProductVisibleVolume" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LoadProductVolumeVisibleUnitId" Type="Byte" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="OrderProductProperty">
+          <Key>
+            <PropertyRef Name="OrderProductPropertiesId" />
+          </Key>
+          <Property Name="OrderProductPropertiesId" Type="Int64" Nullable="false" />
+          <Property Name="OrderDetailId" Type="Int64" />
+          <Property Name="ProductPropertyId" Type="Int16" />
+        </EntityType>
+        <EntityType Name="OrderRoute">
+          <Key>
+            <PropertyRef Name="OrderRootId" />
+          </Key>
+          <Property Name="OrderRootId" Type="Int64" Nullable="false" />
+          <Property Name="OrderId" Type="Int64" />
+          <Property Name="StartCountyId" Type="Int32" />
+          <Property Name="EndCountyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="OrderTypeId" Type="Byte" Nullable="false" />
+          <Property Name="VehicleTypeId" Type="Byte" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="0" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="DepartureDateType" Type="Byte" Nullable="false" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="ArrivalDateType" Type="Byte" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="LtsyazilimDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_OrderEndPositions" EntityType="Self.C_OrderEndPositions" />
+          <EntitySet Name="C_OrderStartPositions" EntityType="Self.C_OrderStartPositions" />
+          <EntitySet Name="DefLocationCities" EntityType="Self.DefLocationCity" />
+          <EntitySet Name="DefLocationCounties" EntityType="Self.DefLocationCounty" />
+          <EntitySet Name="DefLocationCountries" EntityType="Self.DefLocationCountry" />
+          <EntitySet Name="DefLocationRegions" EntityType="Self.DefLocationRegion" />
+          <EntitySet Name="DefOrderTypes" EntityType="Self.DefOrderType" />
+          <EntitySet Name="DefProductPackages" EntityType="Self.DefProductPackage" />
+          <EntitySet Name="DefProductProperties" EntityType="Self.DefProductProperty" />
+          <EntitySet Name="DefProductTypes" EntityType="Self.DefProductType" />
+          <EntitySet Name="DefProductUnits" EntityType="Self.DefProductUnit" />
+          <EntitySet Name="DefVehicleTypes" EntityType="Self.DefVehicleType" />
+          <EntitySet Name="Firms" EntityType="Self.Firm" />
+          <EntitySet Name="LogMembershipCheckPasswordRenewalCodes" EntityType="Self.LogMembershipCheckPasswordRenewalCode" />
+          <EntitySet Name="LogMembershipLogins" EntityType="Self.LogMembershipLogin" />
+          <EntitySet Name="LogMembershipRegisterCheckCodes" EntityType="Self.LogMembershipRegisterCheckCode" />
+          <EntitySet Name="LogMembershipRegisterReSendCodes" EntityType="Self.LogMembershipRegisterReSendCode" />
+          <EntitySet Name="LogMembershipSendPasswordRenewalCodes" EntityType="Self.LogMembershipSendPasswordRenewalCode" />
+          <EntitySet Name="LogSystemMailSends" EntityType="Self.LogSystemMailSend" />
+          <EntitySet Name="MapFirmToUsers" EntityType="Self.MapFirmToUser" />
+          <EntitySet Name="Memberships" EntityType="Self.Membership" />
+          <EntitySet Name="MembershipPasswordRenewals" EntityType="Self.MembershipPasswordRenewal" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="OrderProductProperties" EntityType="Self.OrderProductProperty" />
+          <EntitySet Name="OrderRoutes" EntityType="Self.OrderRoute" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <FunctionImport Name="AdministratorSelectFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirmDetails_Result)">
+            <Parameter Name="FirmId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdministratorSelectFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirms_Result)" />
+          <FunctionImport Name="AdministratorSelectUnApprovedFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnApprovedFirmDetails_Result)">
+            <Parameter Name="FirmId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdministratorSelectUnapprovedFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnapprovedFirms_Result)" />
+          <FunctionImport Name="ManageSelectCountyListForTreeView" ReturnType="Collection(LtsyazilimDatabaseModel.ManageSelectCountyListForTreeView_Result)" />
+        </EntityContainer>
+        <ComplexType Name="AdministratorSelectFirmDetails_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectFirms_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectUnApprovedFirmDetails_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectUnapprovedFirms_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="ManageSelectCountyListForTreeView_Result">
+          <Property Type="Int32" Name="CityId" Nullable="true" />
+          <Property Type="Int32" Name="CountyId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LtsyazilimDatabaseModelStoreContainer" CdmEntityContainer="LtsyazilimDatabaseEntities">
+          <EntitySetMapping Name="C_OrderEndPositions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderEndPositions">
+              <MappingFragment StoreEntitySet="_OrderEndPositions">
+                <ScalarProperty Name="OrderEndPositionId" ColumnName="OrderEndPositionId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_OrderStartPositions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderStartPositions">
+              <MappingFragment StoreEntitySet="_OrderStartPositions">
+                <ScalarProperty Name="OrderStartPositionId" ColumnName="OrderStartPositionId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCities">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCity">
+              <MappingFragment StoreEntitySet="DefLocationCities">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCounties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCounty">
+              <MappingFragment StoreEntitySet="DefLocationCounties">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCountries">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCountry">
+              <MappingFragment StoreEntitySet="DefLocationCountries">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationRegions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationRegion">
+              <MappingFragment StoreEntitySet="DefLocationRegions">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefOrderTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefOrderType">
+              <MappingFragment StoreEntitySet="DefOrderTypes">
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="OrderTypeName" ColumnName="OrderTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductPackages">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductPackage">
+              <MappingFragment StoreEntitySet="DefProductPackages">
+                <ScalarProperty Name="ProductPackageId" ColumnName="ProductPackageId" />
+                <ScalarProperty Name="ProductPackageName" ColumnName="ProductPackageName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductProperties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductProperty">
+              <MappingFragment StoreEntitySet="DefProductProperties">
+                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
+                <ScalarProperty Name="ProductPropertyName" ColumnName="ProductPropertyName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductType">
+              <MappingFragment StoreEntitySet="DefProductTypes">
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductUnits">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductUnit">
+              <MappingFragment StoreEntitySet="DefProductUnits">
+                <ScalarProperty Name="ProductUnitId" ColumnName="ProductUnitId" />
+                <ScalarProperty Name="ProductUnitName" ColumnName="ProductUnitName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefVehicleTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefVehicleType">
+              <MappingFragment StoreEntitySet="DefVehicleTypes">
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="VehicleWidth" ColumnName="VehicleWidth" />
+                <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
+                <ScalarProperty Name="VehicleHeight" ColumnName="VehicleHeight" />
+                <ScalarProperty Name="VehicleVolume" ColumnName="VehicleVolume" />
+                <ScalarProperty Name="VehicleDesi" ColumnName="VehicleDesi" />
+                <ScalarProperty Name="VehicleWeight" ColumnName="VehicleWeight" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firms">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Firm">
+              <MappingFragment StoreEntitySet="Firms">
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipCheckPasswordRenewalCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipCheckPasswordRenewalCode">
+              <MappingFragment StoreEntitySet="LogMembershipCheckPasswordRenewalCodes">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipLogins">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipLogin">
+              <MappingFragment StoreEntitySet="LogMembershipLogins">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipRegisterCheckCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterCheckCode">
+              <MappingFragment StoreEntitySet="LogMembershipRegisterCheckCodes">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipRegisterReSendCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterReSendCode">
+              <MappingFragment StoreEntitySet="LogMembershipRegisterReSendCodes">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipSendPasswordRenewalCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipSendPasswordRenewalCode">
+              <MappingFragment StoreEntitySet="LogMembershipSendPasswordRenewalCodes">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogSystemMailSends">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogSystemMailSend">
+              <MappingFragment StoreEntitySet="LogSystemMailSend">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapFirmToUsers">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MapFirmToUser">
+              <MappingFragment StoreEntitySet="MapFirmToUser">
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Membership">
+              <MappingFragment StoreEntitySet="Membership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangeDate" ColumnName="LastPasswordChangeDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="VerifyOn" ColumnName="VerifyOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembershipPasswordRenewals">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MembershipPasswordRenewal">
+              <MappingFragment StoreEntitySet="MembershipPasswordRenewals">
+                <ScalarProperty Name="RenewalId" ColumnName="RenewalId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ActivateCode" ColumnName="ActivateCode" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="OrderRouteId" ColumnName="OrderRouteId" />
+                <ScalarProperty Name="OrderDetailType" ColumnName="OrderDetailType" />
+                <ScalarProperty Name="LoadProductPackageId" ColumnName="LoadProductPackageId" />
+                <ScalarProperty Name="LoadProductTypeId" ColumnName="LoadProductTypeId" />
+                <ScalarProperty Name="LoadProductWeight" ColumnName="LoadProductWeight" />
+                <ScalarProperty Name="LoadProductVolume" ColumnName="LoadProductVolume" />
+                <ScalarProperty Name="LoadProductVisibleVolume" ColumnName="LoadProductVisibleVolume" />
+                <ScalarProperty Name="LoadProductVolumeVisibleUnitId" ColumnName="LoadProductVolumeVisibleUnitId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProductProperties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderProductProperty">
+              <MappingFragment StoreEntitySet="OrderProductProperties">
+                <ScalarProperty Name="OrderProductPropertiesId" ColumnName="OrderProductPropertiesId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderRoutes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderRoute">
+              <MappingFragment StoreEntitySet="OrderRoutes">
+                <ScalarProperty Name="OrderRootId" ColumnName="OrderRootId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="StartCountyId" ColumnName="StartCountyId" />
+                <ScalarProperty Name="EndCountyId" ColumnName="EndCountyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDateType" ColumnName="DepartureDateType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="ArrivalDateType" ColumnName="ArrivalDateType" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AdministratorSelectFirmDetails" FunctionName="LtsyazilimDatabaseModel.Store.AdministratorSelectFirmDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.AdministratorSelectFirmDetails_Result">
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AdministratorSelectFirms" FunctionName="LtsyazilimDatabaseModel.Store.AdministratorSelectFirms">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.AdministratorSelectFirms_Result">
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AdministratorSelectUnApprovedFirmDetails" FunctionName="LtsyazilimDatabaseModel.Store.AdministratorSelectUnApprovedFirmDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.AdministratorSelectUnApprovedFirmDetails_Result">
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AdministratorSelectUnapprovedFirms" FunctionName="LtsyazilimDatabaseModel.Store.AdministratorSelectUnapprovedFirms">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.AdministratorSelectUnapprovedFirms_Result">
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ManageSelectCountyListForTreeView" FunctionName="LtsyazilimDatabaseModel.Store.ManageSelectCountyListForTreeView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.ManageSelectCountyListForTreeView_Result">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
