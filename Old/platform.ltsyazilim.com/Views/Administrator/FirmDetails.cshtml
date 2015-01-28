@@ -1,0 +1,120 @@
+﻿@model System.Collections.Generic.IEnumerable<platform.ltsyazilim.com.Models.AdministratorSelectFirmDetails_Result>
+
+<script>
+    $(document).find("a[ActionLink='FirmList']").parent().addClass("active");
+</script>
+@foreach (var item in Model)
+{
+
+    ViewBag.Title = item.FirmName + " Firmasının Detayları";
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+
+    <div class="padding-10">
+        <table style="width: 100%">
+            <tr>
+                <td style="width:100%">
+                    <h2>
+                        <i class="fa fa-bank" style="padding: 0px 18px 0px 10px"></i>@Html.DisplayFor(modelItem => item.FirmName) Firmasının Detayları
+                    </h2>
+                </td>
+                <td>
+                    <a class="btn btn-info" href="../FirmList"><i class="fa fa-arrow-left"></i> Listeye geri dön</a>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <div style="background-color:#fff; border-radius:5px; padding:20px; border:1px solid #aaa;">
+            <h1 class="padding-10" style="color:#3276b1;">
+                <b>  @Html.DisplayFor(modelItem => item.FirmName).ToString()</b>
+            </h1>
+            <h5 class="padding-10">
+                <b>@item.Address    @item.CountyName / @item.CityName</b>
+            </h5>
+            <table style="width:100%; height:100%;">
+                <tr>
+                    <td style="width:50%">
+
+
+
+                        <table style=" border-spacing:5px; border-collapse:separate;" class="padding-10">
+                            <tr>
+                                <td>
+                                    Vergi Dairesi
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.TaxOffice</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Vergi Numarası
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.TaxNo</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Telefon
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.Phone1</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Telefon (Diğer)
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.Phone2</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Faks
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.Fax</b></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    GSM No
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.MobilePhone</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    E-posta
+                                </td>
+                                <td>:</td>
+                                <td><b><a href="@String.Concat("mailto:" + @item.Email)">@item.Email</a></b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Web Site
+                                </td>
+                                <td>:</td>
+                                <td><b><a href="@item.WebSite" target="_blank">@item.WebSite</a></b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Oluşturulma Tarihi
+                                </td>
+                                <td>:</td>
+                                <td><b>@Convert.ToDateTime(item.CreatedOn).ToString("dd MMMM yyyy  hh:mm")</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Oluşturan üye
+                                </td>
+                                <td>:</td>
+                                <td><b>@item.User</b></td>
+                            </tr>
+                        </table>
+
+
+                    </td>
+                    <td style="height:100%; vertical-align:bottom; text-align:right"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

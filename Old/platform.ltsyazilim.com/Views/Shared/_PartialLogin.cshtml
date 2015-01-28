@@ -1,0 +1,248 @@
+﻿@using platform.ltsyazilim.com.Models
+@model platform.ltsyazilim.com.Models.LoginViewModel
+
+<div class="well no-padding" style="width: 100%;border-radius:0px; border:1px solid #aaa; margin:0; padding:0">
+    <div id="LoginForm">
+        <div class="smart-form client-form">
+            <header>
+                <h1 style="padding: 5px 5px 5px 20px">
+                    <i class="fa fa-lock text-muted"></i>&nbsp;&nbsp;&nbspGiriş Yap
+                    <i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile" style="opacity: 0.2;
+                            margin-right: 20px"></i>
+                </h1>
+            </header>
+        </div>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="padding-10">
+                @if (TempData["Status"] == "Error")
+                {
+
+                    <div id="DivLoginResult" style="padding: 20px 10px 0px 10px">
+                        <div id="DivLoginValidator" class="alert alert-danger">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:top; padding-top:7px">
+                                        <i id="DivLoginValidatorIcon" class="fa-fw fa fa-times fa-2x" style="padding-right: 30px;">
+                                        </i>
+                                    </td>
+                                    <td>
+                                        @switch (TempData["StatusId"].ToString())
+                                        {
+                                            case "1":
+                                                <h3>
+                                                    Hesabınız henüz doğrulanmamış
+                                                </h3>
+                                                <span style="color:#333">
+                                                    Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa
+                                                    <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'>aktivasyon e-postasını yeniden isteyin </a>
+                                                </span>
+                                                break;
+
+                                            case "2":
+                                            <h3>Hesabınız sistem tarafından kitlenmiş</h3>
+                                            <span style="color:#333">
+                                                Lütfen <a href='@Url.Content("~/Home/Contact")'>bizimle iletişime geçin</a>
+                                            </span>
+                                                break;
+
+                                            case "3":
+                                            <h3>E-posta adresi bulunamadı</h3>
+                                            <span style="color:#333">
+                                                Yeni misiniz?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> Şimdi kaydol</a>
+                                            </span>
+                                                break;
+
+                                            case "4":
+                                            <h3>Şifre geçersiz!</h3>
+                                            <span style="color:#333">
+                                                Şifreni unuttun ya da doğru şifreyi girdiğin halde hesabına erişemiyor musunuz?  <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'> Şifrenizi yenileyin</a>
+                                            </span>
+                                                break;
+
+                                            case "5":
+                                            <h3>Çok fazla sayıda deneme yaptınız</h3>
+                                            <br />
+                                            <span>
+                                                Lütfen daha sonra tekrar deneyin
+                                            </span>
+                                                break;
+                                        }
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                }
+                <div class="padding-10">
+                    <div id="InputEmailValidator" class="input-group text-danger">
+                        <div class="input-group-addon">
+                            <i class="icon-prepend fa fa-envelope" style="width: 15px"></i>
+                        </div>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-posta", @Value = Request.QueryString["e"], @autofocus = "autofocus" })
+                    </div>
+                    <br />
+                    <div id="InputPasswordValidator" class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon-prepend fa fa-lock" style="width: 15px"></i>
+                        </div>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Şifre", @onkeyup = "PasswordControl(1500)", @maxlength = 30 })
+                    </div>
+                </div>
+            </div>
+            <div class="smart-form no-padding">
+                <footer style="text-align: right; padding-right: 20px;">
+                    <div id="DivButton">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="padding:3px 0px 0px 10px; width:100px">
+                                    <label class="checkbox" id="CBSI">
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "from-control" })
+                                        <i style="margin-top:6px"></i>
+                                        Beni hatırla
+                                    </label>
+                                </td>
+                                <td style="text-align: right; height:50px">
+                                    <input type="submit" id="ButtonLogin" class="btn btn-primary" value="Giriş"
+                                           onclick="return CheckForm()" />
+                                    <i id="DivLoading" class="fa fa-gear fa-2x fa-spin txt-color-blue" style="display: none;">
+                                    </i>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </footer>
+            </div>
+        }
+    </div>
+</div>
+
+@if (TempData["Email"] != null) { 
+<script type="text/javascript">
+
+    $('#Email').val('@TempData["Email"].ToString()');
+</script>
+
+}
+<script type="text/javascript">
+    $('form').submit(function () {
+        $('input[type=submit]').attr('disabled', 'disabled');
+    });
+</script>
+
+<script>
+    function CheckForm() {
+
+        a = ($('#Email').val().length > 2) ? true : ($('#Email').focus(), false);
+        b = a ? PasswordControl(0) : false;
+        if (b) {
+            $('#ButtonLogin').toggle(150);
+            $('#DivLoading').toggle(100);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+<script type="text/javascript" for="PasswordControl">
+
+    var Image = false;
+    var IntName;
+    var IntSurname;
+    var IntEmail;
+    var IntPassword;
+    var i = 0;
+    var ai = 0;
+    var aic = 0;
+    var txt = "";
+    var lngth;
+
+    var PswUcase = 0;
+    var PswLcase = 0;
+    var PswNmbrs = 0;
+    var PswSpchr = 0;
+    var PswDfrnt = new Array();
+
+    var PSL = "";
+    var IsCheckForm = false;
+    var IsPRemark = false;
+
+    function PasswordControl(IntRelay) {
+
+        Pass = document.getElementById('Password').value;
+
+        PswUcase = 0;
+        PswLcase = 0;
+        PswNmbrs = 0;
+        PassSec = 0;
+        i = 0;
+        ai = 0;
+        aic = 0;
+
+        PswDfrnt.splice(0, PswDfrnt.length);
+        clearInterval(IntPassword);
+
+        while (Pass.charAt(i) != "") {
+
+            code = Pass.charCodeAt(i);
+            if (code == 45 || code == 95) PswSpchr++;
+            if (code >= 48 && code <= 57) PswNmbrs++;
+            if (code >= 65 && code <= 90) PswUcase++;
+            if (code >= 97 && code <= 122) PswLcase++;
+            ai = 0;
+            aic = 0;
+
+            while (PswDfrnt[ai] != undefined) {
+                (PswDfrnt[ai] == Pass.charAt(i)) ? aic++ : false;
+                ai++;
+            }
+            (aic > 0) ? false : PswDfrnt.push(Pass.charAt(i));
+            i++;
+        }
+
+        var RegExPass = new RegExp("^[a-zA-Z0-9\-_]{6,30}$");
+        $("#InputPasswordValidator").removeClass("has-error");
+
+        if (Pass.length < 6) {
+            clearInterval(IntPassword);
+            if (IntRelay == 0) $("#InputPasswordValidator").addClass("has-error");
+
+
+            $('#Password').focus();
+            $('#PasswordLevelText').hide(0);
+            return false;
+        }
+        else if (Pass.search(RegExPass) == -1) {
+
+            $("#InputPasswordValidator").addClass("has-error");
+
+            if (IsPRemark == false) {
+                $('#Password').focus();
+                $('#Password').trigger("click");
+                IsPRemark = true;
+            }
+            return false;
+        }
+        else {
+            PassSec = (Pass.length) + (((PswLcase > 0) ? 4 : 0) + PswLcase) + (((PswUcase > 0) ? 7 : 0) + PswUcase) + (((PswNmbrs > 0) ? 6 : 0) + PswNmbrs) + (((PswSpchr > 0) ? 9 : 0) + PswSpchr) + PswDfrnt.length * 4;
+            ((PassSec > 100) ? PassSec = 100 : false);
+            HexPosGreen = Math.floor(((PassSec - 37) * (4 / 2))).toString(16);
+            HexPosRed = ((101 - PassSec) * 3).toString(16);
+            pcolor = (PassSec > 36 ? "#" + ((HexPosRed.length > 1) ? HexPosRed : "0" + HexPosRed) + ((HexPosGreen.length > 1) ? HexPosGreen : "0" + HexPosGreen) + "00" : "#c00000");
+
+            if (PassSec < 36) { $('#PasswordValidatorBar').addClass("bg-color-red"); PSL = 'Çok zayıf!'; }
+            if (PassSec >= 36 && PassSec <= 51) { $('#PasswordValidatorBar').addClass("bg-color-redLight"); PSL = 'Zayıf'; }
+            if (PassSec >= 52 && PassSec <= 67) { $('#PasswordValidatorBar').addClass("bg-color-yellow"); PSL = 'Orta'; }
+            if (PassSec >= 68 && PassSec <= 83) { $('#PasswordValidatorBar').addClass("bg-color-greenLight"); PSL = 'Güçlü'; }
+            if (PassSec >= 84 && PassSec <= 99) { $('#PasswordValidatorBar').addClass("bg-color-green"); PSL = 'Çok güçlü'; }
+            if (PassSec == 100) { $('#PasswordValidatorBar').addClass("bg-color-green"); PSL = 'Mükemmel'; }
+
+            $('#Password').focus();
+            $('#Password').trigger("click");
+
+            return true;
+        }
+    }
+</script>

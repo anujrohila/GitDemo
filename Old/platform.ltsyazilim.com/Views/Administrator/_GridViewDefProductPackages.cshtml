@@ -1,0 +1,99 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewDefProductPackages";
+        settings.CallbackRouteValues = new { Controller = "Administrator", Action = "GridViewDefProductPackages" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefProductPackagesAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefProductPackagesUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Administrator", Action = "GridViewDefProductPackagesDelete" };
+
+        settings.ControlStyle.Font.Name = "OpenSans";
+        settings.Styles.AlternatingRow.BackColor = System.Drawing.Color.White;
+
+        settings.Settings.ShowFilterBar = GridViewStatusBarMode.Auto;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.EnableRowHotTrack = true;
+        settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.ShowOnStatusBar;
+        settings.Styles.RowHotTrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#D9ECED");
+        settings.Styles.RowHotTrack.ForeColor = System.Drawing.Color.Black;
+        settings.SettingsBehavior.AllowDragDrop = true;
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+        settings.CommandColumn.VisibleIndex = 10;
+        settings.CommandColumn.Width = 120;
+        settings.CommandColumn.Caption = " ";
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsText.ConfirmDelete = "Ambalaj türü sistemden kaldýrýlacak. Onaylýyor musunuz?";
+
+
+        settings.SettingsPopup.EditForm.AllowResize = false;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsText.PopupEditFormCaption = "Ambalaj Türü Tanýmlama";
+
+        settings.SettingsEditing.EditFormColumnCount = 1;
+        settings.SettingsPopup.EditForm.Width = 300;
+
+        settings.Styles.Cell.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        settings.Styles.Header.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+        settings.KeyFieldName = "ProductPackageId";
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ProductPackageId";
+            column.Visible = false;
+            column.EditFormSettings.Visible = DefaultBoolean.False;
+            column.ShowInCustomizationForm = false;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Index";
+            column.Width = 40;
+            column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+            column.CellStyle.ForeColor = System.Drawing.Color.Maroon;
+            column.EditFormSettings.Visible = DefaultBoolean.False;
+            column.ShowInCustomizationForm = false;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ProductPackageName";
+            column.Caption = "Ambalaj Türü";
+            column.VisibleIndex = 1;
+            column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+            column.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.CustomColumnDisplayText = (sender, e) =>
+        {
+            if (e.Column.Name == "Index")
+            {
+                e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+
+            }
+        };
+        settings.CellEditorInitialize = (s, e) =>
+        {
+            ASPxEdit editor = (ASPxEdit)e.Editor;
+            editor.ValidationSettings.Display = Display.Dynamic;
+        };
+    });
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

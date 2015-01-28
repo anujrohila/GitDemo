@@ -1,0 +1,93 @@
+﻿.DivEditForm {
+    background: url('../Images/System/page.png') repeat;
+    color: #333;
+    padding: 10px;
+    margin: 0px;
+    padding-bottom: 0px;
+}
+
+.EditFormCellCaption {
+    color: #000;
+    font-weight: bold;
+}
+
+.OverflowHidden {
+    overflow: hidden;
+}
+
+.ImageBox {
+    background-color: White;
+    padding: 3px;
+    border: 1px solid #b5b5B5;
+}
+
+
+.NavLeft {
+    position: fixed;
+    float: left;
+    width: 220px;
+    background-color: #eee;
+    height: 100%;
+    background: #3a3633;
+    background: #3a3633;
+    background: -moz-linear-gradient(left, #3a3633 94%, #2b2826 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(94%,#3a3633), color-stop(100%,#2b2826));
+    background: -webkit-linear-gradient(left, #3a3633 94%,#2b2826 100%);
+    background: -o-linear-gradient(left, #3a3633 94%,#2b2826 100%);
+    background: -ms-linear-gradient(left, #3a3633 94%,#2b2826 100%);
+    background: linear-gradient(to right, #3a3633 94%,#2b2826 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a3633', endColorstr='#2b2826',GradientType=1 );
+}
+
+    .NavLeft a {
+        color: #a9a9a9;
+        font-size: 14px;
+        text-decoration: none;
+        margin: 10px 0 10px 10px;
+        display: block;
+        vertical-align: top;
+        padding: 5px 0px 5px 5px;
+    }
+
+        .NavLeft a .pull-right {
+            display: none;
+        }
+
+        .NavLeft a:hover {
+            color: #eee;
+        }
+
+        .NavLeft a i.fa-a {
+            font-size: 18px;
+            padding-right: 10px;
+        }
+
+        .NavLeft a.active {
+            color: #eee;
+        }
+
+            .NavLeft a.active .pull-right {
+                display: block;
+                color: #eee;
+                position: relative;
+                left: 1px;
+                font-size: large;
+            }
+
+.SystemGridLink:link, .SystemGridLink:active {
+    text-decoration: none;
+    color: #026297;
+}
+
+
+.SystemGridLink:hover {
+    color: #0033cc;
+    text-decoration: underline;
+}
+
+.DevExInput {
+    padding: 6px;
+    color: #333; 
+    margin-bottom:5px;
+}
+

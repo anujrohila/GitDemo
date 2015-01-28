@@ -1,0 +1,67 @@
+﻿@using platform.ltsyazilim.com.Models
+@using platform.ltsyazilim.com.Controllers;
+@using System.Drawing;
+@using System.Web.UI.WebControls;
+@model platform.ltsyazilim.com.Models.OrderType1Model
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <section>
+        Araç Türü
+        @Html.DevExpress().ComboBoxFor(m => m.VehicleTypeId,
+                    settings =>
+                    {
+                        settings.ControlStyle.CssClass = "DevExInput";
+                        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                        settings.ControlStyle.Font.Name = "Arial";
+                        settings.ControlStyle.Font.Size = 10;
+                        settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                        settings.Properties.ValidationSettings.Display = Display.Dynamic;
+                        settings.ShowModelErrors = true;
+
+                        settings.Properties.TextField = "VehicleTypeName";
+                        settings.Properties.ValueField = "VehicleTypeId";
+                        settings.SelectedIndex = -2;
+                        settings.Properties.NullText = "Seçiniz";
+                    }
+                    ).BindList(platform.ltsyazilim.com.Models.DataProvider.GetDefVehicleTypesForOrder()).GetHtml()
+    </section>
+    <div class="row">
+        <section class="col col-6">
+@Html.DevExpress().TreeList(
+            settings =>
+            {
+                settings.Name = "treeList44";
+                settings.CallbackRouteValues = new { Controller = "Manage", Action = "_TreeListCountyList" };
+                settings.Width = 200;
+                settings.Height = 200;
+
+                settings.Settings.ShowColumnHeaders = false;
+                settings.AutoGenerateColumns = false;
+                settings.KeyFieldName = "CountyID";
+                settings.ParentFieldName = "CityID";
+                settings.Columns.Add("Name", "İlçe");
+                settings.RootValue = 0;
+                settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+
+                settings.SettingsCookies.Enabled = true;
+                settings.SettingsSelection.Enabled = true;
+                settings.SettingsSelection.Recursive = true;
+                settings.SettingsSelection.AllowSelectAll = true;
+                settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+            }
+  ).Bind(platform.ltsyazilim.com.Models.DataProvider.GetCountyListForTreeView()).GetHtml()
+
+        </section>
+        <section class="col col-6">
+            Hangi lokasyonlarda ürün bırakabilirsiniz ?
+
+
+
+
+        </section>
+    </div>
+}

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Birimleri";
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+}
+<script>
+    $(document).find("a[ActionLink='DefProductUnits']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <span class="glyphicon glyphicon-indent-left" style="padding: 0px 10px 0px 10px"></span>
+                    Ürün Birimleri
+                </h2>
+            </td>
+            <td style="text-align: right">
+                <a href="javascript:GridViewDefProductUnits.AddNewRow()" class="btn btn-sm btn-primary">
+                    <i class="fa fa-plus" style="padding-right:5px"></i>Ürün Birimi Ekle
+                </a>
+            </td>
+        </tr>
+    </table>
+    <hr />
+  
+        @Html.Action("GridViewDefProductUnits")
+   
+</div>
+

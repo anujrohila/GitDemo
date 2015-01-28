@@ -1,0 +1,23 @@
+﻿@model IEnumerable<platform.ltsyazilim.com.Models.AdministratorSelectFirms_Result>
+
+@{
+    ViewBag.Title = "Firmalar";
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+}
+
+<script>
+    $(document).find("a[ActionLink='FirmList']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Firmalar
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @Html.Partial("_GridViewFirmList")
+</div>

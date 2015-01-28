@@ -1,0 +1,23 @@
+﻿@Html.DevExpress().TreeList(
+            settings =>
+            {
+                settings.Name = "treeList44";
+                settings.CallbackRouteValues = new { Controller = "Manage", Action = "_TreeListOrderFromWhere" };
+                settings.Width = 200;
+                settings.Height = 200;
+
+                settings.Settings.ShowColumnHeaders = false;
+                settings.AutoGenerateColumns = false;
+                settings.KeyFieldName = "CountyID";
+                settings.ParentFieldName = "CityID";
+                settings.Columns.Add("Name", "İlçe");
+                settings.RootValue = 0;
+                settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+
+                settings.SettingsCookies.Enabled = true;
+                settings.SettingsSelection.Enabled = true;
+                settings.SettingsSelection.Recursive = true;
+                settings.SettingsSelection.AllowSelectAll = true;
+                settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+            }
+  ).Bind(Model).GetHtml()

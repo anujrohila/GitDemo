@@ -1,0 +1,104 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewUnApprovedFirmList";
+
+        settings.ControlStyle.Font.Name = "OpenSans";
+        settings.Styles.AlternatingRow.BackColor = System.Drawing.Color.White;
+
+        settings.Settings.ShowFilterBar = GridViewStatusBarMode.Auto;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.EnableRowHotTrack = true;
+        settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.ShowOnStatusBar;
+        settings.Styles.RowHotTrack.BackColor = System.Drawing.ColorTranslator.FromHtml("#D9ECED");
+        settings.Styles.RowHotTrack.ForeColor = System.Drawing.Color.Black;
+
+
+        settings.CallbackRouteValues = new { Controller = "Administrator", Action = "GridViewUnApprovedFirmList" };
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.KeyFieldName = "FirmId";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "FirmId";
+            column.Visible = false;
+            column.EditFormSettings.Visible = DefaultBoolean.False;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Index";
+            column.Width = 40;
+            column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+            column.CellStyle.ForeColor = System.Drawing.Color.Maroon;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "FirmName";
+            column.Caption = "Firma İsmi";
+            column.VisibleIndex = 1;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CityName";
+            column.Caption = "Şehir";
+            column.VisibleIndex = 2;
+            column.Width = 120;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CountyName";
+            column.Caption = "İlçe";
+            column.VisibleIndex = 3;
+            column.Width = 120;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "User";
+            column.Caption = "Oluşturan Kullanıcı";
+            column.VisibleIndex = 4;
+            column.Width = 200;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CreatedOn";
+            column.Caption = "Tarih";
+            column.VisibleIndex = 5;
+            column.Width = 120;
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+            var deProperties = column.PropertiesEdit as DateEditProperties;
+            deProperties.DisplayFormatString = "g";
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.VisibleIndex = 6;
+            column.Width = 100;
+            column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+            column.SetDataItemTemplateContent(c =>
+            {
+
+                ViewContext.Writer.Write("<a href='UnApprovedFirmDetails/" + DataBinder.Eval(c.DataItem, "FirmId").ToString() + "' style='color:#cc0000'>Detaylar <i class='fa fa-arrow-circle-right'></i></a>");
+            });
+        });
+
+        settings.CustomColumnDisplayText = (sender, e) =>
+        {
+            if (e.Column.Name == "Index")
+            {
+                e.DisplayText = (e.VisibleRowIndex + 1).ToString();
+            }
+        };
+
+    });
+}
+@grid.Bind(Model).GetHtml()

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Ambalaj Türleri";
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+}
+<script>
+    $(document).find("a[ActionLink='DefProductPackages']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <span class="glyphicon glyphicon-download-alt" style="padding: 0px 10px 0px 10px"></span>
+                    Ürün Ambalaj Türleri
+                </h2>
+            </td>
+            <td style="text-align: right">
+                <a href="javascript:GridViewDefProductPackages.AddNewRow()" class="btn btn-sm btn-primary">
+                    <i class="fa fa-plus" style="padding-right:5px"></i>Ambalaj Türü Ekle
+                </a>
+            </td>
+        </tr>
+    </table>
+    <hr />
+  
+        @Html.Action("GridViewDefProductPackages")
+   
+</div>
+
