@@ -1,3 +1,4 @@
+@using Itsyazilim.Web.Domain.Resources
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -33,14 +34,14 @@
         settings.CommandColumn.Width = 120;
         settings.CommandColumn.Caption = " ";
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
-        settings.SettingsText.ConfirmDelete = "Ürün cinsi sistemden kaldýrýlacak. Onaylýyor musunuz?";
+        settings.SettingsText.ConfirmDelete = ItsyazilimWebResources.lblProductTypeRemovedDoYouApprove;
 
 
         settings.SettingsPopup.EditForm.AllowResize = false;
         settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
         settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
         settings.SettingsPopup.EditForm.Modal = true;
-        settings.SettingsText.PopupEditFormCaption = "Ürün Cinsi Tanýmlama";
+        settings.SettingsText.PopupEditFormCaption = ItsyazilimWebResources.lblProductTypeIdentification;
 
         settings.SettingsEditing.EditFormColumnCount = 1;
         settings.SettingsPopup.EditForm.Width = 300;
@@ -70,7 +71,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "ProductTypeName";
-            column.Caption = "Ürün Cinsi";
+            column.Caption = ItsyazilimWebResources.lblProductFeature;
             column.VisibleIndex = 1;
             column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
             column.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;

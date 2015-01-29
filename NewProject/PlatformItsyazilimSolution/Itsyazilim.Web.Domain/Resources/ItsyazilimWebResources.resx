@@ -557,4 +557,64 @@
     <value>Update</value>
     <comment>Güncelle</comment>
   </data>
+  <data name="lblLengthM" xml:space="preserve">
+    <value>Length (m)</value>
+    <comment>Uzunluk (m)</comment>
+  </data>
+  <data name="lblPackagingType" xml:space="preserve">
+    <value>Packaging Type</value>
+    <comment>Ambalaj Türü</comment>
+  </data>
+  <data name="lblPackagingTypeIdentification" xml:space="preserve">
+    <value>Packaging Type Identification</value>
+    <comment>Ambalaj Türü Tanýmlama</comment>
+  </data>
+  <data name="lblPackagingTypeRemovedDoYouApproved" xml:space="preserve">
+    <value>Packaging type will be removed from the system. Do you approve?</value>
+    <comment>Ambalaj türü sistemden kaldýrýlacak. Onaylýyor musunuz?</comment>
+  </data>
+  <data name="lblProductFeature" xml:space="preserve">
+    <value>Product Feature</value>
+    <comment>Ürün Özelliği</comment>
+  </data>
+  <data name="lblProductFeatureRemovedDoYouApprove" xml:space="preserve">
+    <value>Product feature will be removed from the system. Do you approve?</value>
+    <comment>Ürün özelliği sistemden kaldırılacak. Onaylıyor musunuz?</comment>
+  </data>
+  <data name="lblProductTypeIdentification" xml:space="preserve">
+    <value>Product Type Identification</value>
+    <comment>Ürün Cinsi Tanýmlama</comment>
+  </data>
+  <data name="lblProductTypeRemovedDoYouApprove" xml:space="preserve">
+    <value>Product type will be removed from the system. Do you approve?</value>
+    <comment>Ürün cinsi sistemden kaldýrýlacak. Onaylýyor musunuz?</comment>
+  </data>
+  <data name="lblProductUnit" xml:space="preserve">
+    <value>Product Unit</value>
+    <comment>Ürün Birimi</comment>
+  </data>
+  <data name="lblProductUnitIdentification" xml:space="preserve">
+    <value>Product Unit Identification</value>
+    <comment>Ürün Birimi Tanýmlama</comment>
+  </data>
+  <data name="lblProductUnitRemovedDoYouApprove" xml:space="preserve">
+    <value>Products unit will be removed from the system. Do you approve?</value>
+    <comment>Ürün birimi sistemden kaldýrýlacak. Onaylýyor musunuz?</comment>
+  </data>
+  <data name="lblTypeofVehicleIdentification" xml:space="preserve">
+    <value>Type of Vehicle Identification</value>
+    <comment>Araç Türü Tanımlama</comment>
+  </data>
+  <data name="lblVehicleType" xml:space="preserve">
+    <value>Vehicle Type</value>
+    <comment>Araç Türü</comment>
+  </data>
+  <data name="lblVehicleTypeRemovedDoYouApprove" xml:space="preserve">
+    <value>Vehicle type to be removed from the system. Do you approve?</value>
+    <comment>Araç türü sistemden kaldırılacak. Onaylıyor musunuz?</comment>
+  </data>
+  <data name="lblWidthM" xml:space="preserve">
+    <value>Width (m)</value>
+    <comment>Genişlik (m)</comment>
+  </data>
 </root>
