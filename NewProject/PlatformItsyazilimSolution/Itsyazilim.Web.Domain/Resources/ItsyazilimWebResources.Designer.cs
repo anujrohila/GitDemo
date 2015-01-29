@@ -106,6 +106,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account is verified before.
+        /// </summary>
+        public static string lblAccountVerifiedBefore {
+            get {
+                return ResourceManager.GetString("lblAccountVerifiedBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you new.
         /// </summary>
         public static string lblAreYourNew {
@@ -196,6 +205,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please accounts in the e-mail and click on the activation link..
+        /// </summary>
+        public static string lblEmailAddressMessage1 {
+            get {
+                return ResourceManager.GetString("lblEmailAddressMessage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail, if they reach your address.
+        /// </summary>
+        public static string lblEmailAddressMessage2 {
+            get {
+                return ResourceManager.GetString("lblEmailAddressMessage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Does activation e-mail did not reach your inbox?.
         /// </summary>
         public static string lblEmailNoReachedMessage {
@@ -282,6 +309,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblGetNewActivationEmailMessage {
             get {
                 return ResourceManager.GetString("lblGetNewActivationEmailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activation code is invalid.
+        /// </summary>
+        public static string lblInvalidActivationCode {
+            get {
+                return ResourceManager.GetString("lblInvalidActivationCode", resourceCulture);
             }
         }
         

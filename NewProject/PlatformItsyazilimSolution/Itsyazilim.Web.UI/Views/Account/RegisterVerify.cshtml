@@ -36,31 +36,30 @@
 
                     case "1":
                     <center>
-                        <h5>Aktivasyon kodu geçersiz</h5>
+                        <h5>@ItsyazilimWebResources.lblInvalidActivationCode</h5>
                         <br />
                         <span>
-                            Lütfen gelen e-postadaki hesap aktivasyon linkine tıklayınız.
-                            E-posta, adresinize ulaşmadıysa <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> aktivasyon e-postasını yeniden isteyin </a>
+                            @ItsyazilimWebResources.lblEmailAddressMessage1
+                            @ItsyazilimWebResources.lblEmailAddressMessage2 <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblAskForResendEmail </a>
                         </span>
-
                     </center>
                         break;
 
                     case "2":
                     <center>
-                        <h5>Hesabınız daha önce doğrulanmış</h5>
+                        <h5>@ItsyazilimWebResources.lblAccountVerifiedBefore</h5>
                         <br />
-                        <a href='@Url.Content("Login?e=" + TempData["Email"])'>Giriş yapın</a> ya da
-                        <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>şifrenizi yenileyin</a>
+                        <a href='@Url.Content("Login?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblTheLog</a> @ItsyazilimWebResources.lblOr
+                        <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblRenewYourPassword</a>
 
                     </center>
                         break;
 
                     case "3":
                     <center>
-                        <h5>E-posta adresi bulunamadı</h5>
+                        <h5>@ItsyazilimWebResources.lblEmailNotFound</h5>
                         <br />
-                        Yeni misiniz ?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> Şimdi kaydol</a>
+                        Yeni misiniz ?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblRegisterNow</a>
                     </center>
                         break;
                 }

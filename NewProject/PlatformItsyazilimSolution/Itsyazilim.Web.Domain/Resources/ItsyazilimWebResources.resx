@@ -137,6 +137,10 @@
     <value>Your account is not yet verified</value>
     <comment>Hesabınız henüz doğrulanmamış</comment>
   </data>
+  <data name="lblAccountVerifiedBefore" xml:space="preserve">
+    <value>Your account is verified before</value>
+    <comment>Hesabınız daha önce doğrulanmış</comment>
+  </data>
   <data name="lblAreYourNew" xml:space="preserve">
     <value>Are you new</value>
     <comment>Yeni misiniz</comment>
@@ -177,6 +181,14 @@
     <value>E-mail</value>
     <comment>E-posta</comment>
   </data>
+  <data name="lblEmailAddressMessage1" xml:space="preserve">
+    <value>Please accounts in the e-mail and click on the activation link.</value>
+    <comment>Lütfen gelen e-postadaki hesap aktivasyon linkine tıklayınız.</comment>
+  </data>
+  <data name="lblEmailAddressMessage2" xml:space="preserve">
+    <value>E-mail, if they reach your address</value>
+    <comment>E-posta, adresinize ulaşmadıysa</comment>
+  </data>
   <data name="lblEmailNoReachedMessage" xml:space="preserve">
     <value>Does activation e-mail did not reach your inbox?</value>
     <comment>Aktivasyon e-postası gelen kutunuza ulaşmadı mı?</comment>
@@ -216,6 +228,10 @@
   <data name="lblGetNewActivationEmailMessage" xml:space="preserve">
     <value>Get a new activation e-mail</value>
     <comment>Yeni bir aktivasyon e-postası edinin</comment>
+  </data>
+  <data name="lblInvalidActivationCode" xml:space="preserve">
+    <value>Activation code is invalid</value>
+    <comment>Aktivasyon kodu geçersiz</comment>
   </data>
   <data name="lblLetUsKnow" xml:space="preserve">
     <value>Let us know</value>
