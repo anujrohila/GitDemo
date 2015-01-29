@@ -115,6 +115,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to order.
+        /// </summary>
+        public static string lblAddToOrder {
+            get {
+                return ResourceManager.GetString("lblAddToOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apple Store.
         /// </summary>
         public static string lblAppleStore {
@@ -336,6 +345,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblFinalStepAccount {
             get {
                 return ResourceManager.GetString("lblFinalStepAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your company information will be considered for approval ....
+        /// </summary>
+        public static string lblFirmApprovalMessage1 {
+            get {
+                return ResourceManager.GetString("lblFirmApprovalMessage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your company information will be considered by us. Approval for the return we will provide you via e-mail within 2 business days.
+        /// </summary>
+        public static string lblFirmApprovalMessage2 {
+            get {
+                return ResourceManager.GetString("lblFirmApprovalMessage2", resourceCulture);
             }
         }
         
@@ -664,6 +691,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Management Panel.
+        /// </summary>
+        public static string lblManagementPanel {
+            get {
+                return ResourceManager.GetString("lblManagementPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile Number.
         /// </summary>
         public static string lblMobileNumber {
@@ -678,6 +714,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblNeighborhoodStreetDoorNumber {
             get {
                 return ResourceManager.GetString("lblNeighborhoodStreetDoorNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Order.
+        /// </summary>
+        public static string lblNewOrder {
+            get {
+                return ResourceManager.GetString("lblNewOrder", resourceCulture);
             }
         }
         
@@ -853,6 +898,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Request Type.
+        /// </summary>
+        public static string lblSelectRequestType {
+            get {
+                return ResourceManager.GetString("lblSelectRequestType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sign up now.
         /// </summary>
         public static string lblSignUpNow {
@@ -948,6 +1002,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblTubitik {
             get {
                 return ResourceManager.GetString("lblTubitik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string lblUpdate {
+            get {
+                return ResourceManager.GetString("lblUpdate", resourceCulture);
             }
         }
         

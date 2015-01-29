@@ -1,4 +1,5 @@
 ﻿@using platform.ltsyazilim.com.Controllers
+@using Itsyazilim.Web.Domain.Resources
 @model Itsyazilim.Web.UI.Models.FirmViewModel
 
 @{
@@ -13,14 +14,14 @@
         <tr>
             <td>
                 <h2>
-                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Firma bilgileriniz onay için değerlendiriliyor...
+                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>@ItsyazilimWebResources.lblFirmApprovalMessage1
                 </h2>
             </td>
         </tr>
     </table>
     <hr />
     <div class="padding-10">
-        Firma bilgileriniz tarafımızca değerlendiriliyor. Onay için size 2 iş günü içinde e-posta yoluyla geri dönüş sağlayacağız
+        @ItsyazilimWebResources.lblFirmApprovalMessage2
     </div>
 </div>
 <div class="padding-10" style="width:800px">
@@ -59,54 +60,54 @@
 
                 </section>
                 <section>
-                    Mahalle - Sokak - Kapı No
+                    @ItsyazilimWebResources.lblNeighborhoodStreetDoorNumber
                     @Html.DevExpress().TextBoxFor(m => m.Address, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                 </section>
                 <div class="row">
                     <section class="col col-6">
-                        Vergi Dairesi
+                        @ItsyazilimWebResources.lblFlatTax
                         @Html.DevExpress().TextBoxFor(m => m.TaxOffice, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                     <section class="col col-6">
-                        Vergi Numarası
+                        @ItsyazilimWebResources.lblTaxNumber
                         @Html.DevExpress().TextBoxFor(m => m.TaxNo, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                 </div>
                 <div class="row">
                     <section class="col col-3">
-                        Telefon No
+                        @ItsyazilimWebResources.lblPhoneNo
                         @Html.DevExpress().TextBoxFor(m => m.Phone1, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                     <section class="col col-3">
-                        Telefon-2
+                        @ItsyazilimWebResources.lblPhone2
                         @Html.DevExpress().TextBoxFor(m => m.Phone2, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                     <section class="col col-3">
-                        Fax
+                        @ItsyazilimWebResources.lblFax
                         @Html.DevExpress().TextBoxFor(m => m.Fax, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                     <section class="col col-3">
-                        GSM Numarası
+                        @ItsyazilimWebResources.lblMobileNumber
                         @Html.DevExpress().TextBoxFor(m => m.MobilePhone, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                 </div>
                 <div class="row">
                     <section class="col col-6">
-                        E-posta Adresi
+                        @ItsyazilimWebResources.lblEmailAddress
                         @Html.DevExpress().TextBoxFor(m => m.Email, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                     </section>
                     <section class="col col-6">
-                        Internet Sitesi 
+                        @ItsyazilimWebResources.lblInternetSite
                         @Html.DevExpress().TextBoxFor(m => m.WebSite, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
 
                     </section>
-                    @Html.HiddenFor(m=> m.FirmId)
+                    @Html.HiddenFor(m => m.FirmId)
                 </div>
             </fieldset>
         </div>
         <div class="no-padding">
             <footer style="text-align: right; padding-right: 20px">
-                <input type="submit" id="ButtonUpdate" class="btn btn-primary" value="Güncelle" />
+                <input type="submit" id="ButtonUpdate" class="btn btn-primary" value="@ItsyazilimWebResources.lblUpdate" />
                 <i id="DivLoading" class="fa fa-gear fa-2x fa-spin txt-color-blue" style="display: none">
                 </i>
             </footer>

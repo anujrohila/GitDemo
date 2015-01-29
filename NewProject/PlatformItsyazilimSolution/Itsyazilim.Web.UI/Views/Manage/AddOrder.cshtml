@@ -1,25 +1,26 @@
-﻿@model System.Collections.IEnumerable
+﻿@using Itsyazilim.Web.Domain.Resources;
+    @model System.Collections.IEnumerable
 
-@{
-    ViewBag.Title = "Sipariş Ekle";
-    Layout = "~/Views/Shared/_Manage.cshtml";
-}
+    @{
+        ViewBag.Title = "Sipariş Ekle";
+        Layout = "~/Views/Shared/_Manage.cshtml";
+    }
 
-<div class="padding-10">
-    <table style="width: 100%">
-        <tr>
-            <td>
-                <h2>
-                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Yeni Sipariş
+    <div class="padding-10">
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <h2>
+                        <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>@ItsyazilimWebResources.lblNewOrder
                 </h2>
             </td>
         </tr>
     </table>
     <hr />
     @*<h3 style="padding-left:15px">
-        Sistemi kullanmaya başlamanız için, şirket bilgilerinizi tanımlamanız gerekiyor.
-        Lütfen aşağıdaki formdaki bilgileri eksiksiz doldurun.
-    </h3>*@
+            Sistemi kullanmaya başlamanız için, şirket bilgilerinizi tanımlamanız gerekiyor.
+            Lütfen aşağıdaki formdaki bilgileri eksiksiz doldurun.
+        </h3>*@
 </div>
 @Html.Action("_TreeListOrderFromWhere", Model);
 <br /><br />
@@ -66,7 +67,7 @@
         <tr>
             <td>
                 <h2>
-                    <i class="fa fa-reorder" style="padding: 0px 10px 0px 10px"></i>Sipariş Ekle
+                    <i class="fa fa-reorder" style="padding: 0px 10px 0px 10px"></i>@ItsyazilimWebResources.lblAddToOrder
                 </h2>
             </td>
         </tr>
@@ -80,7 +81,7 @@
         <fieldset class="padding-top-0" style="background-color: transparent">
             <div class="form-horizontal">
 
-                <h1>Talep Türü Seçiniz</h1><br />
+                <h1>@ItsyazilimWebResources.lblSelectRequestType</h1><br />
                 @Html.DevExpress().ComboBox(settings =>
                         {
                             settings.Name = "OrderTypeId";

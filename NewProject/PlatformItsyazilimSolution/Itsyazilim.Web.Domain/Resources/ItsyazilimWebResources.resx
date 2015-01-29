@@ -529,4 +529,32 @@
     <value>Your account is verified before</value>
     <comment>Hesabınız daha önce doğrulanmış</comment>
   </data>
+  <data name="lblAddToOrder" xml:space="preserve">
+    <value>Add to order</value>
+    <comment>Sipariş Ekle</comment>
+  </data>
+  <data name="lblFirmApprovalMessage1" xml:space="preserve">
+    <value>Your company information will be considered for approval ...</value>
+    <comment>Firma bilgileriniz onay için değerlendiriliyor...</comment>
+  </data>
+  <data name="lblFirmApprovalMessage2" xml:space="preserve">
+    <value>Your company information will be considered by us. Approval for the return we will provide you via e-mail within 2 business days</value>
+    <comment>Firma bilgileriniz tarafımızca değerlendiriliyor. Onay için size 2 iş günü içinde e-posta yoluyla geri dönüş sağlayacağız</comment>
+  </data>
+  <data name="lblManagementPanel" xml:space="preserve">
+    <value>Management Panel</value>
+    <comment>Yönetim Paneli</comment>
+  </data>
+  <data name="lblNewOrder" xml:space="preserve">
+    <value>New Order</value>
+    <comment>Yeni Sipariş</comment>
+  </data>
+  <data name="lblSelectRequestType" xml:space="preserve">
+    <value>Select Request Type</value>
+    <comment>Talep Türü Seçiniz</comment>
+  </data>
+  <data name="lblUpdate" xml:space="preserve">
+    <value>Update</value>
+    <comment>Güncelle</comment>
+  </data>
 </root>
