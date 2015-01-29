@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Itsyazilim.Web.Domain.Resources;
+@{
     ViewBag.Title = "LTS Tübitak";
     Layout = "~/Views/Shared/_Default.cshtml";
 }
@@ -19,10 +20,10 @@
     <table style="width:1100px; margin:0px auto 0px auto;">
         <tr>
             <td style="vertical-align:top">
-                <span style="color:white" class="font-xl">Lojistik hakkında bildiklerinizi unutma vakti</span>
+                <span style="color:white" class="font-xl">@ItsyazilimWebResources.lblHomeMessage1</span>
                 <br />
                 <br />
-                <span style="color:white">LTS Tübitak yeni altyapısıyla lojistik alanında çığır açan bir projeye imza atıyor</span>
+                <span style="color:white">@ItsyazilimWebResources.lblHomeMessage2</span>
             </td>
             <td style="text-align:right">
                 <div>
@@ -39,32 +40,32 @@
             <table>
                 <tr>
                     <td style="width:100px; text-align:center"><i class="fa fa-cloud-download fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
-                    <td><h1>Bulutun gücü parmaklarınızın ucunda</h1></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage3</h1></td>
                 </tr>
             </table>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan arcu lectus, sed semper dolor mattis eu. Sed pretium sem risus, non fermentum sem facilisis quis. In hac habitasse platea dictumst.
+                @ItsyazilimWebResources.lblHomeMessage4
             </p>
         </div>
         <div class="col-md-4">
             <table>
                 <tr>
                     <td style="width:100px; text-align:center"><i class="fa fa-clock-o fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
-                    <td><h1>Az zamanda <br />çok ve büyük işler</h1></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage5 <br />@ItsyazilimWebResources.lblHomeMessage6</h1></td>
                 </tr>
             </table>
-            <p>Phasellus ullamcorper porta lacus eget feugiat. Aliquam et ante non mauris facilisis porttitor laoreet et odio. Phasellus faucibus nisi eu venenatis lacinia. Donec gravida lacus ac porta tempor.</p>
+            <p>@ItsyazilimWebResources.lblHomeMessage7</p>
 
         </div>
         <div class="col-md-4">
             <table>
                 <tr>
                     <td style="width:100px; text-align:center"><i class="fa fa-comments-o fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
-                    <td><h1>Hızlı iletişim altyapısıyla işinize güç katın</h1></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage8</h1></td>
                 </tr>
             </table>
-            <p> Aenean ut velit quis enim luctus malesuada tempus in eros. In sit amet nisl ullamcorper, condimentum purus sed, scelerisque diam. Suspendisse eu turpis ex. Vivamus et lacus sit amet orci interdum sagittis quis in turpis.</p>
+            <p> @ItsyazilimWebResources.lblHomeMessage9</p>
 
         </div>
 
@@ -76,33 +77,33 @@
             <table>
                 <tr>
                     <td style="width:100px; text-align:center"><i class="fa fa-mobile fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
-                    <td><h1>İşinizi istediğiniz yerden yönetin</h1></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage10</h1></td>
                 </tr>
             </table>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan arcu lectus, sed semper dolor mattis eu. Sed pretium sem risus, non fermentum sem facilisis quis. In hac habitasse platea dictumst.
+                @ItsyazilimWebResources.lblHomeMessage11
             </p>
 
         </div>
         <div class="col-md-4">
             <table>
                 <tr>
-                    <td style="width:100px; text-align:center"><i class="fa fa-truck fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td style>
-                    <td><h1>Lojistik ağınızı izlemeyi gözünüzde büyütmeyin</h1></td>
+                    <td style="width:100px; text-align:center"><i class="fa fa-truck fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage12</h1></td>
                 </tr>
             </table>
-            <p>Phasellus ullamcorper porta lacus eget feugiat. Aliquam et ante non mauris facilisis porttitor laoreet et odio. Phasellus faucibus nisi eu venenatis lacinia. Donec gravida lacus ac porta tempor.</p>
+            <p>@ItsyazilimWebResources.lblHomeMessage13</p>
 
         </div>
         <div class="col-md-4">
             <table>
                 <tr>
-                    <td style="width:100px; text-align:center"><i class="fa fa-reorder fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td style>
-                    <td><h1>Akıllı raporlar <br /> Arttırılmış performans</h1></td>
+                    <td style="width:100px; text-align:center"><i class="fa fa-reorder fa-5x" style="color:#5f5f5f; padding-right:15px"></i></td>
+                    <td><h1>@ItsyazilimWebResources.lblHomeMessage14 <br /> @ItsyazilimWebResources.lblHomeMessage15</h1></td>
                 </tr>
             </table>
-            <p> Aenean ut velit quis enim luctus malesuada tempus in eros. In sit amet nisl ullamcorper, condimentum purus sed, scelerisque diam. Suspendisse eu turpis ex. Vivamus et lacus sit amet orci interdum sagittis quis in turpis.</p>
+            <p> @ItsyazilimWebResources.lblHomeMessage16</p>
 
         </div>
 
@@ -110,15 +111,15 @@
     <div class="row" style="margin:0px auto 0px auto; width:1130px; border-top:1px solid #999">
         <br /><br />
         <div class="col-md-4">
-            <h2>Neden LTS Tübitak</h2>
+            <h2>@ItsyazilimWebResources.lblHomeMessage17</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan arcu lectus, sed semper dolor mattis eu. Sed pretium sem risus, non fermentum sem facilisis quis. In hac habitasse platea dictumst.
+                @ItsyazilimWebResources.lblHomeMessage18
             </p>
-            <p><a class="btn btn-info" href="">Ayrıntılar &raquo;</a></p>
+            <p><a class="btn btn-info" href="">@ItsyazilimWebResources.lblDetails &raquo;</a></p>
         </div>
         <div class="col-md-4">
-            <h2>Bilmeniz gerekenler</h2>
-            <p>Phasellus ullamcorper porta lacus eget feugiat. Aliquam et ante non mauris facilisis porttitor laoreet et odio. Phasellus faucibus nisi eu venenatis lacinia. Donec gravida lacus ac porta tempor.</p>
+            <h2>@ItsyazilimWebResources.lblHomeMessage19</h2>
+            <p>@ItsyazilimWebResources.lblHomeMessage20</p>
             <p><a class="btn btn-info" href="">Ayrıntılar &raquo;</a></p>
         </div>
         <div class="col-md-4">
@@ -155,8 +156,8 @@
                 <div>
                     © 2014
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style="color: #eee; font-size:large;">LTS</span>
-                        <span style=" color: #fff; font-size:large;">Tübitak</span>
+                    <span style="color: #eee; font-size:large;">LTS</span>
+                    <span style=" color: #fff; font-size:large;">Tübitak</span>
                 </div>
             </td>
         </tr>

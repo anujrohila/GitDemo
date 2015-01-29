@@ -187,6 +187,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to details.
+        /// </summary>
+        public static string lblDetails {
+            get {
+                return ResourceManager.GetString("lblDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Did you forget your password.
         /// </summary>
         public static string lblDidYouForgotYourPassword {
@@ -309,6 +318,186 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblGetNewActivationEmailMessage {
             get {
                 return ResourceManager.GetString("lblGetNewActivationEmailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to remember anything about logistics.
+        /// </summary>
+        public static string lblHomeMessage1 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your business from anywhere.
+        /// </summary>
+        public static string lblHomeMessage10 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer layer bow of the bed, but the pain is always lot of football. But the price of the lot of laughter, it is not warm-sem easy anyone. In refinancing..
+        /// </summary>
+        public static string lblHomeMessage11 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To grow your logistics network monitoring your eyes.
+        /// </summary>
+        public static string lblHomeMessage12 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consectetuer adipiscing id lakes accu. Laoreet and before the ferry is not easy customization, and hate. Id, but Flash poisoned the skirt of the jaws. Unfortunately, at the gate of pregnant and lakes..
+        /// </summary>
+        public static string lblHomeMessage13 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart reports.
+        /// </summary>
+        public static string lblHomeMessage14 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increased performance.
+        /// </summary>
+        public static string lblHomeMessage15 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information on how to choose a time in the United States: for who is mourning malesuada. Will not be published In the notebook, but the pure sauce, chocolate sauce. Stress from gaming. Arrows and lakes is a highly professional long walk at times, who live in Arizona..
+        /// </summary>
+        public static string lblHomeMessage16 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why LTS TUBITAK.
+        /// </summary>
+        public static string lblHomeMessage17 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer layer bow of the bed, but the pain is always lot of football. But the price of the lot of laughter, it is not warm-sem easy anyone. In refinancing..
+        /// </summary>
+        public static string lblHomeMessage18 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What you should know.
+        /// </summary>
+        public static string lblHomeMessage19 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LTS TUBITAK throws a groundbreaking projects in the field of logistics with a new infrastructure.
+        /// </summary>
+        public static string lblHomeMessage2 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consectetuer adipiscing id lakes accu. Laoreet and before the ferry is not easy customization, and hate. Id, but Flash poisoned the skirt of the jaws. Unfortunately, at the gate of pregnant and lakes..
+        /// </summary>
+        public static string lblHomeMessage20 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud power at your fingertips.
+        /// </summary>
+        public static string lblHomeMessage3 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer layer bow of the bed, but the pain is always lot of football. But the price of the lot of laughter, it is not warm-sem easy anyone. In refinancing..
+        /// </summary>
+        public static string lblHomeMessage4 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the zamanda.
+        /// </summary>
+        public static string lblHomeMessage5 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to many and great things.
+        /// </summary>
+        public static string lblHomeMessage6 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consectetuer adipiscing id lakes accu. Laoreet and before the ferry is not easy customization, and hate. Id, but Flash poisoned the skirt of the jaws. Unfortunately, at the gate of pregnant and lakes..
+        /// </summary>
+        public static string lblHomeMessage7 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power to your business with fast communication infrastructure.
+        /// </summary>
+        public static string lblHomeMessage8 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information on how to choose a time in the United States: for who is mourning malesuada. Will not be published In the notebook, but the pure sauce, chocolate sauce. Stress from gaming. Arrows and lakes is a highly professional long walk at times, who live in Arizona..
+        /// </summary>
+        public static string lblHomeMessage9 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage9", resourceCulture);
             }
         }
         

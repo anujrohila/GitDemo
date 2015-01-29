@@ -59,7 +59,7 @@
                     <center>
                         <h5>@ItsyazilimWebResources.lblEmailNotFound</h5>
                         <br />
-                        Yeni misiniz ?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblRegisterNow</a>
+                        @ItsyazilimWebResources.lblAreYourNew?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblRegisterNow</a>
                     </center>
                         break;
                 }
@@ -72,9 +72,9 @@
                     <tbody>
                         <tr>
                             <td style="text-align: center">
-                                Hesabınızı etkinleştirirken bir sorun mu oluştu?<br>Lütfen
+                                @ItsyazilimWebResources.lblProblemInActivationAccountMessage<br>@ItsyazilimWebResources.lblPlease
                                 <a style="border: none; text-decoration: none" href="~/Home/Contact?Report=2">
-                                    bize bildirin
+                                    @ItsyazilimWebResources.lblLetUsKnow
                                 </a>
                         </tr>
                     </tbody>
