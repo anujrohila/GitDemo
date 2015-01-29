@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblAccountActivation" xml:space="preserve">
+    <value>Account Activation</value>
+    <comment>Hesap Aktivasyon</comment>
+  </data>
+  <data name="lblAccountCreatedWithThisEmail" xml:space="preserve">
+    <value>Account created with this email</value>
+    <comment>Bu e-posta ile hesap oluşturulmuş</comment>
+  </data>
+  <data name="lblAccountCreationProblem" xml:space="preserve">
+    <value>There was a problem when creating your account?</value>
+    <comment>Hesabınızı oluştururken bir sorun mu oluştu?</comment>
+  </data>
   <data name="lblAccountLocked" xml:space="preserve">
     <value>Your account will be locked by the system</value>
     <comment>Hesabınız sistem tarafından kitlenmiş</comment>
@@ -149,6 +161,10 @@
     <value>and check your address</value>
     <comment>ve adresinizi kontrol ediniz</comment>
   </data>
+  <data name="lblCongratulations" xml:space="preserve">
+    <value>Congratulations</value>
+    <comment>Tebrikler</comment>
+  </data>
   <data name="lblContactUs" xml:space="preserve">
     <value>Contact Us</value>
     <comment>bizimle iletişime geçin</comment>
@@ -160,6 +176,10 @@
   <data name="lblEmail" xml:space="preserve">
     <value>E-mail</value>
     <comment>E-posta</comment>
+  </data>
+  <data name="lblEmailNoReachedMessage" xml:space="preserve">
+    <value>Does activation e-mail did not reach your inbox?</value>
+    <comment>Aktivasyon e-postası gelen kutunuza ulaşmadı mı?</comment>
   </data>
   <data name="lblEmailNotFound" xml:space="preserve">
     <value>E-mail address was not found</value>
@@ -177,6 +197,10 @@
     <value>Entrance</value>
     <comment>Giriş</comment>
   </data>
+  <data name="lblFinalStepAccount" xml:space="preserve">
+    <value>The final step for your account</value>
+    <comment>Hesabınız için son adım</comment>
+  </data>
   <data name="lblFirstName" xml:space="preserve">
     <value>First Name</value>
     <comment>İsim</comment>
@@ -188,6 +212,10 @@
   <data name="lblForgotRefresh" xml:space="preserve">
     <value>Forgot Refresh</value>
     <comment>Şifremi Yenile</comment>
+  </data>
+  <data name="lblGetNewActivationEmailMessage" xml:space="preserve">
+    <value>Get a new activation e-mail</value>
+    <comment>Yeni bir aktivasyon e-postası edinin</comment>
   </data>
   <data name="lblLetUsKnow" xml:space="preserve">
     <value>Let us know</value>
@@ -204,6 +232,10 @@
   <data name="lblNewPasswordMessage" xml:space="preserve">
     <value>Please choose a new password</value>
     <comment>Lütfen yeni bir şifre belirleyin</comment>
+  </data>
+  <data name="lblOr" xml:space="preserve">
+    <value>or</value>
+    <comment>ya da</comment>
   </data>
   <data name="lblPassword" xml:space="preserve">
     <value>Password</value>
@@ -224,6 +256,10 @@
   <data name="lblPlease" xml:space="preserve">
     <value>Please</value>
     <comment>Lütfen</comment>
+  </data>
+  <data name="lblProblemInActivationAccountMessage" xml:space="preserve">
+    <value>Is that a problem occurred while activating your account?</value>
+    <comment>Hesabınızı etkinleştirirken bir sorun mu oluştu?</comment>
   </data>
   <data name="lblReadAgrementMessage" xml:space="preserve">
     <value>You agree to the contract. Despite the possibility of not boring, we recommend that you read this contract.</value>
@@ -261,6 +297,10 @@
     <value>sign up now</value>
     <comment>Şimdi kaydol</comment>
   </data>
+  <data name="lblSubmit" xml:space="preserve">
+    <value>Submit</value>
+    <comment>Gönder</comment>
+  </data>
   <data name="lblSurname" xml:space="preserve">
     <value>Surname</value>
     <comment>Soyisim</comment>
@@ -268,6 +308,14 @@
   <data name="lblTermsofUse" xml:space="preserve">
     <value>Terms of use</value>
     <comment>Kullanım Koşulları</comment>
+  </data>
+  <data name="lblTheLog" xml:space="preserve">
+    <value>The Log</value>
+    <comment>Giriş yapın</comment>
+  </data>
+  <data name="lblThisEmailUsed" xml:space="preserve">
+    <value>This e-mail use</value>
+    <comment>Bu e-posta kullanımda</comment>
   </data>
   <data name="lblToManyAttemptsMessage" xml:space="preserve">
     <value>You have made too many attempts</value>
@@ -280,5 +328,9 @@
   <data name="lblWriteAndCreatePassword" xml:space="preserve">
     <value>Write and create a new password in your e-mail address</value>
     <comment>E-posta adresinizi yazın ve yeni bir şifre oluşturun</comment>
+  </data>
+  <data name="lblYourAccountVerifiedBefore" xml:space="preserve">
+    <value>Your account is verified before</value>
+    <comment>Hesabınız daha önce doğrulanmış</comment>
   </data>
 </root>

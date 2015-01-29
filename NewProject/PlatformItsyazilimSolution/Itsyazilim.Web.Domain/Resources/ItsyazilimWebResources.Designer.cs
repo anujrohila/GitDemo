@@ -61,6 +61,33 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Activation.
+        /// </summary>
+        public static string lblAccountActivation {
+            get {
+                return ResourceManager.GetString("lblAccountActivation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account created with this email.
+        /// </summary>
+        public static string lblAccountCreatedWithThisEmail {
+            get {
+                return ResourceManager.GetString("lblAccountCreatedWithThisEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was a problem when creating your account?.
+        /// </summary>
+        public static string lblAccountCreationProblem {
+            get {
+                return ResourceManager.GetString("lblAccountCreationProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account will be locked by the system.
         /// </summary>
         public static string lblAccountLocked {
@@ -133,6 +160,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Congratulations.
+        /// </summary>
+        public static string lblCongratulations {
+            get {
+                return ResourceManager.GetString("lblCongratulations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         public static string lblContactUs {
@@ -156,6 +192,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblEmail {
             get {
                 return ResourceManager.GetString("lblEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Does activation e-mail did not reach your inbox?.
+        /// </summary>
+        public static string lblEmailNoReachedMessage {
+            get {
+                return ResourceManager.GetString("lblEmailNoReachedMessage", resourceCulture);
             }
         }
         
@@ -196,6 +241,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The final step for your account.
+        /// </summary>
+        public static string lblFinalStepAccount {
+            get {
+                return ResourceManager.GetString("lblFinalStepAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string lblFirstName {
@@ -219,6 +273,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblForgotRefresh {
             get {
                 return ResourceManager.GetString("lblForgotRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a new activation e-mail.
+        /// </summary>
+        public static string lblGetNewActivationEmailMessage {
+            get {
+                return ResourceManager.GetString("lblGetNewActivationEmailMessage", resourceCulture);
             }
         }
         
@@ -255,6 +318,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblNewPasswordMessage {
             get {
                 return ResourceManager.GetString("lblNewPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string lblOr {
+            get {
+                return ResourceManager.GetString("lblOr", resourceCulture);
             }
         }
         
@@ -300,6 +372,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblPlease {
             get {
                 return ResourceManager.GetString("lblPlease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is that a problem occurred while activating your account?.
+        /// </summary>
+        public static string lblProblemInActivationAccountMessage {
+            get {
+                return ResourceManager.GetString("lblProblemInActivationAccountMessage", resourceCulture);
             }
         }
         
@@ -385,6 +466,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string lblSubmit {
+            get {
+                return ResourceManager.GetString("lblSubmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
         public static string lblSurname {
@@ -399,6 +489,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblTermsofUse {
             get {
                 return ResourceManager.GetString("lblTermsofUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Log.
+        /// </summary>
+        public static string lblTheLog {
+            get {
+                return ResourceManager.GetString("lblTheLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This e-mail use.
+        /// </summary>
+        public static string lblThisEmailUsed {
+            get {
+                return ResourceManager.GetString("lblThisEmailUsed", resourceCulture);
             }
         }
         
@@ -426,6 +534,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblWriteAndCreatePassword {
             get {
                 return ResourceManager.GetString("lblWriteAndCreatePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account is verified before.
+        /// </summary>
+        public static string lblYourAccountVerifiedBefore {
+            get {
+                return ResourceManager.GetString("lblYourAccountVerifiedBefore", resourceCulture);
             }
         }
     }
