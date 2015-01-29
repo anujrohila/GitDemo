@@ -119,5 +119,6 @@
   </resheader>
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
+    <comment>Giriş Yap</comment>
   </data>
 </root>
