@@ -783,9 +783,6 @@ namespace Itsyazilim.Web.UI.Controllers
             return View();
         }
 
-
-
-        //// /Account/Login        
         public ActionResult Login(LoginViewModel model)
         {
             if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
