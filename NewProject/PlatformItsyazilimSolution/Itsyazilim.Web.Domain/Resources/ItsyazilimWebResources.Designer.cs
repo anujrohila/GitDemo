@@ -61,11 +61,173 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account will be locked by the system.
+        /// </summary>
+        public static string lblAccountLocked {
+            get {
+                return ResourceManager.GetString("lblAccountLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account is not yet verified.
+        /// </summary>
+        public static string lblAccountNotVerified {
+            get {
+                return ResourceManager.GetString("lblAccountNotVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you new.
+        /// </summary>
+        public static string lblAreYourNew {
+            get {
+                return ResourceManager.GetString("lblAreYourNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ask to resend the activation e-mail.
+        /// </summary>
+        public static string lblAskForResendEmail {
+            get {
+                return ResourceManager.GetString("lblAskForResendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Us.
+        /// </summary>
+        public static string lblContactUs {
+            get {
+                return ResourceManager.GetString("lblContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string lblEmail {
+            get {
+                return ResourceManager.GetString("lblEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail address was not found.
+        /// </summary>
+        public static string lblEmailNotFound {
+            get {
+                return ResourceManager.GetString("lblEmailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check your email and click on the activation link. E-mail, if they reach your address..
+        /// </summary>
+        public static string lblEmailSendingConfirmation {
+            get {
+                return ResourceManager.GetString("lblEmailSendingConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entrance.
+        /// </summary>
+        public static string lblEntrance {
+            get {
+                return ResourceManager.GetString("lblEntrance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your password or can not access your account, even though you enter the correct password to do..
+        /// </summary>
+        public static string lblForgotPasswordMessage {
+            get {
+                return ResourceManager.GetString("lblForgotPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string lblLogin {
             get {
                 return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string lblPassword {
+            get {
+                return ResourceManager.GetString("lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password invalid.
+        /// </summary>
+        public static string lblPasswordInvalid {
+            get {
+                return ResourceManager.GetString("lblPasswordInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please.
+        /// </summary>
+        public static string lblPlease {
+            get {
+                return ResourceManager.GetString("lblPlease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        public static string lblRememberMe {
+            get {
+                return ResourceManager.GetString("lblRememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renew your password.
+        /// </summary>
+        public static string lblRenewYourPassword {
+            get {
+                return ResourceManager.GetString("lblRenewYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sign up now.
+        /// </summary>
+        public static string lblSignUpNow {
+            get {
+                return ResourceManager.GetString("lblSignUpNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have made too many attempts.
+        /// </summary>
+        public static string lblToManyAttemptsMessage {
+            get {
+                return ResourceManager.GetString("lblToManyAttemptsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please try again later.
+        /// </summary>
+        public static string lblTryAgainLaterMessage {
+            get {
+                return ResourceManager.GetString("lblTryAgainLaterMessage", resourceCulture);
             }
         }
     }

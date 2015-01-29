@@ -117,8 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblAccountLocked" xml:space="preserve">
+    <value>Your account will be locked by the system</value>
+    <comment>Hesabınız sistem tarafından kitlenmiş</comment>
+  </data>
+  <data name="lblAccountNotVerified" xml:space="preserve">
+    <value>Your account is not yet verified</value>
+    <comment>Hesabınız henüz doğrulanmamış</comment>
+  </data>
+  <data name="lblAreYourNew" xml:space="preserve">
+    <value>Are you new</value>
+    <comment>Yeni misiniz</comment>
+  </data>
+  <data name="lblAskForResendEmail" xml:space="preserve">
+    <value>ask to resend the activation e-mail</value>
+    <comment>aktivasyon e-postasını yeniden isteyin</comment>
+  </data>
+  <data name="lblContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+    <comment>bizimle iletişime geçin</comment>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>E-mail</value>
+    <comment>E-posta</comment>
+  </data>
+  <data name="lblEmailNotFound" xml:space="preserve">
+    <value>E-mail address was not found</value>
+    <comment>E-posta adresi bulunamadı</comment>
+  </data>
+  <data name="lblEmailSendingConfirmation" xml:space="preserve">
+    <value>Please check your email and click on the activation link. E-mail, if they reach your address.</value>
+    <comment>Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa</comment>
+  </data>
+  <data name="lblEntrance" xml:space="preserve">
+    <value>Entrance</value>
+    <comment>Giriş</comment>
+  </data>
+  <data name="lblForgotPasswordMessage" xml:space="preserve">
+    <value>Forgot your password or can not access your account, even though you enter the correct password to do.</value>
+    <comment>Şifreni unuttun ya da doğru şifreyi girdiğin halde hesabına erişemiyor musunuz</comment>
+  </data>
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
     <comment>Giriş Yap</comment>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Password</value>
+    <comment>Şifre</comment>
+  </data>
+  <data name="lblPasswordInvalid" xml:space="preserve">
+    <value>Password invalid</value>
+    <comment>Şifre geçersiz</comment>
+  </data>
+  <data name="lblPlease" xml:space="preserve">
+    <value>Please</value>
+    <comment>Lütfen</comment>
+  </data>
+  <data name="lblRememberMe" xml:space="preserve">
+    <value>Remember me</value>
+    <comment>Beni hatırla</comment>
+  </data>
+  <data name="lblRenewYourPassword" xml:space="preserve">
+    <value>Renew your password</value>
+    <comment>Şifrenizi yenileyin</comment>
+  </data>
+  <data name="lblSignUpNow" xml:space="preserve">
+    <value>sign up now</value>
+    <comment>Şimdi kaydol</comment>
+  </data>
+  <data name="lblToManyAttemptsMessage" xml:space="preserve">
+    <value>You have made too many attempts</value>
+    <comment>Çok fazla sayıda deneme yaptınız</comment>
+  </data>
+  <data name="lblTryAgainLaterMessage" xml:space="preserve">
+    <value>Please try again later</value>
+    <comment>Lütfen daha sonra tekrar deneyin</comment>
   </data>
 </root>
