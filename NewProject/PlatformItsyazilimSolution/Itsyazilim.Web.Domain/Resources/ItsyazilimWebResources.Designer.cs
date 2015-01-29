@@ -115,6 +115,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apple Store.
+        /// </summary>
+        public static string lblAppleStore {
+            get {
+                return ResourceManager.GetString("lblAppleStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you new.
         /// </summary>
         public static string lblAreYourNew {
@@ -129,6 +138,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblAskForResendEmail {
             get {
                 return ResourceManager.GetString("lblAskForResendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits.
+        /// </summary>
+        public static string lblBenefits {
+            get {
+                return ResourceManager.GetString("lblBenefits", resourceCulture);
             }
         }
         
@@ -322,6 +340,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Google Play.
+        /// </summary>
+        public static string lblGooglePlay {
+            get {
+                return ResourceManager.GetString("lblGooglePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time to remember anything about logistics.
         /// </summary>
         public static string lblHomeMessage1 {
@@ -439,6 +466,33 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information on how to choose a time in the United States: for who is mourning malesuada. Will not be published In the notebook, but the pure sauce, chocolate sauce. Stress from gaming. Arrows and lakes is a highly professional long walk at times, who live in Arizona..
+        /// </summary>
+        public static string lblHomeMessage21 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your dream is our business.
+        /// </summary>
+        public static string lblHomeMessage22 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer layer bow of the bed, but the pain is always lot of football. But the price of the lot of laughter, it is not warm-sem easy anyone. In refinancing..
+        /// </summary>
+        public static string lblHomeMessage23 {
+            get {
+                return ResourceManager.GetString("lblHomeMessage23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cloud power at your fingertips.
         /// </summary>
         public static string lblHomeMessage3 {
@@ -525,6 +579,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblLogin {
             get {
                 return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LTS.
+        /// </summary>
+        public static string lblLTS {
+            get {
+                return ResourceManager.GetString("lblLTS", resourceCulture);
             }
         }
         
@@ -750,6 +813,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblTryAgainLaterMessage {
             get {
                 return ResourceManager.GetString("lblTryAgainLaterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TUBITAK.
+        /// </summary>
+        public static string lblTubitik {
+            get {
+                return ResourceManager.GetString("lblTubitik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Phone.
+        /// </summary>
+        public static string lblWindowsPhone {
+            get {
+                return ResourceManager.GetString("lblWindowsPhone", resourceCulture);
             }
         }
         

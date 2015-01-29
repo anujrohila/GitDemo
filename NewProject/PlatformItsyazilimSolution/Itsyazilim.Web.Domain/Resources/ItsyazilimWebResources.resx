@@ -141,6 +141,10 @@
     <value>Your account is verified before</value>
     <comment>Hesabınız daha önce doğrulanmış</comment>
   </data>
+  <data name="lblAppleStore" xml:space="preserve">
+    <value>Apple Store</value>
+    <comment>Apple Store</comment>
+  </data>
   <data name="lblAreYourNew" xml:space="preserve">
     <value>Are you new</value>
     <comment>Yeni misiniz</comment>
@@ -148,6 +152,10 @@
   <data name="lblAskForResendEmail" xml:space="preserve">
     <value>ask to resend the activation e-mail</value>
     <comment>aktivasyon e-postasını yeniden isteyin</comment>
+  </data>
+  <data name="lblBenefits" xml:space="preserve">
+    <value>Benefits</value>
+    <comment>Avantajlar</comment>
   </data>
   <data name="lblByCreatingAccount" xml:space="preserve">
     <value>By creating an account</value>
@@ -233,6 +241,10 @@
     <value>Get a new activation e-mail</value>
     <comment>Yeni bir aktivasyon e-postası edinin</comment>
   </data>
+  <data name="lblGooglePlay" xml:space="preserve">
+    <value>Google Play</value>
+    <comment>Google Play</comment>
+  </data>
   <data name="lblHomeMessage1" xml:space="preserve">
     <value>Time to remember anything about logistics</value>
     <comment>Lojistik hakkında bildiklerinizi unutma vakti</comment>
@@ -285,6 +297,18 @@
     <value>Consectetuer adipiscing id lakes accu. Laoreet and before the ferry is not easy customization, and hate. Id, but Flash poisoned the skirt of the jaws. Unfortunately, at the gate of pregnant and lakes.</value>
     <comment>Phasellus ullamcorper porta lacus eget feugiat. Aliquam et ante non mauris facilisis porttitor laoreet et odio. Phasellus faucibus nisi eu venenatis lacinia. Donec gravida lacus ac porta tempor.</comment>
   </data>
+  <data name="lblHomeMessage21" xml:space="preserve">
+    <value>Information on how to choose a time in the United States: for who is mourning malesuada. Will not be published In the notebook, but the pure sauce, chocolate sauce. Stress from gaming. Arrows and lakes is a highly professional long walk at times, who live in Arizona.</value>
+    <comment>Aenean ut velit quis enim luctus malesuada tempus in eros. In sit amet nisl ullamcorper, condimentum purus sed, scelerisque diam. Suspendisse eu turpis ex. Vivamus et lacus sit amet orci interdum sagittis quis in turpis.</comment>
+  </data>
+  <data name="lblHomeMessage22" xml:space="preserve">
+    <value>Your dream is our business</value>
+    <comment>Sizin hayalleriniz, bizim işimiz</comment>
+  </data>
+  <data name="lblHomeMessage23" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer layer bow of the bed, but the pain is always lot of football. But the price of the lot of laughter, it is not warm-sem easy anyone. In refinancing.</value>
+    <comment>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan arcu lectus, sed semper dolor mattis eu. Sed pretium sem risus, non fermentum sem facilisis quis. In hac habitasse platea dictumst.</comment>
+  </data>
   <data name="lblHomeMessage3" xml:space="preserve">
     <value>Cloud power at your fingertips</value>
     <comment>Bulutun gücü parmaklarınızın ucunda</comment>
@@ -324,6 +348,10 @@
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
     <comment>Giriş Yap</comment>
+  </data>
+  <data name="lblLTS" xml:space="preserve">
+    <value>LTS</value>
+    <comment>LTS</comment>
   </data>
   <data name="lblNewPassword" xml:space="preserve">
     <value>New password</value>
@@ -424,6 +452,14 @@
   <data name="lblTryAgainLaterMessage" xml:space="preserve">
     <value>Please try again later</value>
     <comment>Lütfen daha sonra tekrar deneyin</comment>
+  </data>
+  <data name="lblTubitik" xml:space="preserve">
+    <value>TUBITAK</value>
+    <comment>Tübitak</comment>
+  </data>
+  <data name="lblWindowsPhone" xml:space="preserve">
+    <value>Windows Phone</value>
+    <comment>Windows Phone</comment>
   </data>
   <data name="lblWriteAndCreatePassword" xml:space="preserve">
     <value>Write and create a new password in your e-mail address</value>
