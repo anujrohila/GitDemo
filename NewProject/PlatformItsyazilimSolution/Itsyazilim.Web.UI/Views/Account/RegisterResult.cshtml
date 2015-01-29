@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Itsyazilim.Web.Domain.Resources
+@{
     ViewBag.Title = "Hesap Oluşturma";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,10 +15,10 @@
             <header>
                 <h1 style="padding: 5px 5px 5px 19px">
                     @if (TempData["Status"] == "OK")
-                    {<i class="fa fa-check text-muted"></i><span>&nbsp;&nbsp;Tebrikler</span>
+                    {<i class="fa fa-check text-muted"></i><span>&nbsp;&nbsp;@ItsyazilimWebResources.lblCongratulations</span>
                     }
                     else
-                    {<i class="fa fa-info-circle text-muted"></i><span>&nbsp;&nbsp;Şimdi Kaydol</span>
+                    {<i class="fa fa-info-circle text-muted"></i><span>&nbsp;&nbsp;@ItsyazilimWebResources.lblRegisterNow</span>
                     }
                     <i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile" style="opacity: 0.2;
                             margin-right: 20px"></i>
@@ -28,11 +29,11 @@
             <div class="padding-10">
                 @if (TempData["Status"] == "OK")
                 {<h5>
-                    Hesabınız için son adım
-                </h5><br />
+                    @ItsyazilimWebResources.lblFinalStepAccount
+            </h5><br />
                     <span>
-                        Az önce, hesabınızı aktif etmek için size bir e-posta yolladık.<br />
-                        Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> aktivasyon e-postasını yeniden isteyin </a>
+                        @ItsyazilimWebResources.lblResetPasswordConfirmMessage1<br />
+                        @ItsyazilimWebResources.lblResetPasswordConfirmMessage1 <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblAskForResendEmail </a>
                     </span>
                 }
                 else
@@ -41,34 +42,34 @@
                     {
                         case "0":
                             <center>
-                                <h5>Bu e-posta kullanımda</h5>
+                                <h5>@ItsyazilimWebResources.lblThisEmailUsed</h5>
                                 <br />
-                                <a href='@Url.Content("Login?e=" + TempData["Email"])'>Giriş yapın</a> ya da
-                                <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>şifrenizi yenileyin</a>
+                                <a href='@Url.Content("Login?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblTheLog</a> @ItsyazilimWebResources.lblOr
+                                <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblRenewYourPassword</a>
 
                             </center>
                             break;
                         case "1":
-                            <h5>Bu e-posta ile hesap oluşturulmuş</h5>
-                            <br />
-                            <span>
-                                Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> aktivasyon e-postasını yeniden isteyin </a>
-                            </span>
+                        <h5>@ItsyazilimWebResources.lblAccountCreatedWithThisEmail</h5>
+                        <br />
+                        <span>
+                            @ItsyazilimWebResources.lblEmailSendingConfirmation <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblAskForResendEmail </a>
+                        </span>
                             break;
                         case "2":
                         <center>
-                            <h5>Bu e-posta kullanımda</h5>
+                            <h5>@ItsyazilimWebResources.lblThisEmailUsed</h5>
                             <br />
-                            <a href='@Url.Content("Login?e=" + TempData["Email"])'>Giriş yapın</a> ya da
-                            <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>şifrenizi yenileyin</a>
+                            <a href='@Url.Content("Login?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblTheLog</a> @ItsyazilimWebResources.lblOr
+                            <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblRenewYourPassword</a>
 
                         </center>
                             break;
                         case "3":
                         <center>
-                            <h5>Bu adrese e-posta yollanamadı</h5>
+                            <h5>@ItsyazilimWebResources.lblEmailNotSendToEmail</h5>
                             <br />
-                            Lütfen <a href="javascript:history.back()">geri dönün</a> ve adresinizi kontrol ediniz
+                            @ItsyazilimWebResources.lblPlease <a href="javascript:history.back()">@ItsyazilimWebResources.lblReturn</a> @ItsyazilimWebResources.lblCheckYourAddress
                         </center>
                             break;
                     }
@@ -81,9 +82,9 @@
                     <tbody>
                         <tr>
                             <td style="text-align: center">
-                                Hesabınızı oluştururken bir sorun mu oluştu?<br>Lütfen
+                                @ItsyazilimWebResources.lblAccountCreationProblem<br>@ItsyazilimWebResources.lblPlease
                                 <a style="border: none; text-decoration: none" href="~/Home/Contact?Report=1">
-                                    bize bildirin
+                                    @ItsyazilimWebResources.lblLetUsKnow
                                 </a>
                         </tr>
                     </tbody>

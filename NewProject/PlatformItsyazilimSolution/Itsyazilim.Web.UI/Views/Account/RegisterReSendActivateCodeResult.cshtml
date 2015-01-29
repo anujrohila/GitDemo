@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Itsyazilim.Web.Domain.Resources
+@{
     ViewBag.Title = "Hesap Aktivasyon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,10 +15,10 @@
             <header>
                 <h1 style="padding: 5px 5px 5px 19px">
                     @if (TempData["Status"] == "OK")
-                    {<i class="fa fa-check text-muted"></i><span style="padding-left:2px">&nbsp;Hesap Aktivasyon</span>
+                    {<i class="fa fa-check text-muted"></i><span style="padding-left:2px">&nbsp;@ItsyazilimWebResources.lblAccountActivation</span>
                     }
                     else
-                    {<i class="fa fa-info-circle text-muted"></i><span>&nbsp;&nbsp;Hesap Aktivasyon</span>
+                    {<i class="fa fa-info-circle text-muted"></i><span>&nbsp;&nbsp;@ItsyazilimWebResources.lblAccountActivation</span>
                     }
                     <i class="fa fa-user fa-3x text-muted air air-top-right hidden-mobile" style="opacity: 0.2;
                             margin-right: 20px"></i>
@@ -28,11 +29,11 @@
             <div class="padding-10">
                 @if (TempData["Status"] == "OK")
                 {<h5>
-                    Hesabınız için son adım
+                    @ItsyazilimWebResources.lblFinalStepAccount
                 </h5><br />
                     <span>
-                        Az önce, hesabınızı aktif etmek için size bir e-posta yolladık.<br />
-                        Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> aktivasyon e-postasını yeniden isteyin </a>
+                        @ItsyazilimWebResources.lblResetPasswordConfirmMessage1<br />
+                        @ItsyazilimWebResources.lblResetPasswordConfirmMessage2 <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblAskForResendEmail </a>
                     </span>
                 }
                 else
@@ -41,49 +42,49 @@
                     {
                         case "0":
                             <center>
-                                <h5>Hesabınız daha önce doğrulanmış</h5>
+                                <h5>@ItsyazilimWebResources.lblYourAccountVerifiedBefore</h5>
                                 <br />
-                                <a href='@Url.Content("Login?e=" + TempData["Email"])'>Giriş yapın</a> ya da
-                                <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>şifrenizi yenileyin</a>
+                                <a href='@Url.Content("Login?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblTheLog</a> @ItsyazilimWebResources.lblOr
+                                <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblRenewYourPassword</a>
 
                             </center>
                             break;
 
                         case "2":
-                        <h5>Hesabınız daha önce doğrulanmış</h5>
+                        <h5>@ItsyazilimWebResources.lblYourAccountVerifiedBefore</h5>
                         <br />
                         <span>
-                            <a href='@Url.Content("Login?e=" + TempData["Email"])'>Giriş yapın</a> ya da
+                            <a href='@Url.Content("Login?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblTheLog</a> @ItsyazilimWebResources.lblOr
                             <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'>şifrenizi yenileyin</a>
                         </span>
                             break;
 
                         case "3":
-                        <h5>E-posta adresi bulunamadı</h5>
+                        <h5>@ItsyazilimWebResources.lblEmailNotFound</h5>
                         <br />
                         <span>
-                            Yeni misiniz ?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> Şimdi kaydol</a>
+                            @ItsyazilimWebResources.lblAreYourNew ?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblSignUpNow</a>
                         </span>
                             break;
 
                         case "4":
-                        <h5>Hesabınız için son adım</h5>
+                        <h5>@ItsyazilimWebResources.lblFinalStepAccount</h5>
                         <br />
                         @MvcHtmlString.Create("Yaklaşık %PastMinute% dakika önce, hesabınızı aktif etmeniz için size bir e-posta yolladık. Lütfen gelen kutunuzu kontrol edin. Yollanan e-posta ulaşmadıysa lütfen %RemainingMinute% dakika sonra tekrar deneyin.").ToString().Replace("%PastMinute%", TempData["StatusLastSendedTime"].ToString()).Replace("%RemainingMinute%", (60 - Convert.ToInt16(TempData["StatusLastSendedTime"])).ToString())
                             break;
 
                         case "5":
-                        <h5>Çok fazla sayıda deneme yaptınız</h5>
+                        <h5>@ItsyazilimWebResources.lblToManyAttemptsMessage</h5>
                         <br />
                         <span>
-                            Lütfen daha sonra tekrar deneyin
+                            @ItsyazilimWebResources.lblTryAgainLaterMessage
                         </span>
                             break;
 
                         case "254":
-                        <h5>Bu adrese e-posta yollanamadı</h5>
+                        <h5>@ItsyazilimWebResources.lblEmailNotSendToEmail</h5>
                         <br />
-                        <span> Lütfen <a href="javascript:history.back()">geri dönün</a> ve adresinizi kontrol ediniz</span>
+                        <span> Lütfen <a href="javascript:history.back()">@ItsyazilimWebResources.lblReturn</a> @ItsyazilimWebResources.lblCheckYourAddress</span>
                             break;
                     }
                 }
@@ -95,11 +96,11 @@
                     <tbody>
                         <tr>
                             <td style="text-align: center">
-                                Hesabınızı etkinleştirirken bir sorun mu oluştu?<br>Lütfen
+                                @ItsyazilimWebResources.lblProblemInActivationAccountMessage<br>@ItsyazilimWebResources.lblPlease
                                 <a style="border: none; text-decoration: none" href="~/Home/Contact?Report=2">
-                                    bize bildirin
+                                    @ItsyazilimWebResources.lblLetUsKnow
                                 </a>
-                                </td>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
