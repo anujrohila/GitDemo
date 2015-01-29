@@ -102,7 +102,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ItsyazilimWebResources.resx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Utility\Encryption.cs" />
     <Compile Include="Utility\RegularExpressionString.cs" />
@@ -112,9 +111,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ItsyazilimWebResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ItsyazilimWebResources.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

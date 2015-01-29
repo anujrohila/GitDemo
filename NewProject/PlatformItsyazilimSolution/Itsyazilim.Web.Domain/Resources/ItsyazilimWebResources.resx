@@ -133,9 +133,21 @@
     <value>ask to resend the activation e-mail</value>
     <comment>aktivasyon e-postasını yeniden isteyin</comment>
   </data>
+  <data name="lblByCreatingAccount" xml:space="preserve">
+    <value>By creating an account</value>
+    <comment>Hesap oluşturarak</comment>
+  </data>
   <data name="lblChangePassword" xml:space="preserve">
     <value>Change Password</value>
     <comment>Şifremi Değiştir</comment>
+  </data>
+  <data name="lblCheckInbox" xml:space="preserve">
+    <value>Please check your inbox</value>
+    <comment>Lütfen gelen kutunuzu kontrol ediniz</comment>
+  </data>
+  <data name="lblCheckYourAddress" xml:space="preserve">
+    <value>and check your address</value>
+    <comment>ve adresinizi kontrol ediniz</comment>
   </data>
   <data name="lblContactUs" xml:space="preserve">
     <value>Contact Us</value>
@@ -153,6 +165,10 @@
     <value>E-mail address was not found</value>
     <comment>E-posta adresi bulunamadı</comment>
   </data>
+  <data name="lblEmailNotSendToEmail" xml:space="preserve">
+    <value>E-mail could not be sent to this address</value>
+    <comment>Bu adrese e-posta yollanamadı</comment>
+  </data>
   <data name="lblEmailSendingConfirmation" xml:space="preserve">
     <value>Please check your email and click on the activation link. E-mail, if they reach your address.</value>
     <comment>Lütfen e-postalarınızı kontrol edin ve aktivasyon linkine tıklayın. E-posta, adresinize ulaşmadıysa</comment>
@@ -161,6 +177,10 @@
     <value>Entrance</value>
     <comment>Giriş</comment>
   </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>First Name</value>
+    <comment>İsim</comment>
+  </data>
   <data name="lblForgotPasswordMessage" xml:space="preserve">
     <value>Forgot your password or can not access your account, even though you enter the correct password to do.</value>
     <comment>Şifreni unuttun ya da doğru şifreyi girdiğin halde hesabına erişemiyor musunuz</comment>
@@ -168,6 +188,10 @@
   <data name="lblForgotRefresh" xml:space="preserve">
     <value>Forgot Refresh</value>
     <comment>Şifremi Yenile</comment>
+  </data>
+  <data name="lblLetUsKnow" xml:space="preserve">
+    <value>Let us know</value>
+    <comment>bize bildirin</comment>
   </data>
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
@@ -193,9 +217,21 @@
     <value>Password Reset</value>
     <comment>Şifre Yenileme</comment>
   </data>
+  <data name="lblPasswordUpdationProblem" xml:space="preserve">
+    <value>A problem occurred while updating the password?</value>
+    <comment>Şifrenizi yenilerken bir sorun mu oluştu?</comment>
+  </data>
   <data name="lblPlease" xml:space="preserve">
     <value>Please</value>
     <comment>Lütfen</comment>
+  </data>
+  <data name="lblReadAgrementMessage" xml:space="preserve">
+    <value>You agree to the contract. Despite the possibility of not boring, we recommend that you read this contract.</value>
+    <comment>sözleşmesini kabul etmiş sayılırsınız. Sıkıcı gelme olasılığına rağmen bu sözleşmeyi okumanızı tavsiye ederiz.</comment>
+  </data>
+  <data name="lblRegisterNow" xml:space="preserve">
+    <value>Register Now</value>
+    <comment>Şimdi Kaydol</comment>
   </data>
   <data name="lblRememberMe" xml:space="preserve">
     <value>Remember me</value>
@@ -205,9 +241,33 @@
     <value>Renew your password</value>
     <comment>Şifrenizi yenileyin</comment>
   </data>
+  <data name="lblResetPasswordConfirmMessage1" xml:space="preserve">
+    <value>Moments ago, we sent you an e-mail to reset your password.</value>
+    <comment>Az önce, şifrenizi yenilemeniz için size bir e-posta yolladık.</comment>
+  </data>
+  <data name="lblResetPasswordConfirmMessage2" xml:space="preserve">
+    <value>Please check your email and password, click on the refresh link. E-mail, if they reach your address</value>
+    <comment>Lütfen e-postalarınızı kontrol edin ve şifre yenileme linkine tıklayın. E-posta, adresinize ulaşmadıysa</comment>
+  </data>
+  <data name="lblResetPasswordConfirmMessage3" xml:space="preserve">
+    <value>Ask again the password reset email</value>
+    <comment>şifre yenileme e-postasını yeniden isteyin</comment>
+  </data>
+  <data name="lblReturn" xml:space="preserve">
+    <value>Return</value>
+    <comment>geri dönün</comment>
+  </data>
   <data name="lblSignUpNow" xml:space="preserve">
     <value>sign up now</value>
     <comment>Şimdi kaydol</comment>
+  </data>
+  <data name="lblSurname" xml:space="preserve">
+    <value>Surname</value>
+    <comment>Soyisim</comment>
+  </data>
+  <data name="lblTermsofUse" xml:space="preserve">
+    <value>Terms of use</value>
+    <comment>Kullanım Koşulları</comment>
   </data>
   <data name="lblToManyAttemptsMessage" xml:space="preserve">
     <value>You have made too many attempts</value>
