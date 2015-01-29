@@ -173,6 +173,10 @@
     <value>and check your address</value>
     <comment>ve adresinizi kontrol ediniz</comment>
   </data>
+  <data name="lblCityCountry" xml:space="preserve">
+    <value>City-Country</value>
+    <comment>İl-İlçe</comment>
+  </data>
   <data name="lblCongratulations" xml:space="preserve">
     <value>Congratulations</value>
     <comment>Tebrikler</comment>
@@ -180,6 +184,10 @@
   <data name="lblContactUs" xml:space="preserve">
     <value>Contact Us</value>
     <comment>bizimle iletişime geçin</comment>
+  </data>
+  <data name="lblCreateCompany" xml:space="preserve">
+    <value>Create Company</value>
+    <comment>Firma oluştur</comment>
   </data>
   <data name="lblDetails" xml:space="preserve">
     <value>details</value>
@@ -192,6 +200,10 @@
   <data name="lblEmail" xml:space="preserve">
     <value>E-mail</value>
     <comment>E-posta</comment>
+  </data>
+  <data name="lblEmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+    <comment>E-posta Adresi</comment>
   </data>
   <data name="lblEmailAddressMessage1" xml:space="preserve">
     <value>Please accounts in the e-mail and click on the activation link.</value>
@@ -221,6 +233,10 @@
     <value>Entrance</value>
     <comment>Giriş</comment>
   </data>
+  <data name="lblFax" xml:space="preserve">
+    <value>Fax</value>
+    <comment>Fax</comment>
+  </data>
   <data name="lblFinalStepAccount" xml:space="preserve">
     <value>The final step for your account</value>
     <comment>Hesabınız için son adım</comment>
@@ -228,6 +244,10 @@
   <data name="lblFirstName" xml:space="preserve">
     <value>First Name</value>
     <comment>İsim</comment>
+  </data>
+  <data name="lblFlatTax" xml:space="preserve">
+    <value>Flat Tax</value>
+    <comment>Vergi Dairesi</comment>
   </data>
   <data name="lblForgotPasswordMessage" xml:space="preserve">
     <value>Forgot your password or can not access your account, even though you enter the correct password to do.</value>
@@ -337,9 +357,21 @@
     <value>Information on how to choose a time in the United States: for who is mourning malesuada. Will not be published In the notebook, but the pure sauce, chocolate sauce. Stress from gaming. Arrows and lakes is a highly professional long walk at times, who live in Arizona.</value>
     <comment>Aenean ut velit quis enim luctus malesuada tempus in eros. In sit amet nisl ullamcorper, condimentum purus sed, scelerisque diam. Suspendisse eu turpis ex. Vivamus et lacus sit amet orci interdum sagittis quis in turpis.</comment>
   </data>
+  <data name="lblIdentifyYourInformationMessage" xml:space="preserve">
+    <value>To start using the system, companies need to identify your information. Please fill in the information on the form below.</value>
+    <comment>Sistemi kullanmaya başlamanız için, şirket bilgilerinizi tanımlamanız gerekiyor. Lütfen aşağıdaki formdaki bilgileri eksiksiz doldurun.</comment>
+  </data>
+  <data name="lblInternetSite" xml:space="preserve">
+    <value>Internet Site</value>
+    <comment>Internet Sitesi</comment>
+  </data>
   <data name="lblInvalidActivationCode" xml:space="preserve">
     <value>Activation code is invalid</value>
     <comment>Aktivasyon kodu geçersiz</comment>
+  </data>
+  <data name="lblItemLeaveAtLocationMessage" xml:space="preserve">
+    <value>Which can leave items at locations?</value>
+    <comment>Hangi lokasyonlarda ürün bırakabilirsiniz ?</comment>
   </data>
   <data name="lblLetUsKnow" xml:space="preserve">
     <value>Let us know</value>
@@ -352,6 +384,14 @@
   <data name="lblLTS" xml:space="preserve">
     <value>LTS</value>
     <comment>LTS</comment>
+  </data>
+  <data name="lblMobileNumber" xml:space="preserve">
+    <value>Mobile Number</value>
+    <comment>GSM Numarası</comment>
+  </data>
+  <data name="lblNeighborhoodStreetDoorNumber" xml:space="preserve">
+    <value>Neighborhood - Street - Door Number</value>
+    <comment>Mahalle - Sokak - Kapı No</comment>
   </data>
   <data name="lblNewPassword" xml:space="preserve">
     <value>New password</value>
@@ -380,6 +420,14 @@
   <data name="lblPasswordUpdationProblem" xml:space="preserve">
     <value>A problem occurred while updating the password?</value>
     <comment>Şifrenizi yenilerken bir sorun mu oluştu?</comment>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>Phone-2</value>
+    <comment>Telefon-2</comment>
+  </data>
+  <data name="lblPhoneNo" xml:space="preserve">
+    <value>Phone No</value>
+    <comment>Telefon No</comment>
   </data>
   <data name="lblPlease" xml:space="preserve">
     <value>Please</value>
@@ -433,6 +481,10 @@
     <value>Surname</value>
     <comment>Soyisim</comment>
   </data>
+  <data name="lblTaxNumber" xml:space="preserve">
+    <value>Tax Number</value>
+    <comment>Vergi Numarası</comment>
+  </data>
   <data name="lblTermsofUse" xml:space="preserve">
     <value>Terms of use</value>
     <comment>Kullanım Koşulları</comment>
@@ -449,6 +501,10 @@
     <value>You have made too many attempts</value>
     <comment>Çok fazla sayıda deneme yaptınız</comment>
   </data>
+  <data name="lblTradeName" xml:space="preserve">
+    <value>Trade name</value>
+    <comment>Firma Adı</comment>
+  </data>
   <data name="lblTryAgainLaterMessage" xml:space="preserve">
     <value>Please try again later</value>
     <comment>Lütfen daha sonra tekrar deneyin</comment>
@@ -456,6 +512,10 @@
   <data name="lblTubitik" xml:space="preserve">
     <value>TUBITAK</value>
     <comment>Tübitak</comment>
+  </data>
+  <data name="lblWelcome" xml:space="preserve">
+    <value>Welcome</value>
+    <comment>Hoş Geldiniz</comment>
   </data>
   <data name="lblWindowsPhone" xml:space="preserve">
     <value>Windows Phone</value>

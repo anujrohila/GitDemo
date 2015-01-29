@@ -187,6 +187,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City-Country.
+        /// </summary>
+        public static string lblCityCountry {
+            get {
+                return ResourceManager.GetString("lblCityCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Congratulations.
         /// </summary>
         public static string lblCongratulations {
@@ -201,6 +210,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblContactUs {
             get {
                 return ResourceManager.GetString("lblContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Company.
+        /// </summary>
+        public static string lblCreateCompany {
+            get {
+                return ResourceManager.GetString("lblCreateCompany", resourceCulture);
             }
         }
         
@@ -228,6 +246,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblEmail {
             get {
                 return ResourceManager.GetString("lblEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string lblEmailAddress {
+            get {
+                return ResourceManager.GetString("lblEmailAddress", resourceCulture);
             }
         }
         
@@ -295,6 +322,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fax.
+        /// </summary>
+        public static string lblFax {
+            get {
+                return ResourceManager.GetString("lblFax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The final step for your account.
         /// </summary>
         public static string lblFinalStepAccount {
@@ -309,6 +345,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblFirstName {
             get {
                 return ResourceManager.GetString("lblFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat Tax.
+        /// </summary>
+        public static string lblFlatTax {
+            get {
+                return ResourceManager.GetString("lblFlatTax", resourceCulture);
             }
         }
         
@@ -556,11 +601,38 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To start using the system, companies need to identify your information. Please fill in the information on the form below..
+        /// </summary>
+        public static string lblIdentifyYourInformationMessage {
+            get {
+                return ResourceManager.GetString("lblIdentifyYourInformationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet Site.
+        /// </summary>
+        public static string lblInternetSite {
+            get {
+                return ResourceManager.GetString("lblInternetSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activation code is invalid.
         /// </summary>
         public static string lblInvalidActivationCode {
             get {
                 return ResourceManager.GetString("lblInvalidActivationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which can leave items at locations?.
+        /// </summary>
+        public static string lblItemLeaveAtLocationMessage {
+            get {
+                return ResourceManager.GetString("lblItemLeaveAtLocationMessage", resourceCulture);
             }
         }
         
@@ -588,6 +660,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblLTS {
             get {
                 return ResourceManager.GetString("lblLTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Number.
+        /// </summary>
+        public static string lblMobileNumber {
+            get {
+                return ResourceManager.GetString("lblMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neighborhood - Street - Door Number.
+        /// </summary>
+        public static string lblNeighborhoodStreetDoorNumber {
+            get {
+                return ResourceManager.GetString("lblNeighborhoodStreetDoorNumber", resourceCulture);
             }
         }
         
@@ -651,6 +741,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblPasswordUpdationProblem {
             get {
                 return ResourceManager.GetString("lblPasswordUpdationProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone-2.
+        /// </summary>
+        public static string lblPhone2 {
+            get {
+                return ResourceManager.GetString("lblPhone2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone No.
+        /// </summary>
+        public static string lblPhoneNo {
+            get {
+                return ResourceManager.GetString("lblPhoneNo", resourceCulture);
             }
         }
         
@@ -772,6 +880,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tax Number.
+        /// </summary>
+        public static string lblTaxNumber {
+            get {
+                return ResourceManager.GetString("lblTaxNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terms of use.
         /// </summary>
         public static string lblTermsofUse {
@@ -808,6 +925,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trade name.
+        /// </summary>
+        public static string lblTradeName {
+            get {
+                return ResourceManager.GetString("lblTradeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please try again later.
         /// </summary>
         public static string lblTryAgainLaterMessage {
@@ -822,6 +948,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblTubitik {
             get {
                 return ResourceManager.GetString("lblTubitik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string lblWelcome {
+            get {
+                return ResourceManager.GetString("lblWelcome", resourceCulture);
             }
         }
         
