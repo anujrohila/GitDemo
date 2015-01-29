@@ -133,9 +133,17 @@
     <value>ask to resend the activation e-mail</value>
     <comment>aktivasyon e-postasını yeniden isteyin</comment>
   </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+    <comment>Şifremi Değiştir</comment>
+  </data>
   <data name="lblContactUs" xml:space="preserve">
     <value>Contact Us</value>
     <comment>bizimle iletişime geçin</comment>
+  </data>
+  <data name="lblDidYouForgotYourPassword" xml:space="preserve">
+    <value>Did you forget your password</value>
+    <comment>Şifrenizi unuttunuz mu</comment>
   </data>
   <data name="lblEmail" xml:space="preserve">
     <value>E-mail</value>
@@ -157,9 +165,21 @@
     <value>Forgot your password or can not access your account, even though you enter the correct password to do.</value>
     <comment>Şifreni unuttun ya da doğru şifreyi girdiğin halde hesabına erişemiyor musunuz</comment>
   </data>
+  <data name="lblForgotRefresh" xml:space="preserve">
+    <value>Forgot Refresh</value>
+    <comment>Şifremi Yenile</comment>
+  </data>
   <data name="lblLogin" xml:space="preserve">
     <value>Login</value>
     <comment>Giriş Yap</comment>
+  </data>
+  <data name="lblNewPassword" xml:space="preserve">
+    <value>New password</value>
+    <comment>Yeni şifre</comment>
+  </data>
+  <data name="lblNewPasswordMessage" xml:space="preserve">
+    <value>Please choose a new password</value>
+    <comment>Lütfen yeni bir şifre belirleyin</comment>
   </data>
   <data name="lblPassword" xml:space="preserve">
     <value>Password</value>
@@ -168,6 +188,10 @@
   <data name="lblPasswordInvalid" xml:space="preserve">
     <value>Password invalid</value>
     <comment>Şifre geçersiz</comment>
+  </data>
+  <data name="lblPasswordReset" xml:space="preserve">
+    <value>Password Reset</value>
+    <comment>Şifre Yenileme</comment>
   </data>
   <data name="lblPlease" xml:space="preserve">
     <value>Please</value>
@@ -192,5 +216,9 @@
   <data name="lblTryAgainLaterMessage" xml:space="preserve">
     <value>Please try again later</value>
     <comment>Lütfen daha sonra tekrar deneyin</comment>
+  </data>
+  <data name="lblWriteAndCreatePassword" xml:space="preserve">
+    <value>Write and create a new password in your e-mail address</value>
+    <comment>E-posta adresinizi yazın ve yeni bir şifre oluşturun</comment>
   </data>
 </root>

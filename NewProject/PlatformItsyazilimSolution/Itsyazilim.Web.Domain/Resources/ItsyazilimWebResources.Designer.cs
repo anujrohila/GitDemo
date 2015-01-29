@@ -97,11 +97,29 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string lblChangePassword {
+            get {
+                return ResourceManager.GetString("lblChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         public static string lblContactUs {
             get {
                 return ResourceManager.GetString("lblContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did you forget your password.
+        /// </summary>
+        public static string lblDidYouForgotYourPassword {
+            get {
+                return ResourceManager.GetString("lblDidYouForgotYourPassword", resourceCulture);
             }
         }
         
@@ -151,11 +169,38 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot Refresh.
+        /// </summary>
+        public static string lblForgotRefresh {
+            get {
+                return ResourceManager.GetString("lblForgotRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string lblLogin {
             get {
                 return ResourceManager.GetString("lblLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string lblNewPassword {
+            get {
+                return ResourceManager.GetString("lblNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a new password.
+        /// </summary>
+        public static string lblNewPasswordMessage {
+            get {
+                return ResourceManager.GetString("lblNewPasswordMessage", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblPasswordInvalid {
             get {
                 return ResourceManager.GetString("lblPasswordInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Reset.
+        /// </summary>
+        public static string lblPasswordReset {
+            get {
+                return ResourceManager.GetString("lblPasswordReset", resourceCulture);
             }
         }
         
@@ -228,6 +282,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblTryAgainLaterMessage {
             get {
                 return ResourceManager.GetString("lblTryAgainLaterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write and create a new password in your e-mail address.
+        /// </summary>
+        public static string lblWriteAndCreatePassword {
+            get {
+                return ResourceManager.GetString("lblWriteAndCreatePassword", resourceCulture);
             }
         }
     }
