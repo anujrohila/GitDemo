@@ -36,31 +36,27 @@
                                                 </h3>
                                                 <span style="color:#333">
                                                     @ItsyazilimWebResources.lblEmailSendingConfirmation
-                                                    <a href='@Url.Content("RegisterReSendActivateCode?e=" + TempData["Email"])'>@ItsyazilimWebResources.lblAskForResendEmail</a>
+                                                    @Html.ActionLink(ItsyazilimWebResources.lblAskForResendEmail, "RegisterReSendActivateCode", "Account", new { e = TempData["Email"] })
                                                 </span>
                                                 break;
-
                                             case "2":
                                             <h3>@ItsyazilimWebResources.lblAccountLocked</h3>
                                             <span style="color:#333">
-                                                @ItsyazilimWebResources.lblPlease <a href='@Url.Content("~/Home/Contact")'>@ItsyazilimWebResources.lblContactUs</a>
+                                                @ItsyazilimWebResources.lblPlease @Html.ActionLink(ItsyazilimWebResources.lblContactUs, "Contact", "Home")
                                             </span>
                                                 break;
-
                                             case "3":
                                             <h3>@ItsyazilimWebResources.lblEmailNotFound</h3>
                                             <span style="color:#333">
-                                                @ItsyazilimWebResources.lblAreYourNew?  <a href='@Url.Content("Register?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblSignUpNow</a>
+                                                @ItsyazilimWebResources.lblAreYourNew? @Html.ActionLink(ItsyazilimWebResources.lblSignUpNow, "Register", "Account", new { e = TempData["Email"] })
                                             </span>
                                                 break;
-
                                             case "4":
                                             <h3>@ItsyazilimWebResources.lblPasswordInvalid!</h3>
                                             <span style="color:#333">
-                                                @ItsyazilimWebResources.lblForgotPasswordMessage?  <a href='@Url.Content("PasswordRenewal?e=" + TempData["Email"])'> @ItsyazilimWebResources.lblRenewYourPassword</a>
+                                                @ItsyazilimWebResources.lblForgotPasswordMessage?  @Html.ActionLink(ItsyazilimWebResources.lblRenewYourPassword, "PasswordRenewal", "Account", new { e = TempData["Email"] })
                                             </span>
                                                 break;
-
                                             case "5":
                                             <h3>@ItsyazilimWebResources.lblToManyAttemptsMessage</h3>
                                             <br />
@@ -96,7 +92,7 @@
                     <div id="DivButton">
                         <table style="width:100%;">
                             <tr>
-                                <td style="padding:3px 0px 0px 10px; width:100px">
+                                <td style="padding:3px 0px 0px 5px; width:130px">
                                     <label class="checkbox" id="CBSI">
                                         @Html.CheckBoxFor(m => m.RememberMe, new { @class = "from-control" })
                                         <i style="margin-top:6px"></i>

@@ -824,7 +824,6 @@
     <Content Include="Views\Shared\_Layout_Old.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PartialLogin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\PasswordRenewal.cshtml" />
