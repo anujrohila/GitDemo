@@ -737,4 +737,16 @@
     <value>Waiting Companies</value>
     <comment>Onay Bekleyen Firmalar</comment>
   </data>
+  <data name="lblCompanyList" xml:space="preserve">
+    <value>Company List</value>
+    <comment>Firma Listesi</comment>
+  </data>
+  <data name="lblDefinitions" xml:space="preserve">
+    <value>Definitions</value>
+    <comment>Tanımlar</comment>
+  </data>
+  <data name="lblLogout" xml:space="preserve">
+    <value>Log out</value>
+    <comment>Çıkış yap</comment>
+  </data>
 </root>
