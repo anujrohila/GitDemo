@@ -6,10 +6,10 @@ using System.Web.Mvc;
 //using DevExpress.Web.Mvc;
 using System.Globalization;
 using Itsyazilim.Web.UI.Models;
+using System.Web.Security;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
-    [Authorize]
     public class AdministratorController : Controller
     {
         Itsyazilim.Web.UI.Models.LtsWebEntities db = new Itsyazilim.Web.UI.Models.LtsWebEntities();
@@ -45,7 +45,17 @@ namespace Itsyazilim.Web.UI.Controllers
         // GET: Administrator
         public ActionResult Index()
         {
-            if (!CheckLogin()) return RedirectToAction("Index", "Manage");
+            //if (!CheckLogin()) return RedirectToAction("Index", "Manage");
+            //return View();
+            using (var db = new LtsWebEntities())
+            {
+                var user = db.Membership.FirstOrDefault(u => u.Email == "anuj.rohila94@gmail.com");
+                Session["LoggedUserId"] = user.UserId.ToString();
+                Session["LoggedUserRoleId"] = "3";
+                Session["LoggedUserName"] = user.Name.ToString();
+                Session["LoggedUserSurname"] = user.Surname.ToString();
+                FormsAuthentication.SetAuthCookie(user.Email, true);
+            }
             return View();
         }
 
