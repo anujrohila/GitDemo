@@ -12,6 +12,7 @@ using System.Text;
 using System.Web.Routing;
 using System.Net.Mail;
 using Itsyazilim.Web.UI.Controllers;
+using Itsyazilim.Web.Domain.Resources;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -64,7 +65,7 @@ namespace Itsyazilim.Web.UI.Controllers
                         Body = Body.Replace("%UserName%", Ti.ToTitleCase(model.Name.Trim().ToLower()));
                         Body = Body.Replace("%Email%", model.Email);
                         Body = Body.Replace("%ActivateCode%", ActivateCode);
-                        var IsMailSend = CommonFunctions.SendEmail(string.Format("{0}@turksmart.com", ActivateCode), "Hoş Geldiniz", Body);
+                        var IsMailSend = CommonFunctions.SendEmail(string.Format("{0}@turksmart.com", ActivateCode), ItsyazilimWebResources.lblWelcome, Body);
 
                         //try
                         //{
@@ -125,7 +126,7 @@ namespace Itsyazilim.Web.UI.Controllers
                             newUserAdminMailBody = newUserAdminMailBody.Replace("%Email%", NewUser.Email);
                             newUserAdminMailBody = newUserAdminMailBody.Replace("%IP%", NewUser.IP);
                             newUserAdminMailBody = newUserAdminMailBody.Replace("%CreatedOn%", NewUser.CreatedOn.ToString());
-                            CommonFunctions.SendEmail(CommonFunctions.WebAdminMailAccount, "Yeni kullanıcı kaydı", newUserAdminMailBody);
+                            CommonFunctions.SendEmail(CommonFunctions.WebAdminMailAccount, ItsyazilimWebResources.lblNewUserRegistration, newUserAdminMailBody);
                             //ManageMailingController.SendMailForNewUser(NewUser);
                             TempData["Status"] = "OK";
                         }
@@ -136,7 +137,7 @@ namespace Itsyazilim.Web.UI.Controllers
                             LogSystemMailSend LogModel = new LogSystemMailSend();
                             LogModel.Email = model.Email.ToLower();
                             LogModel.PageName = "Register";
-                            LogModel.ErrorMessage = "Error ın sendıng maıl";
+                            LogModel.ErrorMessage = ItsyazilimWebResources.lblErrorInMail;
                             LogController.InsertErrorMailSend(LogModel);
                         }
                     }
@@ -353,7 +354,7 @@ namespace Itsyazilim.Web.UI.Controllers
                                     MailAddress To = new MailAddress(model.Email.ToLower());
 
                                     MailMessage mail = new MailMessage(From, To);
-                                    mail.Subject = "Hoş Geldiniz";
+                                    mail.Subject = ItsyazilimWebResources.lblWelcome;
                                     mail.IsBodyHtml = true;
 
                                     string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();

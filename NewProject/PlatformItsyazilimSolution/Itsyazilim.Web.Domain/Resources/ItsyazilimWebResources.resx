@@ -801,4 +801,20 @@
     <value>Please select your company here</value>
     <comment>Lütfen firmanızın ilçesiniz seçiniz</comment>
   </data>
+  <data name="lblErrorInMail" xml:space="preserve">
+    <value>Error sending MAIL</value>
+    <comment>Error ın sendıng maıl</comment>
+  </data>
+  <data name="lblNewUserRegistration" xml:space="preserve">
+    <value>New user registration</value>
+    <comment>Yeni kullanıcı kaydı</comment>
+  </data>
+  <data name="lblTubitak" xml:space="preserve">
+    <value>lts TUBITAK</value>
+    <comment>Lts Tübitak</comment>
+  </data>
+  <data name="valSelectVehicleType" xml:space="preserve">
+    <value>Please specify the type of vehicle</value>
+    <comment>Lütfen araç tipini belirtiniz</comment>
+  </data>
 </root>
