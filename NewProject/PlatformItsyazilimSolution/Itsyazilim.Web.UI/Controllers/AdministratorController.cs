@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Globalization;
 using Itsyazilim.Web.UI.Models;
 using System.Web.Security;
-
+using Itsyazilim.Web.Domain.Resources;
 namespace Itsyazilim.Web.UI.Controllers
 {
     public class AdministratorController : Controller
@@ -213,11 +213,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -246,14 +246,15 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] =  ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] =  ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
         [HttpPost, ValidateInput(false)]
+
         public ActionResult GridViewDefVehicleTypesDelete(System.Byte VehicleTypeId)
         {
             var model = db.DefVehicleTypes;
@@ -272,10 +273,10 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Bir hata oluştu! Lütfen daha sonra tekrar deneyin";
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
+                return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
             }
-            return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
 
 
@@ -310,11 +311,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -336,11 +337,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -362,7 +363,7 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Bir hata oluştu! Lütfen daha sonra tekrar deneyin";
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
             return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
@@ -401,11 +402,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -427,11 +428,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -453,7 +454,7 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Bir hata oluştu! Lütfen daha sonra tekrar deneyin";
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
             return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
@@ -492,11 +493,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -518,11 +519,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -544,7 +545,7 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Bir hata oluştu! Lütfen daha sonra tekrar deneyin";
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
             return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
@@ -582,11 +583,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -608,11 +609,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] = "Lütfen alanları eksiksiz doldurunuz";
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());
         }
         [HttpPost, ValidateInput(false)]
@@ -634,7 +635,7 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] = "Bir hata oluştu! Lütfen daha sonra tekrar deneyin";
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
             return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());

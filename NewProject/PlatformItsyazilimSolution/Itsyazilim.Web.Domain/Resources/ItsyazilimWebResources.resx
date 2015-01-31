@@ -817,4 +817,12 @@
     <value>Please specify the type of vehicle</value>
     <comment>Lütfen araç tipini belirtiniz</comment>
   </data>
+  <data name="lblError" xml:space="preserve">
+    <value>An error has occurred! Please try again later</value>
+    <comment>Bir hata oluştu! Lütfen daha sonra tekrar deneyin</comment>
+  </data>
+  <data name="valRequiredAllFields" xml:space="preserve">
+    <value>Please fill all fieldsPlease fill all fields</value>
+    <comment>Lütfen alanları eksiksiz doldurunuz</comment>
+  </data>
 </root>

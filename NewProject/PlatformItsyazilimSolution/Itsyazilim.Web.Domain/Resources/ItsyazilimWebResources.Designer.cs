@@ -511,6 +511,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error has occurred! Please try again later.
+        /// </summary>
+        public static string lblError {
+            get {
+                return ResourceManager.GetString("lblError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error sending MAIL.
         /// </summary>
         public static string lblErrorInMail {
@@ -1533,6 +1542,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string valPasswordMinLength {
             get {
                 return ResourceManager.GetString("valPasswordMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill all fieldsPlease fill all fields.
+        /// </summary>
+        public static string valRequiredAllFields {
+            get {
+                return ResourceManager.GetString("valRequiredAllFields", resourceCulture);
             }
         }
         

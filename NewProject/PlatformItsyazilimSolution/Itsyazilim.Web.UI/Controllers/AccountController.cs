@@ -498,7 +498,7 @@ namespace Itsyazilim.Web.UI.Controllers
                                     MailAddress To = new MailAddress(model.Email.ToLower());
 
                                     MailMessage mail = new MailMessage(From, To);
-                                    mail.Subject = "Şifre Yenileme";
+                                    mail.Subject = ItsyazilimWebResources.lblPasswordReset;
                                     mail.IsBodyHtml = true;
 
                                     string Body = HttpContext.GetGlobalResourceObject("Email", "PasswordRenewalBody").ToString();
