@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectUnapprovedFirms_Result>
+﻿@using Itsyazilim.Web.Domain.Resources
+@model IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectUnapprovedFirms_Result>
 
 @{
-    ViewBag.Title = "Onay Bekleyen Firmalar";
+    ViewBag.Title = ItsyazilimWebResources.lblWaitingCompanies;
     Layout = "~/Views/Shared/_Administrator.cshtml";
 }
 
@@ -13,7 +14,7 @@
         <tr>
             <td>
                 <h2>
-                    <i class="fa fa-check-square" style="padding: 0px 18px 0px 10px"></i>Onay Bekleyen Firmalar
+                    <i class="fa fa-check-square" style="padding: 0px 18px 0px 10px"></i>@ItsyazilimWebResources.lblWaitingCompanies
                 </h2>
             </td>
         </tr>

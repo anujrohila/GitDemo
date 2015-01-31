@@ -1,3 +1,4 @@
+@using Itsyazilim.Web.Domain.Resources
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -46,14 +47,14 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "FirmName";
-            column.Caption = "Firma Ýsmi";
+            column.Caption = ItsyazilimWebResources.lblCompanyName;
             column.VisibleIndex = 1;
         });
         settings.Columns.Add(column =>
         {
             column.VisibleIndex = 1;
             column.FieldName = "IsApproved";
-            column.Caption = "Onay Durumu";
+            column.Caption =  ItsyazilimWebResources.lblApprovalStatus;
             column.ColumnType = MVCxGridViewColumnType.CheckBox; column.Width = 150;
             column.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
             column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;

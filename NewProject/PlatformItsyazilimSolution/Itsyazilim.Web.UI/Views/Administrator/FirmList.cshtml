@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectFirms_Result>
+﻿@using Itsyazilim.Web.Domain.Resources
+@model IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectFirms_Result>
 
 @{
-    ViewBag.Title = "Firmalar";
+    ViewBag.Title = ItsyazilimWebResources.lblCompanies;
     Layout = "~/Views/Shared/_Administrator.cshtml";
 }
 
@@ -13,7 +14,7 @@
         <tr>
             <td>
                 <h2>
-                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Firmalar
+                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>@ItsyazilimWebResources.lblCompanies
                 </h2>
             </td>
         </tr>

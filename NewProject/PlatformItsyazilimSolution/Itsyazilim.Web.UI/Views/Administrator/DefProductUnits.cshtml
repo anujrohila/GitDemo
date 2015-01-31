@@ -1,6 +1,6 @@
-﻿
+﻿@using Itsyazilim.Web.Domain.Resources
 @{
-    ViewBag.Title = "Ürün Birimleri";
+    ViewBag.Title = ItsyazilimWebResources.lblProductUnits;
     Layout = "~/Views/Shared/_Administrator.cshtml";
 }
 <script>
@@ -12,12 +12,12 @@
             <td>
                 <h2>
                     <span class="glyphicon glyphicon-indent-left" style="padding: 0px 10px 0px 10px"></span>
-                    Ürün Birimleri
+                    @ItsyazilimWebResources.lblProductUnits;
                 </h2>
             </td>
             <td style="text-align: right">
                 <a href="javascript:GridViewDefProductUnits.AddNewRow()" class="btn btn-sm btn-primary">
-                    <i class="fa fa-plus" style="padding-right:5px"></i>Ürün Birimi Ekle
+                    <i class="fa fa-plus" style="padding-right:5px"></i>@ItsyazilimWebResources.lblAddProductUnit;
                 </a>
             </td>
         </tr>

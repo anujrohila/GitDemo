@@ -235,7 +235,7 @@
   </data>
   <data name="lblFax" xml:space="preserve">
     <value>Fax</value>
-    <comment>Fax</comment>
+    <comment>Faks</comment>
   </data>
   <data name="lblFinalStepAccount" xml:space="preserve">
     <value>The final step for your account</value>
@@ -641,7 +641,7 @@
     <value>Height (m)</value>
     <comment>Yükseklik (m)</comment>
   </data>
-  <data name="lblhistory" xml:space="preserve">
+  <data name="lblHistory" xml:space="preserve">
     <value>history</value>
     <comment>Tarih</comment>
   </data>
@@ -652,5 +652,89 @@
   <data name="lblWeightkg" xml:space="preserve">
     <value>Weight (kg)</value>
     <comment>Ağırlık (kg)</comment>
+  </data>
+  <data name="lblAddPackageType" xml:space="preserve">
+    <value>Add Package Type</value>
+    <comment>Ambalaj Türü Ekle</comment>
+  </data>
+  <data name="lblAddProductFeature" xml:space="preserve">
+    <value>Add Product Feature</value>
+    <comment>Ürün Özelliği Ekle</comment>
+  </data>
+  <data name="lblAddProductType" xml:space="preserve">
+    <value>Add Product Type</value>
+    <comment>Ürün Cinsi Ekle</comment>
+  </data>
+  <data name="lblAddProductUnit" xml:space="preserve">
+    <value>Add Product Unit</value>
+    <comment>Ürün Birimi Ekle</comment>
+  </data>
+  <data name="lblAddVehicleType" xml:space="preserve">
+    <value>Add Vehicle Type</value>
+    <comment>Araç Türü Ekle</comment>
+  </data>
+  <data name="lblApprovalStatus" xml:space="preserve">
+    <value>Approval Status</value>
+    <comment>Onay Durumu</comment>
+  </data>
+  <data name="lblBackToList" xml:space="preserve">
+    <value>Back to list</value>
+    <comment>Listeye geri dön</comment>
+  </data>
+  <data name="lblCompanies" xml:space="preserve">
+    <value>Companies</value>
+    <comment>Firmalar</comment>
+  </data>
+  <data name="lblCompanyDetail" xml:space="preserve">
+    <value>Company Detail</value>
+    <comment>Firmasının Detayları</comment>
+  </data>
+  <data name="lblConfirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Onayla</comment>
+  </data>
+  <data name="lblCreatedByMember" xml:space="preserve">
+    <value>Created By Member</value>
+    <comment>Oluşturan üye</comment>
+  </data>
+  <data name="lblDateCreated" xml:space="preserve">
+    <value>Date Created</value>
+    <comment>Oluşturulma Tarihi</comment>
+  </data>
+  <data name="lblPhone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>Telefon</comment>
+  </data>
+  <data name="lblPhoneOther" xml:space="preserve">
+    <value>Phone (Other)</value>
+    <comment>Telefon (Diğer)</comment>
+  </data>
+  <data name="lblProductFeatureDescription" xml:space="preserve">
+    <value>Product Feature Description</value>
+    <comment>Ürün Özelliği Tanımlama</comment>
+  </data>
+  <data name="lblProductFeatures" xml:space="preserve">
+    <value>Product Features</value>
+    <comment>Ürün Özellikleri</comment>
+  </data>
+  <data name="lblProductPackagingTypes" xml:space="preserve">
+    <value>Product Packaging Types</value>
+    <comment>Ürün Ambalaj Türleri</comment>
+  </data>
+  <data name="lblProductTypes" xml:space="preserve">
+    <value>Product Types</value>
+    <comment>Ürün Cinsleri</comment>
+  </data>
+  <data name="lblProductUnits" xml:space="preserve">
+    <value>Product Units</value>
+    <comment>Ürün Birimleri</comment>
+  </data>
+  <data name="lblVehicleTypes" xml:space="preserve">
+    <value>Vehicle Types</value>
+    <comment>Araç Türleri</comment>
+  </data>
+  <data name="lblWaitingCompanies" xml:space="preserve">
+    <value>Waiting Companies</value>
+    <comment>Onay Bekleyen Firmalar</comment>
   </data>
 </root>

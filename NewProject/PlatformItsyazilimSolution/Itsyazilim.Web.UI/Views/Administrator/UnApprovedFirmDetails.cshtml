@@ -1,4 +1,5 @@
-﻿@model System.Collections.Generic.IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectUnApprovedFirmDetails_Result>
+﻿@using Itsyazilim.Web.Domain.Resources
+@model System.Collections.Generic.IEnumerable<Itsyazilim.Web.UI.Models.AdministratorSelectUnApprovedFirmDetails_Result>
 
 <script>
     $(document).find("a[ActionLink='UnApprovedFirmList']").parent().addClass("active");
@@ -6,7 +7,7 @@
 @foreach (var item in Model)
 {
 
-    ViewBag.Title = item.FirmName + " Firmasının Detayları";
+    ViewBag.Title = item.FirmName + ItsyazilimWebResources.lblCompanyDetail;
     Layout = "~/Views/Shared/_Administrator.cshtml";
 
     <div class="padding-10">
@@ -14,11 +15,11 @@
             <tr>
                 <td style="width:100%">
                     <h2>
-                        <i class="fa fa-check-square" style="padding: 0px 18px 0px 10px"></i>@Html.DisplayFor(modelItem => item.FirmName) Firmasının Detayları
+                        <i class="fa fa-check-square" style="padding: 0px 18px 0px 10px"></i>@Html.DisplayFor(modelItem => item.FirmName) @ItsyazilimWebResources.lblCompanyDetail
                     </h2>
                 </td>
                 <td>
-                    <a class="btn btn-info" href="../UnApprovedFirmList"><i class="fa fa-arrow-left"></i> Listeye geri dön</a>
+                    <a class="btn btn-info" href="../UnApprovedFirmList"><i class="fa fa-arrow-left"></i> @ItsyazilimWebResources.lblBackToList</a>
                 </td>
             </tr>
         </table>
@@ -39,35 +40,35 @@
                         <table style=" border-spacing:5px; border-collapse:separate;" class="padding-10">
                             <tr>
                                 <td>
-                                    Vergi Dairesi
+                                    @ItsyazilimWebResources.lblFlatTax
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.TaxOffice</b></td>
                             </tr>
                             <tr>
                                 <td>
-                                    Vergi Numarası
+                                    @ItsyazilimWebResources.lblTaxNumber
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.TaxNo</b></td>
                             </tr>
                             <tr>
                                 <td>
-                                    Telefon
+                                   @ItsyazilimWebResources.lblPhone
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.Phone1</b></td>
                             </tr>
                             <tr>
                                 <td>
-                                    Telefon (Diğer)
+                                   @ItsyazilimWebResources.lblPhoneOther
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.Phone2</b></td>
                             </tr>
                             <tr>
                                 <td>
-                                    Faks
+                                   @ItsyazilimWebResources.lblFax
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.Fax</b></td>
@@ -82,7 +83,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    E-posta
+                                   @ItsyazilimWebResources.lblEmail
                                 </td>
                                 <td>:</td>
                                 <td><b><a href="@String.Concat("mailto:" + @item.Email)">@item.Email</a></b></td>
@@ -96,14 +97,14 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Oluşturulma Tarihi
+                                    @ItsyazilimWebResources.lblDateCreated
                                 </td>
                                 <td>:</td>
                                 <td><b>@Convert.ToDateTime(item.CreatedOn).ToString("dd MMMM yyyy hh:mm")</b></td>
                             </tr>
                             <tr>
                                 <td>
-                                    Oluşturan üye
+                                    @ItsyazilimWebResources.lblCreatedByMember
                                 </td>
                                 <td>:</td>
                                 <td><b>@item.User</b></td>
@@ -114,7 +115,7 @@
                     </td>
                     <td style="height:100%; vertical-align:bottom; text-align:right">
                         <div class="padding-10">
-                            <a id="ButtonApproval" href="../FirmApproval/@item.FirmId" class="btn btn-primary btn-lg" style="vertical-align:bottom" onclick="ShowLoading()">Onayla</a>
+                            <a id="ButtonApproval" href="../FirmApproval/@item.FirmId" class="btn btn-primary btn-lg" style="vertical-align:bottom" onclick="ShowLoading()">@ItsyazilimWebResources.lblConfirm</a>
                             <i id="DivLoading" class="fa fa-gear fa-2x fa-spin txt-color-blue" style="display: none">
                             </i>
                         </div>

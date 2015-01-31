@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Yönetim Paneli";
+﻿@using Itsyazilim.Web.Domain.Resources
+@{
+    ViewBag.Title = ItsyazilimWebResources.lblManagementPanel;
     Layout = "~/Views/Shared/_Administrator.cshtml";
 }
 
@@ -8,7 +9,7 @@
         <tr>
             <td style="width:100%">
                 <h2>
-                    <i class="fa fa-cog" style="padding: 0px 18px 0px 10px"></i>Yönetim Paneli
+                    <i class="fa fa-cog" style="padding: 0px 18px 0px 10px"></i>@ItsyazilimWebResources.lblManagementPanel
                 </h2>
             </td>
             <td>
