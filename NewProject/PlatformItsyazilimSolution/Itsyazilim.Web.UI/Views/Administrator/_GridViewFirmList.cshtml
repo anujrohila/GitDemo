@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Itsyazilim.Web.Domain.Resources
+@{
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridViewUnApprovedFirmList";
@@ -40,14 +41,14 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "FirmName";
-            column.Caption = "Firma İsmi";
+            column.Caption = ItsyazilimWebResources.lblCompanyName;
             column.VisibleIndex = 1;
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
         });
         settings.Columns.Add(column =>
         {
             column.FieldName = "CityName";
-            column.Caption = "Şehir";
+            column.Caption = ItsyazilimWebResources.lblCity;
             column.VisibleIndex = 2;
             column.Width = 120;
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
@@ -55,7 +56,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "CountyName";
-            column.Caption = "İlçe";
+            column.Caption = ItsyazilimWebResources.lblcounty;
             column.VisibleIndex = 3;
             column.Width = 120;
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
@@ -63,7 +64,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "User";
-            column.Caption = "Oluşturan Kullanıcı";
+            column.Caption = ItsyazilimWebResources.lblCreatedbyUser;
             column.VisibleIndex = 4;
             column.Width = 200;
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
@@ -71,7 +72,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "CreatedOn";
-            column.Caption = "Tarih";
+            column.Caption = ItsyazilimWebResources.lblhistory;
             column.VisibleIndex = 5;
             column.Width = 120;
             column.ColumnType = MVCxGridViewColumnType.DateEdit;
