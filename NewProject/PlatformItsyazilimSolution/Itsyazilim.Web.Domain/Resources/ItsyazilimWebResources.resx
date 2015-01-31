@@ -749,4 +749,52 @@
     <value>Log out</value>
     <comment>Çıkış yap</comment>
   </data>
+  <data name="valEmailRegularExpression" xml:space="preserve">
+    <value>Your e-mail address does not appear to be a valid address!</value>
+    <comment>E-posta adresiniz geçerli bir adres gibi gözükmüyor!</comment>
+  </data>
+  <data name="valPasswordMinLength" xml:space="preserve">
+    <value>Password must be at least 6 characters</value>
+    <comment>Şifreniz en az 6 karakter olmalı</comment>
+  </data>
+  <data name="valRequiredCompanyName" xml:space="preserve">
+    <value>Please enter the company name</value>
+    <comment>Lütfen firma ismini giriniz</comment>
+  </data>
+  <data name="valRequiredEmail" xml:space="preserve">
+    <value>Please indicate your email address</value>
+    <comment>Lütfen adresinizi belirtiniz</comment>
+  </data>
+  <data name="valRequiredName" xml:space="preserve">
+    <value>Please enter your name</value>
+    <comment>Lütfen isminizi girin</comment>
+  </data>
+  <data name="valRequiredPassword" xml:space="preserve">
+    <value>Enter your password</value>
+    <comment>Şifrenizi girin</comment>
+  </data>
+  <data name="valRequiredSurname" xml:space="preserve">
+    <value>Please enter your surname</value>
+    <comment>Lütfen soyisminizi girin</comment>
+  </data>
+  <data name="valRequiredTaxNumber" xml:space="preserve">
+    <value>Please indicate your tax number</value>
+    <comment>Lütfen vergi numaranızı belirtiniz</comment>
+  </data>
+  <data name="valRequiredTaxOffice" xml:space="preserve">
+    <value>Please indicate your tax office</value>
+    <comment>Lütfen vergi dairenizi belirtiniz</comment>
+  </data>
+  <data name="valRequiredTelephone" xml:space="preserve">
+    <value>Please specify a fixed telephone</value>
+    <comment>Lütfen sabit telefon belirtiniz</comment>
+  </data>
+  <data name="valReqularInternetValidAddress" xml:space="preserve">
+    <value>Internet address does not appear to be a valid address</value>
+    <comment>İnternet adresiniz geçerli bir adres gözükmüyor</comment>
+  </data>
+  <data name="valSelectCompanyName" xml:space="preserve">
+    <value>Please select your company here</value>
+    <comment>Lütfen firmanızın ilçesiniz seçiniz</comment>
+  </data>
 </root>
