@@ -617,4 +617,40 @@
     <value>Width (m)</value>
     <comment>Genişlik (m)</comment>
   </data>
+  <data name="lblAlthough" xml:space="preserve">
+    <value>Although</value>
+    <comment>Desi</comment>
+  </data>
+  <data name="lblCity" xml:space="preserve">
+    <value>City</value>
+    <comment>Şehir</comment>
+  </data>
+  <data name="lblCompanyName" xml:space="preserve">
+    <value>Company Name</value>
+    <comment>Firma İsmi</comment>
+  </data>
+  <data name="lblcounty" xml:space="preserve">
+    <value>county</value>
+    <comment>İlçe</comment>
+  </data>
+  <data name="lblCreatedbyUser" xml:space="preserve">
+    <value>Created by User</value>
+    <comment>Oluşturan Kullanıcı</comment>
+  </data>
+  <data name="lblHeightM" xml:space="preserve">
+    <value>Height (m)</value>
+    <comment>Yükseklik (m)</comment>
+  </data>
+  <data name="lblhistory" xml:space="preserve">
+    <value>history</value>
+    <comment>Tarih</comment>
+  </data>
+  <data name="lblVolumem3" xml:space="preserve">
+    <value>Volume (m³)</value>
+    <comment>Hacim (m³)</comment>
+  </data>
+  <data name="lblWeightkg" xml:space="preserve">
+    <value>Weight (kg)</value>
+    <comment>Ağırlık (kg)</comment>
+  </data>
 </root>
