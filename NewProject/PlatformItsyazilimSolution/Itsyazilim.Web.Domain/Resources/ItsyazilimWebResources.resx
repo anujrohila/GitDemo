@@ -749,6 +749,10 @@
     <value>Log out</value>
     <comment>Çıkış yap</comment>
   </data>
+  <data name="lblDetail" xml:space="preserve">
+    <value>Detail</value>
+    <comment>Detaylar</comment>
+  </data>
   <data name="valEmailRegularExpression" xml:space="preserve">
     <value>Your e-mail address does not appear to be a valid address!</value>
     <comment>E-posta adresiniz geçerli bir adres gibi gözükmüyor!</comment>
