@@ -27,12 +27,14 @@ namespace Itsyazilim.Web.UI.Models
         public string Surname { get; set; }
 
         // [Required(ErrorMessage = "Lütfen e-posta adresinizi girin")]
-        [StringLength(64, ErrorMessageResourceName = "valEmailRegularExpression", ErrorMessageResourceType = typeof(Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources))]
         //  [Required(ErrorMessage = "Lütfen şifrenizi girin")]
         [StringLength(64, ErrorMessageResourceName = "valPasswordMinLength", MinimumLength = 6, ErrorMessageResourceType = typeof(Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources))]
         //  [Required(ErrorMessage = "Lütfen şifrenizi girin")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [StringLength(64, ErrorMessageResourceName = "valEmailRegularExpression", ErrorMessageResourceType = typeof(Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources))]
+        public string Email { get; set; }
     }
 
     public class RegisterReSendActivateCodeViewModel

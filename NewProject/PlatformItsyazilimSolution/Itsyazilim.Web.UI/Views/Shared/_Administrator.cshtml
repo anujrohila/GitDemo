@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using DevExpress.Web.Mvc.UI;
+@using Itsyazilim.Web.Domain.Resources;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -64,7 +66,7 @@
                         <td>
                             <a href="~/Administrator" style="text-decoration:none">
                                 <span style="color: #aaa; font-size: large">LTS</span>
-                                <span style=" color: #eee; font-size: large">Tübitak</span>
+                                <span style=" color: #eee; font-size: large">@ItsyazilimWebResources.lblTubitik</span>
                             </a>
                         </td>
                     </tr>
@@ -83,7 +85,7 @@
 
                 <table style="float:right">
                     <tr>
-                        <td style="padding-left:20px"><a href="~/Manage/Logout" class="btn btn-info">Çıkış yap</a></td>
+                        <td style="padding-left:20px"><a href="~/Manage/Logout" class="btn btn-info">@ItsyazilimWebResources.lblLogout</a></td>
                     </tr>
                 </table>
 
@@ -97,15 +99,15 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-lg fa-fw fa-cog"></i><span class="menu-item-parent">
-                            Tanımlar
+                            @ItsyazilimWebResources.lblDefinitions
                         </span><b class="collapse-sign"><em class="fa fa-plus-square-o"></em></b>
                     </a>
                     <ul>
-                        <li>@Html.ActionLink("Araç Türleri", "DefVehicleTypes", null, new { @ActionLink = "DefVehicleTypes" })</li>
-                        <li>@Html.ActionLink("Ürün Ambalaj Türleri", "DefProductPackages", null, new { @ActionLink = "DefProductPackages" })</li>
-                        <li>@Html.ActionLink("Ürün Birimleri", "DefProductUnits", null, new { @ActionLink = "DefProductUnits" })</li>
-                        <li>@Html.ActionLink("Ürün Özellikleri", "DefProductProperties", null, new { @ActionLink = "DefProductProperties" })</li>
-                        <li>@Html.ActionLink("Ürün Cinsleri", "DefProductTypes", null, new { @ActionLink = "DefProductTypes" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblVehicleType, "DefVehicleTypes", null, new { @ActionLink = "DefVehicleTypes" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblProductPackagingTypes, "DefProductPackages", null, new { @ActionLink = "DefProductPackages" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblProductUnits, "DefProductUnits", null, new { @ActionLink = "DefProductUnits" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblProductFeatures, "DefProductProperties", null, new { @ActionLink = "DefProductProperties" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblProductTypes, "DefProductTypes", null, new { @ActionLink = "DefProductTypes" })</li>
                     </ul>
                 </li>
             </ul>
@@ -115,29 +117,24 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-lg fa-fw fa-bank"></i><span class="menu-item-parent">
-                            Firmalar
+                            @ItsyazilimWebResources.lblCompanies
                         </span><b class="collapse-sign"><em class="fa fa-plus-square-o"></em></b>
                     </a>
                     <ul>
-                        <li>@Html.ActionLink("Firma Listesi", "FirmList", null, new { @ActionLink = "FirmList" })</li>
-                        <li>@Html.ActionLink("Onay Bekleyen Firmalar", "UnApprovedFirmList", null, new { @ActionLink = "UnApprovedFirmList" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblCompanyList, "FirmList", null, new { @ActionLink = "FirmList" })</li>
+                        <li>@Html.ActionLink(ItsyazilimWebResources.lblWaitingCompanies, "UnApprovedFirmList", null, new { @ActionLink = "UnApprovedFirmList" })</li>
                     </ul>
                 </li>
             </ul>
         </nav>
-
         <span class="minifyme" data-action="minifyMenu">
             <i class="fa fa-arrow-circle-left hit">
             </i>
         </span>
     </aside>
-
-
-
     <div style="padding:0px 10px 10px 230px;">
         @RenderBody()
     </div>
-
     <script src="~/Scripts/app.min.js" type="text/javascript"></script>
 </body>
 </html>

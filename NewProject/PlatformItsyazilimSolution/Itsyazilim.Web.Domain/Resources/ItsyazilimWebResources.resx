@@ -817,6 +817,18 @@
     <value>Please specify the type of vehicle</value>
     <comment>Lütfen araç tipini belirtiniz</comment>
   </data>
+  <data name="lblCompanyIdentification" xml:space="preserve">
+    <value>Company Identification</value>
+    <comment>Firma Tanımlama</comment>
+  </data>
+  <data name="lblRecognitionDescription" xml:space="preserve">
+    <value>Recognition Description</value>
+    <comment>Tanımalamalar</comment>
+  </data>
+  <data name="lblSiprasisler" xml:space="preserve">
+    <value>Siprariş are</value>
+    <comment>Siprarişler</comment>
+  </data>
   <data name="lblError" xml:space="preserve">
     <value>An error has occurred! Please try again later</value>
     <comment>Bir hata oluştu! Lütfen daha sonra tekrar deneyin</comment>

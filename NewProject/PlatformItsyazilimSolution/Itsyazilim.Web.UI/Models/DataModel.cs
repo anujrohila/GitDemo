@@ -16,10 +16,11 @@ namespace Itsyazilim.Web.UI.Models
         public static IEnumerable GetCounties()
         {
             var db = new LtsWebEntities();
-            return (from county in db.DefLocationCounties
-                    join city in db.DefLocationCities on county.CityId equals city.CityId
-                    orderby city.Name, county.Name
-                    select new { CountyId = county.CountyId, CountyName = "Türkiye > " + city.Name + " > " + county.Name }).ToArray();
+            var result = (from county in db.DefLocationCounties
+                          join city in db.DefLocationCities on county.CityId equals city.CityId
+                          orderby city.Name, county.Name
+                          select new { CountyId = county.CountyId, CountyName = "Türkiye > " + city.Name + " > " + county.Name }).ToArray();
+            return result;
         }
 
         public static string GetCountyByCountyId(int CountyId)
@@ -40,9 +41,9 @@ namespace Itsyazilim.Web.UI.Models
         public static IEnumerable GetFirmsByUser(int UserId)
         {
             return (from map in db.MapFirmToUser
-                    join firm in db.Firms on map.FirmId  equals firm.FirmId
+                    join firm in db.Firms on map.FirmId equals firm.FirmId
                     where map.UserId == UserId && map.IsActive == true
-                    orderby firm.FirmId                   
+                    orderby firm.FirmId
                     select new { FirmId = firm.FirmId, FirmName = firm.FirmName }).ToList();
         }
 

@@ -1,4 +1,5 @@
 ﻿@using Itsyazilim.Web.Domain.Resources
+@using DevExpress.Web.Mvc.UI;
 @{
     ViewBag.Title = ItsyazilimWebResources.lblProductTypes;
     Layout = "~/Views/Shared/_Administrator.cshtml";
@@ -12,12 +13,12 @@
             <td>
                 <h2>
                     <span class="glyphicon glyphicon-barcode" style="padding: 0px 10px 0px 10px"></span>
-                    @ItsyazilimWebResources.lblProductTypes;
+                    @ItsyazilimWebResources.lblProductTypes
                 </h2>
             </td>
             <td style="text-align: right">
                 <a href="javascript:GridViewDefProductTypes.AddNewRow()" class="btn btn-sm btn-primary">
-                    <i class="fa fa-plus" style="padding-right:5px"></i>@ItsyazilimWebResources.lblAddProductType;
+                    <i class="fa fa-plus" style="padding-right:5px"></i>@ItsyazilimWebResources.lblAddProductType
                 </a>
             </td>
         </tr>

@@ -1,4 +1,8 @@
 ﻿@using Itsyazilim.Web.Domain.Resources
+@using DevExpress.Web.Mvc.UI;
+@using DevExpress.Web;
+@using DevExpress.Utils;
+@using DevExpress.Web.Mvc;
 @{
     var grid = Html.DevExpress().GridView(settings =>
     {
@@ -43,6 +47,7 @@
             column.FieldName = "FirmName";
             column.Caption = ItsyazilimWebResources.lblCompanyName;
             column.VisibleIndex = 1;
+            column.Width = 250;
             column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
         });
         settings.Columns.Add(column =>
@@ -74,7 +79,7 @@
             column.FieldName = "CreatedOn";
             column.Caption = ItsyazilimWebResources.lblHistory;
             column.VisibleIndex = 5;
-            column.Width = 120;
+            column.Width = 150;
             column.ColumnType = MVCxGridViewColumnType.DateEdit;
             var deProperties = column.PropertiesEdit as DateEditProperties;
             deProperties.DisplayFormatString = "g";
@@ -87,7 +92,7 @@
             column.SetDataItemTemplateContent(c =>
             {
 
-                ViewContext.Writer.Write("<a href='FirmDetails/" + DataBinder.Eval(c.DataItem, "FirmId").ToString() + "' style='color:#cc0000'>Detaylar <i class='fa fa-arrow-circle-right'></i></a>");
+                ViewContext.Writer.Write("<a href='FirmDetails/" + DataBinder.Eval(c.DataItem, "FirmId").ToString() + "' style='color:#cc0000'>" + ItsyazilimWebResources.lblDetail + " <i class='fa fa-arrow-circle-right'></i></a>");
             });
         });
 
