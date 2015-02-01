@@ -1069,6 +1069,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password Change.
+        /// </summary>
+        public static string lblPasswordChange {
+            get {
+                return ResourceManager.GetString("lblPasswordChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password invalid.
         /// </summary>
         public static string lblPasswordInvalid {
