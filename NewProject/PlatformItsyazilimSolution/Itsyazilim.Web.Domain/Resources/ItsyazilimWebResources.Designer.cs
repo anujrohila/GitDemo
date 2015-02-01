@@ -61,6 +61,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Us.
+        /// </summary>
+        public static string lblAboutUs {
+            get {
+                return ResourceManager.GetString("lblAboutUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Activation.
         /// </summary>
         public static string lblAccountActivation {
@@ -286,6 +295,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your company information can immediately begin using the system by Your company information can immediately begin using the system by onaylanmıştır.giriş.
+        /// </summary>
+        public static string lblCommunicationCompanyMsg {
+            get {
+                return ResourceManager.GetString("lblCommunicationCompanyMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Companies.
         /// </summary>
         public static string lblCompanies {
@@ -336,6 +354,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblCongratulations {
             get {
                 return ResourceManager.GetString("lblCongratulations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact page.
+        /// </summary>
+        public static string lblContactPage {
+            get {
+                return ResourceManager.GetString("lblContactPage", resourceCulture);
             }
         }
         
@@ -948,6 +975,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblNeighborhoodStreetDoorNumber {
             get {
                 return ResourceManager.GetString("lblNeighborhoodStreetDoorNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Company Registration.
+        /// </summary>
+        public static string lblNewCompanyRegistration {
+            get {
+                return ResourceManager.GetString("lblNewCompanyRegistration", resourceCulture);
             }
         }
         

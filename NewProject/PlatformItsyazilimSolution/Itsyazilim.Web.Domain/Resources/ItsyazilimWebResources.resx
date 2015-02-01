@@ -825,4 +825,20 @@
     <value>Please fill all fieldsPlease fill all fields</value>
     <comment>Lütfen alanları eksiksiz doldurunuz</comment>
   </data>
+  <data name="lblAboutUs" xml:space="preserve">
+    <value>About Us</value>
+    <comment>Hakkımızda</comment>
+  </data>
+  <data name="lblCommunicationCompanyMsg" xml:space="preserve">
+    <value>Your company information can immediately begin using the system by Your company information can immediately begin using the system by onaylanmıştır.giriş</value>
+    <comment>Firma bilgileriniz onaylanmıştır.Giriş yaparak sistemi kullanmaya hemen başlayabilirsiniz</comment>
+  </data>
+  <data name="lblContactPage" xml:space="preserve">
+    <value>Contact page</value>
+    <comment>İletişim sayfası</comment>
+  </data>
+  <data name="lblNewCompanyRegistration" xml:space="preserve">
+    <value>New Company Registration</value>
+    <comment>Yeni firma kaydı</comment>
+  </data>
 </root>
