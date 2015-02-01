@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
 using Itsyazilim.Web.UI.Models;
+using Itsyazilim.Web.Domain.Resources;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -14,11 +15,11 @@ namespace Itsyazilim.Web.UI.Controllers
         {
             try
             {
-                MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
+                MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", ItsyazilimWebResources.lblTubitak);
                 MailAddress To = new MailAddress("www@hakanhamzaoglu.com");
 
                 MailMessage mail = new MailMessage(From, To);
-                mail.Subject = "Yeni kullanıcı kaydı";
+                mail.Subject = ItsyazilimWebResources.lblNewUserRegistration;
                 mail.IsBodyHtml = true;
 
                 string Body = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewUserBody").ToString();
@@ -50,7 +51,7 @@ namespace Itsyazilim.Web.UI.Controllers
                     MailAddress To = new MailAddress("www@hakanhamzaoglu.com");
 
                     MailMessage mail = new MailMessage(From, To);
-                    mail.Subject = "Yeni firma kaydı";
+                    mail.Subject = ItsyazilimWebResources.lblNewCompanyRegistration;
                     mail.IsBodyHtml = true;
 
                     string Body = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewFirmBody").ToString();

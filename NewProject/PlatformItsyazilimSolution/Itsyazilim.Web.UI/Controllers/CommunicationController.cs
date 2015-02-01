@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
+using Itsyazilim.Web.Domain.Resources;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -35,7 +36,7 @@ namespace Itsyazilim.Web.UI.Controllers
         public static void SendSMSToUserForFirmAccepted(string UserName, string MobileNumbers)
         {
 
-            var SMSText = "Sn. " + UserName + ". Firma bilgileriniz onaylanmıştır.Giriş yaparak sistemi kullanmaya hemen başlayabilirsiniz. www.turksmart.com";
+            var SMSText = "Sn. " + UserName + ItsyazilimWebResources.lblCommunicationCompanyMsg + "www.turksmart.com";
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(TextToEnglish(SMSDefaultText.Replace("%APIUserName%", APIUserName).Replace("%APIPassword%", APIPassword).Replace("%APISender%", APISender).Replace("%Message%", SMSText).Replace("%MobileNumbers%", MobileNumbers)));

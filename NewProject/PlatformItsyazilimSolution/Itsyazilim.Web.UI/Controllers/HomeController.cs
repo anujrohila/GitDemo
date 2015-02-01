@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Itsyazilim.Web.Domain.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,14 +29,14 @@ namespace Itsyazilim.Web.UI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Hakkımızda";
+            ViewBag.Message = ItsyazilimWebResources.lblAboutUs;
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "İletişim sayfası";
+            ViewBag.Message = ItsyazilimWebResources.lblContactPage;
 
             return View();
         }
