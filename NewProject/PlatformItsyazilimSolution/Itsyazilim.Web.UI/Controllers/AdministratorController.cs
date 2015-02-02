@@ -246,11 +246,11 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 catch
                 {
-                    ViewData["EditError"] =  ItsyazilimWebResources.valRequiredAllFields;
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
                 }
             }
             else
-                ViewData["EditError"] =  ItsyazilimWebResources.valRequiredAllFields;
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
 

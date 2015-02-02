@@ -73,9 +73,9 @@ namespace Itsyazilim.Web.UI.Controllers
             //}
             using (var db = new LtsWebEntities())
             {
-                var user = db.Membership.FirstOrDefault(u => u.Email == "anuj.rohila94@gmail.com");
+                var user = db.Membership.FirstOrDefault(u => u.Email == "dere@hakanhamzaoglu.com");
                 Session["LoggedUserId"] = user.UserId.ToString();
-                Session["LoggedUserRoleId"] = "2";
+                Session["LoggedUserRoleId"] = "0";
                 Session["LoggedUserName"] = user.Name.ToString();
                 Session["LoggedUserSurname"] = user.Surname.ToString();
                 FormsAuthentication.SetAuthCookie(user.Email, true);
