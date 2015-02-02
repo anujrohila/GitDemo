@@ -70,7 +70,7 @@
                         case "4":
                         <h5>@ItsyazilimWebResources.lblFinalStepAccount</h5>
                         <br />
-                        @MvcHtmlString.Create("Yaklaşık %PastMinute% dakika önce, hesabınızı aktif etmeniz için size bir e-posta yolladık. Lütfen gelen kutunuzu kontrol edin. Yollanan e-posta ulaşmadıysa lütfen %RemainingMinute% dakika sonra tekrar deneyin.").ToString().Replace("%PastMinute%", TempData["StatusLastSendedTime"].ToString()).Replace("%RemainingMinute%", (60 - Convert.ToInt16(TempData["StatusLastSendedTime"])).ToString())
+                        @MvcHtmlString.Create(ItsyazilimWebResources.lblMessageSentEmailActivation).ToString().Replace("%PastMinute%", TempData["StatusLastSendedTime"].ToString()).Replace("%RemainingMinute%", (60 - Convert.ToInt16(TempData["StatusLastSendedTime"])).ToString())
                             break;
 
                         case "5":

@@ -853,4 +853,84 @@
     <value>New Company Registration</value>
     <comment>Yeni firma kaydı</comment>
   </data>
+  <data name="lblAccountVerification" xml:space="preserve">
+    <value>Account Verification</value>
+    <comment>Hesap Doğrulama</comment>
+  </data>
+  <data name="lblActivationCodeExpired" xml:space="preserve">
+    <value>Activation code has expired!</value>
+    <comment>Aktivasyon kodu süresi doldu!</comment>
+  </data>
+  <data name="lblActivationCodeInvalid" xml:space="preserve">
+    <value>Activation code is invalid!</value>
+    <comment>Aktivasyon kodu geçersiz!</comment>
+  </data>
+  <data name="lblActivationCodeUseBefore" xml:space="preserve">
+    <value>This activation code used before!</value>
+    <comment>Bu aktivasyon kodu daha önce kullanılmış!</comment>
+  </data>
+  <data name="lblAreYouNew" xml:space="preserve">
+    <value>Are you new?</value>
+    <comment>Yeni misiniz ?</comment>
+  </data>
+  <data name="lblChoose" xml:space="preserve">
+    <value>Choose</value>
+    <comment>Seçiniz</comment>
+  </data>
+  <data name="lblCompanyUnderConsideration" xml:space="preserve">
+    <value>Companies under consideration</value>
+    <comment>Firma değerlendiriliyor</comment>
+  </data>
+  <data name="lblCreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+    <comment>Hesap Oluşturma</comment>
+  </data>
+  <data name="lblHome" xml:space="preserve">
+    <value>Home</value>
+    <comment>Ana Sayfa</comment>
+  </data>
+  <data name="lblLearn" xml:space="preserve">
+    <value>Learn</value>
+    <comment>edinin</comment>
+  </data>
+  <data name="lblLtsTubitak" xml:space="preserve">
+    <value>Lts Tubitak</value>
+    <comment>LTS Tübitak</comment>
+  </data>
+  <data name="lblManagement" xml:space="preserve">
+    <value>Management</value>
+    <comment>Yönetim</comment>
+  </data>
+  <data name="lblMessageSentEmailActivation" xml:space="preserve">
+    <value>About pastminut%% minutes ago, we sent you an e-mail for you to activate your account. Please check your inbox. If sent by e-mail, please try again later reach remainingminut% minutes% again.</value>
+    <comment>Yaklaşık %PastMinute% dakika önce, hesabınızı aktif etmeniz için size bir e-posta yolladık. Lütfen gelen kutunuzu kontrol edin. Yollanan e-posta ulaşmadıysa lütfen %RemainingMinute% dakika sonra tekrar deneyin.</comment>
+  </data>
+  <data name="lblPasswordChange" xml:space="preserve">
+    <value>Password Change</value>
+    <comment>Şifre Değiştirme</comment>
+  </data>
+  <data name="lblPasswordReserEmail" xml:space="preserve">
+    <value>Password Reset Email</value>
+    <comment>şifre yenileme e-postası</comment>
+  </data>
+  <data name="lblPleaseEnterNew" xml:space="preserve">
+    <value>Please enter a new</value>
+    <comment>Lütfen yeni bir</comment>
+  </data>
+  <data name="lblProblemOccurredRenewingPassword" xml:space="preserve">
+    <value>The problem occurred when renewing your password?</value>
+    <comment>Şifrenizi yenilerken bir sorun mu oluştu?</comment>
+  </data>
+  <data name="lblRenewalRequestCantFound" xml:space="preserve">
+    <value>Renewal requests can not be found!</value>
+    <comment>Yenileme isteği bulunamadı!</comment>
+  </data>
+  <data name="lblSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+    <comment>Kaydol</comment>
+  </data>
+  <data name="lblTooManyTrial" xml:space="preserve">
+    <value>You did  too many trial</value>
+    <comment>ok fazla sayıda deneme yaptınız</comment>
+  </data>
 </root>

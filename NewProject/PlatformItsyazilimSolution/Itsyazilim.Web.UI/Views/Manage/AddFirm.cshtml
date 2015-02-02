@@ -4,7 +4,7 @@
 @model Itsyazilim.Web.UI.Models.FirmViewModel
 @using DevExpress.Web.Mvc.UI;
 @{
-    ViewBag.Title = "Firma Tanımlama";
+    ViewBag.Title = ItsyazilimWebResources.lblCompanyIdentification;
     Layout = "~/Views/Shared/_Manage.cshtml";
 }
 <script>
@@ -15,15 +15,14 @@
         <tr>
             <td>
                 <h2>
-                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>Hoş Geldiniz
+                    <i class="fa fa-bank" style="padding: 0px 10px 0px 10px"></i>@ItsyazilimWebResources.lblWelcome
                 </h2>
             </td>
         </tr>
     </table>
     <hr />
     <h3 style="padding-left:15px">
-        Sistemi kullanmaya başlamanız için, şirket bilgilerinizi tanımlamanız gerekiyor.
-        Lütfen aşağıdaki formdaki bilgileri eksiksiz doldurun.
+        @ItsyazilimWebResources.lblIdentifyYourInformationMessage
     </h3>
 </div>
 <div class="padding-10" style="width:800px">

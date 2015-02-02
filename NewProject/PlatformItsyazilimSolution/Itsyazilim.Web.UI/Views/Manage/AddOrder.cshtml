@@ -5,7 +5,7 @@
 @model System.Collections.IEnumerable
 
 @{
-    ViewBag.Title = "Sipariş Ekle";
+    ViewBag.Title = ItsyazilimWebResources.lblAddToOrder;
     Layout = "~/Views/Shared/_Manage.cshtml";
 }
 
@@ -101,7 +101,7 @@
                             settings.Properties.TextField = "OrderTypeName";
                             settings.Properties.ValueField = "OrderTypeId";
                             settings.SelectedIndex = -1;
-                            settings.Properties.NullText = "Seçiniz";
+                            settings.Properties.NullText = ItsyazilimWebResources.lblChoose;
                             settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s,e){ LoadOrderPanel(s.GetValue());}";
                         }
                         ).BindList(Itsyazilim.Web.UI.Models.DataProvider.GetDefOrderTypes()).GetHtml()
