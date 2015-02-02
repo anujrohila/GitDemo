@@ -13,6 +13,7 @@ using System.Web.Routing;
 using System.Net.Mail;
 using Itsyazilim.Web.UI.Controllers;
 using Itsyazilim.Web.Domain.Resources;
+using Itsyazilim.Web.BLL;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -817,7 +818,7 @@ namespace Itsyazilim.Web.UI.Controllers
 
                             using (var db = new LtsWebEntities())
                             {
-                                var user = db.Membership.FirstOrDefault(u => u.Email == model.Email);
+                                var user = MembershipBusinessLogic.GetMembershipDetails(model.Email) ;
                                 if (user == null)
                                 {
                                     TempData["StatusId"] = "3";

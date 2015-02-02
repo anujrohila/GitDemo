@@ -483,6 +483,7 @@
     <Compile Include="Controllers\BaseApplication\BaseController.cs" />
     <Compile Include="Controllers\CommunicationController.cs" />
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FormElementSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -612,6 +613,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\CommonFunctions.cs" />
+    <Compile Include="Utilities\CustomAuthentication.cs" />
     <Compile Include="Utilities\ResourceJavaScripter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1033,6 +1035,7 @@
     <Content Include="Views\Shared\_Default.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Manage.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
