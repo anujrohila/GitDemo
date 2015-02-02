@@ -9,7 +9,6 @@ using System.Web.UI;
 
 namespace platform.ltsyazilim.com.Models
 {
-    using platform.ltsyazilim.com.Models;
     public static class DataProvider
     {
         public static LtsWebEntities db = new LtsWebEntities();
