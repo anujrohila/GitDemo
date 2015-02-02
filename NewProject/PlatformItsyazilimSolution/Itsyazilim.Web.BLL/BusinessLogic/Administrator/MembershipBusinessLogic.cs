@@ -4,35 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Itsyazilim.Web.DLL;
-
+using Itsyazilim.Web.Domain;
 namespace Itsyazilim.Web.BLL
 {
-    public class MembershipBusinessLogic
+    public static class MembershipBusinessLogic
     {
-        //#region [Declaration]
+        #region [Declaration]
 
-        //#endregion
+        #endregion
 
-        //#region [Methods
+        #region [Methods
 
-        ///// <summary>
-        ///// Get Employee Details
-        ///// </summary>
-        ///// <returns></returns>
-        //public tblEmployeeDTO GetAdminLoginDetail(tblEmployeeDTO tblEmployeeDTO)
-        //{
-        //    try
-        //    {
-        //        LogGenerator.Info(string.Format("GetAdminLoginDetail-{0}", tblEmployeeDTO));
-        //        var adminAccountRepository = new AdminAccountRepository();
-        //        return adminAccountRepository.GetAdminLoginDetail(tblEmployeeDTO);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LogGenerator.Error("GetAdminLoginDetail", ex);
-        //    }
-        //    return null;
-        //}
+        /// <summary>
+        /// Get Membership Details
+        /// </summary>
+        /// <returns></returns>
+        public static MembershipDTO GetMembershipDetails(string emailId)
+        {
+            var membershipRepository = new MembershipRepository();
+            return membershipRepository.GetMembershipDetails(emailId);
+        }
 
         ///// <summary>
         ///// Register user
@@ -93,6 +84,6 @@ namespace Itsyazilim.Web.BLL
         //    return true;
         //}
 
-        //#endregion
+        #endregion
     }
 }

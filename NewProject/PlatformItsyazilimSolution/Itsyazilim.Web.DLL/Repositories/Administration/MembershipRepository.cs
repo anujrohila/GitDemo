@@ -4,47 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Itsyazilim.Web.Database.ORM;
+using Itsyazilim.Web.Domain;
 
 namespace Itsyazilim.Web.DLL
 {
     public class MembershipRepository
     {
-        //#region [Declaration]
+        #region [Declaration]
 
-        //#endregion
+        #endregion
 
-        //#region [Constructor]
+        #region [Constructor]
 
-        //public AdminAccountRepository()
-        //{
+        public MembershipRepository()
+        {
 
-        //}
+        }
 
-        //#endregion
+        #endregion
 
-        //#region [Methods]
+        #region [Methods]
 
-        ///// <summary>
-        ///// Get AdminLogin details
-        ///// </summary>
-        ///// <returns></returns>
-        //public tblEmployeeDTO GetAdminLoginDetail(tblEmployeeDTO tblEmployeeDTO)
-        //{
-        //    using (var OrderManagementDataContext = new OrderManagementDatabaseEntities())
-        //    {
-        //        return (from admin in OrderManagementDataContext.tblEmployees
-        //                where string.Compare(admin.MobileNo, tblEmployeeDTO.MobileNo, StringComparison.CurrentCultureIgnoreCase) == 0
-        //                      && string.Compare(admin.Password, tblEmployeeDTO.Password, StringComparison.CurrentCultureIgnoreCase) == 0
-        //                select new tblEmployeeDTO()
-        //                {
-        //                    EmployeeId = admin.EmployeeId,
-        //                    FirstName = admin.FirstName,
-        //                    LastName = admin.LastName,
-        //                    MobileNo = admin.MobileNo,
-        //                    IsActive = admin.IsActive
-        //                }).FirstOrDefault();
-        //    }
-        //}
+        /// <summary>
+        /// Get Membership Details
+        /// </summary>
+        /// <returns></returns>
+        public MembershipDTO GetMembershipDetails(string emailId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return (LtsyazilimDatabaseEntities.Memberships.Where(member => string.Compare(member.Email, emailId, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault()).ToDTO();
+            }
+        }
 
         ///// <summary>
         ///// Register user
@@ -137,6 +128,6 @@ namespace Itsyazilim.Web.DLL
         //}
 
 
-        //#endregion
+        #endregion
     }
 }
