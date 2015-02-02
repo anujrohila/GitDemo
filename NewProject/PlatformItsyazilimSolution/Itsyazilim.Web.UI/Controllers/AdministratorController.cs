@@ -253,8 +253,8 @@ namespace Itsyazilim.Web.UI.Controllers
                 ViewData["EditError"] =  ItsyazilimWebResources.valRequiredAllFields;
             return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
-        [HttpPost, ValidateInput(false)]
 
+        [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefVehicleTypesDelete(System.Byte VehicleTypeId)
         {
             var model = db.DefVehicleTypes;
@@ -275,8 +275,8 @@ namespace Itsyazilim.Web.UI.Controllers
                 {
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
-                return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
             }
+            return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
         }
 
 
