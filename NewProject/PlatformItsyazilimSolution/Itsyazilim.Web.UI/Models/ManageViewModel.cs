@@ -2,11 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-//using DevExpress.Web.Mvc;
 using System.Web.Mvc;
-
-//using System.Web.Mvc;
-//using DevExpress.Web.Mvc;
 
 namespace Itsyazilim.Web.UI.Models
 {
@@ -14,7 +10,7 @@ namespace Itsyazilim.Web.UI.Models
     {
         public int FirmId { get; set; }
 
-        [Required(ErrorMessageResourceName="valRequiredCompanyName", ErrorMessageResourceType = typeof(Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources))]
+        //[Required(ErrorMessageResourceName="valRequiredCompanyName", ErrorMessageResourceType = typeof(Itsyazilim.Web.Domain.Resources.ItsyazilimWebResources))]
         [RegularExpression(@"[\u0000-\u007F\u0080-\u00FF\u0100-\u017F\u0180-\u024F]{5,100}", ErrorMessageResourceName = "valRequiredCompanyName")]
         public string FirmName { get; set; }
 
