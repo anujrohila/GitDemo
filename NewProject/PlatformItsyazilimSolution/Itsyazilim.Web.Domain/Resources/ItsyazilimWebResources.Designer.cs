@@ -1024,6 +1024,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This account has been locked out, please try again later..
+        /// </summary>
+        public static string lblLockedAccountMessage {
+            get {
+                return ResourceManager.GetString("lblLockedAccountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked out.
+        /// </summary>
+        public static string lblLockedOut {
+            get {
+                return ResourceManager.GetString("lblLockedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string lblLogin {
@@ -1056,6 +1074,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblLtsTubitak {
             get {
                 return ResourceManager.GetString("lblLtsTubitak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ltsyazilim.com.
+        /// </summary>
+        public static string lblltsyazilimCom {
+            get {
+                return ResourceManager.GetString("lblltsyazilimCom", resourceCulture);
             }
         }
         
@@ -1470,6 +1497,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblRenewYourPassword {
             get {
                 return ResourceManager.GetString("lblRenewYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while processing your request..
+        /// </summary>
+        public static string lblRequestProcessErrorMessage {
+            get {
+                return ResourceManager.GetString("lblRequestProcessErrorMessage", resourceCulture);
             }
         }
         

@@ -933,4 +933,20 @@
     <value>You did  too many trial</value>
     <comment>ok fazla sayıda deneme yaptınız</comment>
   </data>
+  <data name="lblltsyazilimCom" xml:space="preserve">
+    <value>ltsyazilim.com</value>
+    <comment>ltsyazilim.com</comment>
+  </data>
+  <data name="lblLockedAccountMessage" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+    <comment>Bu hesap kilitlendi, daha sonra tekrar deneyin.</comment>
+  </data>
+  <data name="lblLockedOut" xml:space="preserve">
+    <value>Locked out</value>
+    <comment>kilitli</comment>
+  </data>
+  <data name="lblRequestProcessErrorMessage" xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+    <comment>İsteğiniz işlenirken bir hata oluştu.</comment>
+  </data>
 </root>
