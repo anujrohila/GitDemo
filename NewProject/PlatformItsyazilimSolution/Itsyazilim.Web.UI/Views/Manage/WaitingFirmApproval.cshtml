@@ -32,11 +32,11 @@
         <div class="smart-form">
             <fieldset class="padding-top-0" style="background-color: transparent">
                 <section>
-                    Firma Adı
+                    @ItsyazilimWebResources.lblTradeName
                     @Html.DevExpress().TextBoxFor(m => m.FirmName, FormElementSettingsHelper.TextBoxSettingsMethod).GetHtml()
                 </section>
                 <section>
-                    İl-İlçe
+                    @ItsyazilimWebResources.lblCityCountry
                     @Html.DevExpress().ComboBoxFor(m => m.CountyId,
                     settings =>
                     {
@@ -57,7 +57,6 @@
                         settings.Properties.DropDownButton.Visible = false;
                     }
                     ).BindList(Itsyazilim.Web.UI.Models.DataProvider.GetCounties()).GetHtml()
-
                 </section>
                 <section>
                     @ItsyazilimWebResources.lblNeighborhoodStreetDoorNumber
