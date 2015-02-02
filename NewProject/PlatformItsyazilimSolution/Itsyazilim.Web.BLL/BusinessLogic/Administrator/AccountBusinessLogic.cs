@@ -7,7 +7,7 @@ using Itsyazilim.Web.DLL;
 
 namespace Itsyazilim.Web.BLL
 {
-    public class AdminAccountBusinessLogic
+    public class AccountBusinessLogic
     {
         //#region [Declaration]
 
