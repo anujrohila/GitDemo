@@ -279,7 +279,7 @@ namespace Itsyazilim.Web.UI.Controllers
         }
 
         //
-        // POST: /Account/RegisterReSendActivateCode
+        // POST: /Account/.RegisterReSendActivateCode
         [HttpPost]
         public ActionResult RegisterReSendActivateCode(RegisterReSendActivateCodeViewModel model)
         {
@@ -801,7 +801,7 @@ namespace Itsyazilim.Web.UI.Controllers
                                     Session["LoggedUserId"] = user.UserId.ToString();
                                     Session["LoggedUserRoleId"] = user.RoleId.ToString();
                                     Session["LoggedUserName"] = user.Name.ToString();
-                                    Session["LoggedUserSurname"] = user.Surname.ToString();
+                                    Session["LoggedUserSurnamoe"] = user.Surname.ToString();
 
                                     if (user.RoleId == 2) return RedirectToAction("Index", "Manage");
                                     if (user.RoleId == 3) return RedirectToAction("Index", "Administrator");
