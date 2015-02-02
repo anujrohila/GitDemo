@@ -14,7 +14,7 @@ using System.Linq;
 using Itsyazilim.Web.Domain;
 using Itsyazilim.Web.Database.ORM;
 
-namespace Itsyazilim.Web.Domain.Assemblers
+namespace Itsyazilim.Web.Domain
 {
 
     /// <summary>

@@ -14,6 +14,7 @@ using System.Net.Mail;
 using Itsyazilim.Web.UI.Controllers;
 using Itsyazilim.Web.Domain.Resources;
 using Itsyazilim.Web.BLL;
+using Itsyazilim.Web.Domain;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -53,104 +54,94 @@ namespace Itsyazilim.Web.UI.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var db = new LtsWebEntities())
+                var memberDetails = MembershipBusinessLogic.GetMembershipDetails(model.Email);
+                if (memberDetails == null)
                 {
-                    var user = db.Membership.FirstOrDefault(u => string.Compare(u.Email, model.Email, StringComparison.CurrentCultureIgnoreCase) == 0);
-                    if (user == null)
+                    TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
+
+                    string ActivateCode = Guid.NewGuid().ToString();
+
+                    string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
+                    Body = Body.Replace("%UserName%", Ti.ToTitleCase(model.Name.Trim().ToLower()));
+                    Body = Body.Replace("%Email%", model.Email);
+                    Body = Body.Replace("%ActivateCode%", ActivateCode);
+                    var IsMailSend = CommonFunctions.SendEmail(string.Format("{0}@turksmart.com", ActivateCode), ItsyazilimWebResources.lblWelcome, Body);
+
+                    //try
+                    //{
+                    //    MailAddress From = new MailAddress("admın@turksmart.com", "Lts Tübitak");
+                    //    MailAddress To = new MailAddress(model.Email.ToLower());
+
+                    //    MailMessage mail = new MailMessage(From, To);
+                    //    mail.Subject = "Hoş Geldiniz";
+                    //    mail.IsBodyHtml = true;
+
+                    //    string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
+                    //    Body = Body.Replace("%UserName%", Ti.ToTitleCase(model.Name.Trim().ToLower()));
+                    //    Body = Body.Replace("%Email%", To.Address.ToString());
+                    //    Body = Body.Replace("%ActivateCode%", ActivateCode);
+
+                    //    mail.Body = Body;
+
+                    //    SmtpClient smtp = new SmtpClient("mail.turksmart.com");
+                    //    smtp.Send(mail);
+                    //    IsMailSend = true;
+                    //}
+                    //catch (Exception exc)
+                    //{
+                    //    IsMailSend = false;
+                    //    LogSystemMailSend LogModel = new LogSystemMailSend();
+                    //    LogModel.Email = model.Email.ToLower();
+                    //    LogModel.PageName = "Register";
+                    //    //LogModel.ErrorMessage = exc.Message.ToString();
+                    //    LogController.InsertErrorMailSend(LogModel);
+
+                    //}
+
+                    if (IsMailSend == true)
                     {
-                        TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
+                        var membershipDTO = new MembershipDTO();
+                        membershipDTO.Name = Ti.ToTitleCase(model.Name.Trim().ToLower());
+                        membershipDTO.Surname = Ti.ToTitleCase(model.Surname.Trim().ToLower());
+                        membershipDTO.Email = model.Email.ToLower();
+                        membershipDTO.Password = HashPassword(model.Password.Trim());
+                        membershipDTO.Comment = ActivateCode;
+                        membershipDTO.IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+                        membershipDTO.FailedPasswordAttemptCount = 0;
+                        membershipDTO.LastLoginDate = null;
+                        membershipDTO.LastPasswordChangeDate = null;
+                        //NewUser.StatusId = 1;
+                        membershipDTO.StatusId = 0;
+                        //NewUser.RoleId = 0;
+                        membershipDTO.RoleId = 2;
+                        membershipDTO.VerifyOn = null;
+                        membershipDTO.CreatedOn = DateTime.Now;
+                        membershipDTO.UpdatedOn = null;
+                        membershipDTO.UserId = MembershipBusinessLogic.SaveMembership(membershipDTO);
 
-                        string ActivateCode = Guid.NewGuid().ToString();
-
-                        string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
-                        Body = Body.Replace("%UserName%", Ti.ToTitleCase(model.Name.Trim().ToLower()));
-                        Body = Body.Replace("%Email%", model.Email);
-                        Body = Body.Replace("%ActivateCode%", ActivateCode);
-                        var IsMailSend = CommonFunctions.SendEmail(string.Format("{0}@turksmart.com", ActivateCode), ItsyazilimWebResources.lblWelcome, Body);
-
-                        //try
-                        //{
-                        //    MailAddress From = new MailAddress("admın@turksmart.com", "Lts Tübitak");
-                        //    MailAddress To = new MailAddress(model.Email.ToLower());
-
-                        //    MailMessage mail = new MailMessage(From, To);
-                        //    mail.Subject = "Hoş Geldiniz";
-                        //    mail.IsBodyHtml = true;
-
-                        //    string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
-                        //    Body = Body.Replace("%UserName%", Ti.ToTitleCase(model.Name.Trim().ToLower()));
-                        //    Body = Body.Replace("%Email%", To.Address.ToString());
-                        //    Body = Body.Replace("%ActivateCode%", ActivateCode);
-
-                        //    mail.Body = Body;
-
-                        //    SmtpClient smtp = new SmtpClient("mail.turksmart.com");
-                        //    smtp.Send(mail);
-                        //    IsMailSend = true;
-                        //}
-                        //catch (Exception exc)
-                        //{
-                        //    IsMailSend = false;
-                        //    LogSystemMailSend LogModel = new LogSystemMailSend();
-                        //    LogModel.Email = model.Email.ToLower();
-                        //    LogModel.PageName = "Register";
-                        //    //LogModel.ErrorMessage = exc.Message.ToString();
-                        //    LogController.InsertErrorMailSend(LogModel);
-
-                        //}
-
-                        if (IsMailSend == true)
-                        {
-                            var NewUser = db.Membership.Create();
-                            NewUser.Name = Ti.ToTitleCase(model.Name.Trim().ToLower());
-                            NewUser.Surname = Ti.ToTitleCase(model.Surname.Trim().ToLower());
-                            NewUser.Email = model.Email.ToLower();
-                            NewUser.Password = HashPassword(model.Password.Trim());
-                            NewUser.Comment = ActivateCode;
-                            NewUser.IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
-                            NewUser.FailedPasswordAttemptCount = 0;
-                            NewUser.LastLoginDate = null;
-                            NewUser.LastPasswordChangeDate = null;
-                            //NewUser.StatusId = 1;
-                            NewUser.StatusId = 0;
-                            //NewUser.RoleId = 0;
-                            NewUser.RoleId = 2;
-                            NewUser.VerifyOn = null;
-                            NewUser.CreatedOn = DateTime.Now;
-                            NewUser.UpdatedOn = null;
-                            db.Membership.Add(NewUser);
-                            db.SaveChanges();
-
-                            string newUserAdminMailBody = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewUserBody").ToString();
-                            newUserAdminMailBody = newUserAdminMailBody.Replace("%Name%", NewUser.Name);
-                            newUserAdminMailBody = newUserAdminMailBody.Replace("%Surname%", NewUser.Surname);
-                            newUserAdminMailBody = newUserAdminMailBody.Replace("%Email%", NewUser.Email);
-                            newUserAdminMailBody = newUserAdminMailBody.Replace("%IP%", NewUser.IP);
-                            newUserAdminMailBody = newUserAdminMailBody.Replace("%CreatedOn%", NewUser.CreatedOn.ToString());
-                            CommonFunctions.SendEmail(CommonFunctions.WebAdminMailAccount, ItsyazilimWebResources.lblNewUserRegistration, newUserAdminMailBody);
-                            //ManageMailingController.SendMailForNewUser(NewUser);
-                            TempData["Status"] = "OK";
-                        }
-                        else
-                        {
-                            TempData["StatusId"] = "3";
-                            TempData["Status"] = "Error";
-                            LogSystemMailSend LogModel = new LogSystemMailSend();
-                            LogModel.Email = model.Email.ToLower();
-                            LogModel.PageName = "Register";
-                            LogModel.ErrorMessage = ItsyazilimWebResources.lblErrorInMail;
-                            LogController.InsertErrorMailSend(LogModel);
-                        }
+                        string newUserAdminMailBody = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewUserBody").ToString();
+                        newUserAdminMailBody = newUserAdminMailBody.Replace("%Name%", membershipDTO.Name);
+                        newUserAdminMailBody = newUserAdminMailBody.Replace("%Surname%", membershipDTO.Surname);
+                        newUserAdminMailBody = newUserAdminMailBody.Replace("%Email%", membershipDTO.Email);
+                        newUserAdminMailBody = newUserAdminMailBody.Replace("%IP%", membershipDTO.IP);
+                        newUserAdminMailBody = newUserAdminMailBody.Replace("%CreatedOn%", membershipDTO.CreatedOn.ToString());
+                        CommonFunctions.SendEmail(CommonFunctions.WebAdminMailAccount, ItsyazilimWebResources.lblNewUserRegistration, newUserAdminMailBody);
+                        TempData["Status"] = "OK";
                     }
                     else
                     {
-                        TempData["StatusId"] = user.StatusId;
+                        TempData["StatusId"] = "3";
                         TempData["Status"] = "Error";
+                        LogController.InsertErrorMailSend(model.Email.ToLower(), "Register", ItsyazilimWebResources.lblErrorInMail);
                     }
-                    TempData["Email"] = model.Email.ToLower();
-                    return RedirectToAction("RegisterResult", "Account");
                 }
-
+                else
+                {
+                    TempData["StatusId"] = memberDetails.StatusId;
+                    TempData["Status"] = "Error";
+                }
+                TempData["Email"] = model.Email.ToLower();
+                return RedirectToAction("RegisterResult", "Account");
             }
             return View();
         }
@@ -215,52 +206,45 @@ namespace Itsyazilim.Web.UI.Controllers
                             {
                                 Email = Request.QueryString["e"].ToString().ToLower();
                                 ActivateCode = Request.QueryString["ActivateCode"].ToString().ToLower();
-                                using (var db = new LtsWebEntities())
+                                if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(ActivateCode))
                                 {
-                                    var user = db.Membership.FirstOrDefault(u => u.Email == Email);
-                                    if (user == null)
+                                    var memberDetails = MembershipBusinessLogic.GetMembershipDetails(Email);
+                                    if (memberDetails == null)
                                     {
                                         TempData["StatusId"] = "3";
                                         TempData["Status"] = "Error";
 
                                     }
-                                    else if (user.StatusId != 1)
+                                    else if (memberDetails.StatusId != 1)
                                     {
-                                        TempData["StatusId"] = user.StatusId;
+                                        TempData["StatusId"] = memberDetails.StatusId;
                                         TempData["Status"] = "Error";
                                     }
 
                                     else
                                     {
-                                        var CheckCode = db.Membership.Where(i => i.Email == Email && i.Comment == ActivateCode).FirstOrDefault();
-
-                                        if (CheckCode == null)
+                                        if (string.Compare(memberDetails.Comment, ActivateCode, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                        {
+                                            FormsAuthentication.SetAuthCookie(Email, false);
+                                            memberDetails.StatusId = 0;
+                                            memberDetails.RoleId = 2;
+                                            memberDetails.Comment = "";
+                                            memberDetails.VerifyOn = DateTime.Now;
+                                            memberDetails.UpdatedOn = DateTime.Now;
+                                            memberDetails.LastLoginDate = DateTime.Now;
+                                            MembershipBusinessLogic.SaveMembership(memberDetails);
+                                            return RedirectToAction("Index", "Manage");
+                                        }
+                                        else
                                         {
                                             TempData["StatusId"] = "1";
                                             TempData["Status"] = "Error";
                                         }
-                                        else
-                                        {
-                                            FormsAuthentication.SetAuthCookie(Email, false);
-                                            CheckCode.StatusId = 0;
-                                            CheckCode.RoleId = 2;
-                                            CheckCode.Comment = "";
-                                            CheckCode.VerifyOn = DateTime.Now;
-                                            CheckCode.UpdatedOn = DateTime.Now;
-                                            CheckCode.LastLoginDate = DateTime.Now;
-                                            db.SaveChanges();
-                                            return RedirectToAction("Index", "Manage");
-                                        }
                                     }
                                 }
+                                TempData["Email"] = Request.QueryString["e"].ToString().ToLower();
+                                LogController.InsertLogMembershipRegisterCheckActivateCode(Request.QueryString["e"].ToString().ToLower(), Convert.ToByte(TempData["StatusId"]));
                             }
-
-                            TempData["Email"] = Request.QueryString["e"].ToString().ToLower();
-
-                            LogMembershipRegisterCheckCodes LogModel = new LogMembershipRegisterCheckCodes();
-                            LogModel.Email = Request.QueryString["e"].ToString().ToLower();
-                            LogModel.Result = Convert.ToByte(TempData["StatusId"]);
-                            LogController.InsertLogMembershipRegisterCheckActivateCode(LogModel);
                             return View();
                         }
                         else
@@ -274,7 +258,6 @@ namespace Itsyazilim.Web.UI.Controllers
                     }
                 }
             }
-
             return RedirectToAction("../");
         }
 
@@ -324,88 +307,77 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 else
                 {
-                    using (var db = new LtsWebEntities())
+
+                    var memberDetails = MembershipBusinessLogic.GetMembershipDetails(model.Email);
+
+                    if (memberDetails == null)
                     {
-                        var user = db.Membership.FirstOrDefault(u => u.Email == model.Email.ToLower());
-                        if (user == null)
-                        {
-                            TempData["StatusId"] = "3";
-                            TempData["Status"] = "Error";
+                        TempData["StatusId"] = "3";
+                        TempData["Status"] = "Error";
 
-                        }
-                        else if (user.StatusId != 1)
-                        {
-                            TempData["StatusId"] = user.StatusId;
-                            TempData["Status"] = "Error";
-                        }
+                    }
+                    else if (memberDetails.StatusId != 1)
+                    {
+                        TempData["StatusId"] = memberDetails.StatusId;
+                        TempData["Status"] = "Error";
+                    }
 
-                        else
+                    else
+                    {
+                        DateTime earliestDate = DateTime.Now.AddMinutes(-59);
+                        var LogReSendCode = MembershipBusinessLogic.GetLogMembershipRegisterReSendCode(model.Email, earliestDate);
+                        if (LogReSendCode == null)
                         {
-                            DateTime earliestDate = DateTime.Now.AddMinutes(-59);
-                            var LogReSendCode = db.LogMembershipRegisterReSendCodes.Where(i => i.Email == model.Email.ToLower() && i.CreatedOn > earliestDate && i.Result == 1).FirstOrDefault();
+                            TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
 
-                            if (LogReSendCode == null)
+                            bool IsMailSend;
+                            try
                             {
-                                TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
+                                MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
+                                MailAddress To = new MailAddress(model.Email.ToLower());
 
-                                bool IsMailSend;
-                                try
-                                {
-                                    MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
-                                    MailAddress To = new MailAddress(model.Email.ToLower());
+                                MailMessage mail = new MailMessage(From, To);
+                                mail.Subject = ItsyazilimWebResources.lblWelcome;
+                                mail.IsBodyHtml = true;
 
-                                    MailMessage mail = new MailMessage(From, To);
-                                    mail.Subject = ItsyazilimWebResources.lblWelcome;
-                                    mail.IsBodyHtml = true;
+                                string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
+                                Body = Body.Replace("%UserName%", memberDetails.Name);
+                                Body = Body.Replace("%Email%", To.Address.ToString());
+                                Body = Body.Replace("%ActivateCode%", memberDetails.Comment);
 
-                                    string Body = HttpContext.GetGlobalResourceObject("Email", "RegisterBody").ToString();
-                                    Body = Body.Replace("%UserName%", user.Name);
-                                    Body = Body.Replace("%Email%", To.Address.ToString());
-                                    Body = Body.Replace("%ActivateCode%", user.Comment);
+                                mail.Body = Body;
 
-                                    mail.Body = Body;
+                                SmtpClient smtp = new SmtpClient("mail.turksmart.com");
+                                smtp.Send(mail);
+                                IsMailSend = true;
+                            }
+                            catch (Exception exc)
+                            {
+                                IsMailSend = false;
+                                LogController.InsertErrorMailSend(model.Email.ToLower(), "RegisterReSendActivateCode", exc.Message.ToString());
+                            }
 
-                                    SmtpClient smtp = new SmtpClient("mail.turksmart.com");
-                                    smtp.Send(mail);
-                                    IsMailSend = true;
-                                }
-                                catch (Exception exc)
-                                {
-                                    IsMailSend = false;
-                                    LogSystemMailSend LogMailModel = new LogSystemMailSend();
-                                    LogMailModel.Email = model.Email.ToLower();
-                                    LogMailModel.PageName = "RegisterReSendActivateCode";
-                                    LogMailModel.ErrorMessage = exc.Message.ToString();
-                                    LogController.InsertErrorMailSend(LogMailModel);
-                                }
-
-                                if (IsMailSend == true)
-                                {
-                                    TempData["StatusId"] = "1";
-                                    TempData["Status"] = "OK";
-                                }
-                                else
-                                {
-                                    TempData["StatusId"] = "254";
-                                    TempData["Status"] = "Error";
-                                }
-
+                            if (IsMailSend == true)
+                            {
+                                TempData["StatusId"] = "1";
+                                TempData["Status"] = "OK";
                             }
                             else
                             {
-                                TempData["StatusId"] = "4";
-                                TempData["StatusLastSendedTime"] = (DateTime.Now - LogReSendCode.CreatedOn).Minutes + 1;
+                                TempData["StatusId"] = "254";
                                 TempData["Status"] = "Error";
                             }
+
+                        }
+                        else
+                        {
+                            TempData["StatusId"] = "4";
+                            TempData["StatusLastSendedTime"] = (DateTime.Now - LogReSendCode.CreatedOn).Minutes + 1;
+                            TempData["Status"] = "Error";
                         }
                     }
-
                     TempData["Email"] = model.Email.ToLower();
-
-                    LogMembershipRegisterReSendCodes LogModel = new LogMembershipRegisterReSendCodes();
-                    LogModel.Email = model.Email.ToLower();
-                    LogModel.Result = Convert.ToByte(TempData["StatusId"]);
-                    LogController.InsertLogMembershipRegisterReSendActivateCode(LogModel);
+                    LogController.InsertLogMembershipRegisterReSendActivateCode(model.Email.ToLower(), Convert.ToByte(TempData["StatusId"]));
                 }
                 return RedirectToAction("RegisterReSendActivateCodeResult", "Account");
 
@@ -516,11 +488,7 @@ namespace Itsyazilim.Web.UI.Controllers
                                 catch (Exception exc)
                                 {
                                     IsMailSend = false;
-                                    LogSystemMailSend LogMailModel = new LogSystemMailSend();
-                                    LogMailModel.Email = model.Email.ToLower();
-                                    LogMailModel.PageName = "PasswwordRenewal";
-                                    LogMailModel.ErrorMessage = exc.Message.ToString();
-                                    LogController.InsertErrorMailSend(LogMailModel);
+                                    LogController.InsertErrorMailSend(model.Email.ToLower(), "PasswwordRenewal", exc.Message.ToString());
                                 }
 
                                 if (IsMailSend == true)
@@ -554,11 +522,7 @@ namespace Itsyazilim.Web.UI.Controllers
                     }
 
                     TempData["Email"] = model.Email.ToLower();
-
-                    LogMembershipSendPasswordRenewalCodes LogModel = new LogMembershipSendPasswordRenewalCodes();
-                    LogModel.Email = model.Email.ToLower();
-                    LogModel.Result = Convert.ToByte(TempData["StatusId"]);
-                    LogController.InsertLogMembershipSendPasswordRenewal(LogModel);
+                    LogController.InsertLogMembershipSendPasswordRenewal(model.Email.ToLower(), Convert.ToByte(TempData["StatusId"]));
                 }
                 return RedirectToAction("PasswordRenewalResult", "Account");
             }
@@ -691,11 +655,7 @@ namespace Itsyazilim.Web.UI.Controllers
                             }
 
                             TempData["Email"] = Request.QueryString["e"].ToString().ToLower();
-
-                            LogMembershipCheckPasswordRenewalCodes LogModel = new LogMembershipCheckPasswordRenewalCodes();
-                            LogModel.Email = Request.QueryString["e"].ToString().ToLower();
-                            LogModel.Result = Convert.ToByte(TempData["StatusId"]);
-                            LogController.InsertLogMembershipCheckPasswordRenewal(LogModel);
+                            LogController.InsertLogMembershipCheckPasswordRenewal(Request.QueryString["e"].ToString().ToLower(), Convert.ToByte(TempData["StatusId"]));
                             if (TempData["StatusId"].ToString() == "0") return RedirectToAction("PasswordRenewalChange");
                             else return View();
                         }
@@ -818,7 +778,7 @@ namespace Itsyazilim.Web.UI.Controllers
 
                             using (var db = new LtsWebEntities())
                             {
-                                var user = MembershipBusinessLogic.GetMembershipDetails(model.Email) ;
+                                var user = MembershipBusinessLogic.GetMembershipDetails(model.Email);
                                 if (user == null)
                                 {
                                     TempData["StatusId"] = "3";
@@ -838,9 +798,9 @@ namespace Itsyazilim.Web.UI.Controllers
                                 }
                                 else
                                 {
-                                    user.LastLoginDate = DateTime.Now;
-                                    user.UpdatedOn = DateTime.Now;
-                                    db.SaveChanges();
+                                    user.LastLoginDate = System.DateTime.Now;
+                                    user.UpdatedOn = System.DateTime.Now;
+                                    MembershipBusinessLogic.SaveMembership(user);
                                     FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
 
                                     Session["LoggedUserId"] = user.UserId.ToString();
@@ -854,10 +814,7 @@ namespace Itsyazilim.Web.UI.Controllers
                             }
 
                             TempData["Email"] = model.Email.ToString();
-                            LogMembershipLogins LogModel = new LogMembershipLogins();
-                            LogModel.Email = model.Email;
-                            LogModel.Result = Convert.ToByte(TempData["StatusId"]);
-                            LogController.InsertLogMembershipLogin(LogModel);
+                            LogController.InsertLogMembershipLogin(model.Email, Convert.ToByte(TempData["StatusId"]));
                         }
                     }
                     else

@@ -37,63 +37,95 @@ namespace Itsyazilim.Web.DLL
             }
         }
 
-        ///// <summary>
-        ///// Register user
-        ///// </summary>
-        ///// <returns></returns>
-        //public int Register(tblOrganizationDTO tblOrganizationDTO)
-        //{
-        //    using (var OrderManagementDataContext = new OrderManagementDatabaseEntities())
-        //    {
-        //        var tblOrganization = new tblOrganization();
-        //        if (tblOrganizationDTO.OrganizationId == 0)
-        //        {
-        //            tblOrganization.FirstName = tblOrganizationDTO.FirstName;
-        //            tblOrganization.LastName = tblOrganizationDTO.LastName;
-        //            tblOrganization.MobileNo = tblOrganizationDTO.MobileNo;
-        //            tblOrganization.OrganizationName = tblOrganizationDTO.OrganizationName;
-        //            OrderManagementDataContext.tblOrganizations.Add(tblOrganization);
+        /// <summary>
+        /// Save Membership
+        /// </summary>
+        /// <returns></returns>
+        public int SaveMembership(MembershipDTO membershipDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var memberDetails = new Membership();
+                if (membershipDTO.UserId == 0)
+                {
+                    memberDetails = membershipDTO.ToEntity();
+                    LtsyazilimDatabaseEntities.Memberships.Add(memberDetails);
+                }
+                else
+                {
+                    memberDetails = LtsyazilimDatabaseEntities.Memberships.Where(member => member.UserId == membershipDTO.UserId).FirstOrDefault();
+                    memberDetails = membershipDTO.ToEntity();
+                }
+                LtsyazilimDatabaseEntities.SaveChanges();
+                return memberDetails.UserId;
+            }
+        }
 
-        //            //Adding Default Employees as per organization 
-        //            var tblEmployee = new tblEmployee();
-        //            tblEmployee.FirstName = tblOrganizationDTO.FirstName;
-        //            tblEmployee.LastName = tblOrganizationDTO.LastName;
-        //            tblEmployee.JobTitle = tblOrganizationDTO.JobTitle;
-        //            tblEmployee.MobileNo = tblOrganizationDTO.MobileNo;
-        //            tblEmployee.Password = tblOrganizationDTO.Password;
-        //            tblEmployee.OrganizationId = tblOrganization.OrganizationId;
-        //            tblEmployee.IsPrimary = true;
-        //            tblEmployee.CreationOn = tblOrganizationDTO.CreationOn;
-        //            tblEmployee.IsActive = true;
-        //            tblEmployee.IsDeleted = false;
-        //            OrderManagementDataContext.tblEmployees.Add(tblEmployee);
-        //        }
-        //        else
-        //        {
-        //            tblOrganization = OrderManagementDataContext.tblOrganizations.Find(tblOrganizationDTO.OrganizationId);
-        //            tblOrganization.FirstName = tblOrganizationDTO.FirstName;
-        //            tblOrganization.LastName = tblOrganizationDTO.LastName;
-        //            tblOrganization.MobileNo = tblOrganizationDTO.MobileNo;
-        //            tblOrganization.OrganizationName = tblOrganizationDTO.OrganizationName;
-        //        }
-        //        tblOrganization.CityId = tblOrganizationDTO.CityId;
-        //        tblOrganization.JobTitle = tblOrganizationDTO.JobTitle;
-        //        tblOrganization.Address = tblOrganizationDTO.Address;
-        //        tblOrganization.Latitute = tblOrganizationDTO.Latitute;
-        //        tblOrganization.Logitute = tblOrganizationDTO.Logitute;
-        //        tblOrganization.MapAddress = tblOrganizationDTO.MapAddress;
-        //        tblOrganization.EmailAddress = tblOrganizationDTO.EmailAddress;
-        //        tblOrganization.OrganizationWebsite = tblOrganizationDTO.OrganizationWebsite;
-        //        tblOrganization.CreationOn = tblOrganizationDTO.CreationOn;
-        //        tblOrganization.ModificationOn = tblOrganizationDTO.ModificationOn;
-        //        tblOrganization.IsActive = tblOrganizationDTO.IsActive;
-        //        tblOrganization.IsWorkingStatus = tblOrganizationDTO.IsWorkingStatus;
-        //        tblOrganization.IsWorkingStatusMessge = tblOrganizationDTO.IsWorkingStatusMessge;
+        public void InsertLogMembershipLogin(LogMembershipLoginDTO logMembershipLoginDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogMembershipLogins.Add(logMembershipLoginDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
 
-        //        OrderManagementDataContext.SaveChanges();
-        //        return tblOrganization.OrganizationId;
-        //    }
-        //}
+        public void InsertLogMembershipCheckPasswordRenewal(LogMembershipCheckPasswordRenewalCodeDTO logMembershipCheckPasswordRenewalCodeDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogMembershipCheckPasswordRenewalCodes.Add(logMembershipCheckPasswordRenewalCodeDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
+
+        public void InsertLogMembershipSendPasswordRenewal(LogMembershipSendPasswordRenewalCodeDTO logMembershipSendPasswordRenewalCodeDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogMembershipSendPasswordRenewalCodes.Add(logMembershipSendPasswordRenewalCodeDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
+
+        public void InsertLogMembershipRegisterCheckActivateCode(LogMembershipRegisterCheckCodeDTO logMembershipRegisterCheckCodeDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogMembershipRegisterCheckCodes.Add(logMembershipRegisterCheckCodeDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
+
+        public void InsertLogMembershipRegisterReSendActivateCode(LogMembershipRegisterReSendCodeDTO logMembershipRegisterReSendCodeDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogMembershipRegisterReSendCodes.Add(logMembershipRegisterReSendCodeDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
+
+        public void InsertErrorMailSend(LogSystemMailSendDTO logSystemMailSendDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                LtsyazilimDatabaseEntities.LogSystemMailSends.Add(logSystemMailSendDTO.ToEntity());
+                LtsyazilimDatabaseEntities.SaveChanges();
+            }
+        }
+
+        public LogMembershipRegisterReSendCodeDTO GetLogMembershipRegisterReSendCode(string emailId, DateTime createdOn)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return LtsyazilimDatabaseEntities.LogMembershipRegisterReSendCodes.Where(log => string.Compare(log.Email, emailId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                                                     && log.CreatedOn > createdOn
+                                                                                     && log.Result == 1).FirstOrDefault().ToDTO();
+            }
+        }
+
+
 
         ///// <summary>
         ///// Check is mobile is already exists
