@@ -7,7 +7,7 @@ using Itsyazilim.Web.Database.ORM;
 
 namespace Itsyazilim.Web.DLL
 {
-    public class AccountRepository
+    public class MembershipRepository
     {
         //#region [Declaration]
 
