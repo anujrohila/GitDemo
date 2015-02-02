@@ -81,6 +81,18 @@ namespace Itsyazilim.Web.BLL
             return membershipRepository.GetLogMembershipRegisterReSendCode(emailId, createdOn);
         }
 
+        public static LogMembershipRegisterReSendCodeDTO RemoveAllMembershipPasswordRenewal(string emailId)
+        {
+            var membershipRepository = new MembershipRepository();
+            return membershipRepository.RemoveAllMembershipPasswordRenewal(emailId);
+        }
+
+        public static bool AddMembershipPasswordRenewal(MembershipPasswordRenewalDTO membershipPasswordRenewalDTO)
+        {
+            var membershipRepository = new MembershipRepository();
+            return membershipRepository.AddMembershipPasswordRenewal(membershipPasswordRenewalDTO);
+        }
+
         ///// <summary>
         ///// Register user
         ///// </summary>

@@ -439,88 +439,83 @@ namespace Itsyazilim.Web.UI.Controllers
                 }
                 else
                 {
-                    using (var db = new LtsWebEntities())
+                    var memberDetails = MembershipBusinessLogic.GetMembershipDetails(model.Email);
+                    if (memberDetails == null)
                     {
-                        var user = db.Membership.FirstOrDefault(u => u.Email == model.Email.ToLower());
-                        if (user == null)
-                        {
-                            TempData["StatusId"] = "4";
-                            TempData["Status"] = "Error";
+                        TempData["StatusId"] = "4";
+                        TempData["Status"] = "Error";
 
-                        }
-                        else if (user.StatusId != 0)
-                        {
-                            TempData["StatusId"] = user.StatusId;
-                            TempData["Status"] = "Error";
-                        }
+                    }
+                    else if (memberDetails.StatusId != 0)
+                    {
+                        TempData["StatusId"] = memberDetails.StatusId;
+                        TempData["Status"] = "Error";
+                    }
 
-                        else
-                        {
-                            DateTime earliestDate = DateTime.Now.AddMinutes(-59);
-                            var LastPasswordRenewal = db.MembershipPasswordRenewals.Where(i => i.Email == model.Email.ToLower() && i.CreatedOn > earliestDate).FirstOrDefault();
+                    else
+                    {
+                        DateTime earliestDate = DateTime.Now.AddMinutes(-59);
+                        var LastPasswordRenewal = db.MembershipPasswordRenewals.Where(i => i.Email == model.Email.ToLower() && i.CreatedOn > earliestDate).FirstOrDefault();
 
-                            if (LastPasswordRenewal == null)
+                        if (LastPasswordRenewal == null)
+                        {
+                            TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
+
+                            bool IsMailSend;
+                            string ActivateCode = Guid.NewGuid().ToString();
+                            try
                             {
-                                TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
+                                MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
+                                MailAddress To = new MailAddress(model.Email.ToLower());
 
-                                bool IsMailSend;
-                                string ActivateCode = Guid.NewGuid().ToString();
-                                try
-                                {
-                                    MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
-                                    MailAddress To = new MailAddress(model.Email.ToLower());
+                                MailMessage mail = new MailMessage(From, To);
+                                mail.Subject = ItsyazilimWebResources.lblPasswordReset;
+                                mail.IsBodyHtml = true;
 
-                                    MailMessage mail = new MailMessage(From, To);
-                                    mail.Subject = ItsyazilimWebResources.lblPasswordReset;
-                                    mail.IsBodyHtml = true;
+                                string Body = HttpContext.GetGlobalResourceObject("Email", "PasswordRenewalBody").ToString();
+                                Body = Body.Replace("%UserName%", memberDetails.Name);
+                                Body = Body.Replace("%Email%", To.Address.ToString());
+                                Body = Body.Replace("%ActivateCode%", ActivateCode);
 
-                                    string Body = HttpContext.GetGlobalResourceObject("Email", "PasswordRenewalBody").ToString();
-                                    Body = Body.Replace("%UserName%", user.Name);
-                                    Body = Body.Replace("%Email%", To.Address.ToString());
-                                    Body = Body.Replace("%ActivateCode%", ActivateCode);
+                                mail.Body = Body;
 
-                                    mail.Body = Body;
+                                SmtpClient smtp = new SmtpClient("mail.turksmart.com");
+                                smtp.Send(mail);
+                                IsMailSend = true;
+                            }
+                            catch (Exception exc)
+                            {
+                                IsMailSend = false;
+                                LogController.InsertErrorMailSend(model.Email.ToLower(), "PasswwordRenewal", exc.Message.ToString());
+                            }
 
-                                    SmtpClient smtp = new SmtpClient("mail.turksmart.com");
-                                    smtp.Send(mail);
-                                    IsMailSend = true;
-                                }
-                                catch (Exception exc)
-                                {
-                                    IsMailSend = false;
-                                    LogController.InsertErrorMailSend(model.Email.ToLower(), "PasswwordRenewal", exc.Message.ToString());
-                                }
+                            if (IsMailSend == true)
+                            {
 
-                                if (IsMailSend == true)
-                                {
+                                MembershipBusinessLogic.RemoveAllMembershipPasswordRenewal(model.Email);
+                                var membershipPasswordRenewalDTO = new MembershipPasswordRenewalDTO();
+                                membershipPasswordRenewalDTO.Email = model.Email.ToLower();
+                                membershipPasswordRenewalDTO.ActivateCode = ActivateCode;
+                                membershipPasswordRenewalDTO.IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+                                membershipPasswordRenewalDTO.CreatedOn = DateTime.Now;
+                                MembershipBusinessLogic.AddMembershipPasswordRenewal(membershipPasswordRenewalDTO);
 
-                                    MembershipPasswordRenewals RenewalModel = new MembershipPasswordRenewals();
-                                    db.MembershipPasswordRenewals.RemoveRange(db.MembershipPasswordRenewals.Where(u => u.Email == model.Email.ToLower()));
-                                    RenewalModel.Email = model.Email.ToLower();
-                                    RenewalModel.ActivateCode = ActivateCode;
-                                    RenewalModel.IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
-                                    RenewalModel.CreatedOn = DateTime.Now;
-                                    db.MembershipPasswordRenewals.Add(RenewalModel);
-                                    db.SaveChanges();
-
-                                    TempData["StatusId"] = "0";
-                                    TempData["Status"] = "OK";
-                                }
-                                else
-                                {
-                                    TempData["StatusId"] = "254";
-                                    TempData["Status"] = "Error";
-                                }
+                                TempData["StatusId"] = "0";
+                                TempData["Status"] = "OK";
                             }
                             else
                             {
-                                TempData["StatusId"] = "3";
-                                TempData["StatusLastSendedTime"] = (DateTime.Now - LastPasswordRenewal.CreatedOn).Minutes + 1;
+                                TempData["StatusId"] = "254";
                                 TempData["Status"] = "Error";
                             }
                         }
+                        else
+                        {
+                            TempData["StatusId"] = "3";
+                            TempData["StatusLastSendedTime"] = (DateTime.Now - LastPasswordRenewal.CreatedOn).Minutes + 1;
+                            TempData["Status"] = "Error";
+                        }
                     }
-
                     TempData["Email"] = model.Email.ToLower();
                     LogController.InsertLogMembershipSendPasswordRenewal(model.Email.ToLower(), Convert.ToByte(TempData["StatusId"]));
                 }
