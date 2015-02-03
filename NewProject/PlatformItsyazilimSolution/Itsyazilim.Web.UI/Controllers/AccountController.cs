@@ -455,12 +455,10 @@ namespace Itsyazilim.Web.UI.Controllers
                     else
                     {
                         DateTime earliestDate = DateTime.Now.AddMinutes(-59);
-                        var LastPasswordRenewal = db.MembershipPasswordRenewals.Where(i => i.Email == model.Email.ToLower() && i.CreatedOn > earliestDate).FirstOrDefault();
-
+                        var LastPasswordRenewal = MembershipBusinessLogic.GetMembershipPasswordRenewal(model.Email, earliestDate);
                         if (LastPasswordRenewal == null)
                         {
                             TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
-
                             bool IsMailSend;
                             string ActivateCode = Guid.NewGuid().ToString();
                             try
@@ -771,43 +769,40 @@ namespace Itsyazilim.Web.UI.Controllers
                         {
                             model.Email = model.Email.ToLower();
 
-                            using (var db = new LtsWebEntities())
+
+                            var memberDetails = MembershipBusinessLogic.GetMembershipDetails(model.Email);
+                            if (memberDetails == null)
                             {
-                                var user = MembershipBusinessLogic.GetMembershipDetails(model.Email);
-                                if (user == null)
-                                {
-                                    TempData["StatusId"] = "3";
-                                    TempData["Status"] = "Error";
-                                }
-                                else if (user.StatusId != 0)
-                                {
-                                    TempData["StatusId"] = user.StatusId;
-                                    TempData["Status"] = "Error";
-                                }
-                                else if (user.Password != HashPassword(model.Password))
-                                {
-                                    user.FailedPasswordAttemptCount = user.FailedPasswordAttemptCount + 1;
-                                    db.SaveChanges();
-                                    TempData["StatusId"] = "4";
-                                    TempData["Status"] = "Error";
-                                }
-                                else
-                                {
-                                    user.LastLoginDate = System.DateTime.Now;
-                                    user.UpdatedOn = System.DateTime.Now;
-                                    MembershipBusinessLogic.SaveMembership(user);
-                                    FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
-
-                                    Session["LoggedUserId"] = user.UserId.ToString();
-                                    Session["LoggedUserRoleId"] = user.RoleId.ToString();
-                                    Session["LoggedUserName"] = user.Name.ToString();
-                                    Session["LoggedUserSurnamoe"] = user.Surname.ToString();
-
-                                    if (user.RoleId == 2) return RedirectToAction("Index", "Manage");
-                                    if (user.RoleId == 3) return RedirectToAction("Index", "Administrator");
-                                }
+                                TempData["StatusId"] = "3";
+                                TempData["Status"] = "Error";
                             }
+                            else if (memberDetails.StatusId != 0)
+                            {
+                                TempData["StatusId"] = memberDetails.StatusId;
+                                TempData["Status"] = "Error";
+                            }
+                            else if (memberDetails.Password != HashPassword(model.Password))
+                            {
+                                memberDetails.FailedPasswordAttemptCount = memberDetails.FailedPasswordAttemptCount + 1;
+                                MembershipBusinessLogic.SaveMembership(memberDetails);
+                                TempData["StatusId"] = "4";
+                                TempData["Status"] = "Error";
+                            }
+                            else
+                            {
+                                memberDetails.LastLoginDate = System.DateTime.Now;
+                                memberDetails.UpdatedOn = System.DateTime.Now;
+                                MembershipBusinessLogic.SaveMembership(memberDetails);
+                                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
 
+                                Session["LoggedUserId"] = memberDetails.UserId.ToString();
+                                Session["LoggedUserRoleId"] = memberDetails.RoleId.ToString();
+                                Session["LoggedUserName"] = memberDetails.Name.ToString();
+                                Session["LoggedUserSurnamoe"] = memberDetails.Surname.ToString();
+
+                                if (memberDetails.RoleId == 2) return RedirectToAction("Index", "Manage");
+                                if (memberDetails.RoleId == 3) return RedirectToAction("Index", "Administrator");
+                            }
                             TempData["Email"] = model.Email.ToString();
                             LogController.InsertLogMembershipLogin(model.Email, Convert.ToByte(TempData["StatusId"]));
                         }

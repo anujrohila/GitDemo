@@ -125,12 +125,25 @@ namespace Itsyazilim.Web.DLL
             }
         }
 
-        public LogMembershipRegisterReSendCodeDTO RemoveAllMembershipPasswordRenewal(string emailId)
+        public MembershipPasswordRenewalDTO GetMembershipPasswordRenewal(string emailId, DateTime createdOn)
         {
             using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
             {
-                var result = LtsyazilimDatabaseEntities.MembershipPasswordRenewals.Where(renewal =>  string.Compare(renewal.Email, emailId, StringComparison.CurrentCultureIgnoreCase) == 0));
+                return LtsyazilimDatabaseEntities.MembershipPasswordRenewals.Where(log => string.Compare(log.Email, emailId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                                                     && log.CreatedOn > createdOn
+                                                                                   ).FirstOrDefault().ToDTO();
+            }
+        }
+
+        
+
+        public bool RemoveAllMembershipPasswordRenewal(string emailId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var result = LtsyazilimDatabaseEntities.MembershipPasswordRenewals.Where(renewal => string.Compare(renewal.Email, emailId, StringComparison.CurrentCultureIgnoreCase) == 0);
                 LtsyazilimDatabaseEntities.MembershipPasswordRenewals.RemoveRange(result);
+                return true;
             }
         }
 
