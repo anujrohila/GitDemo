@@ -18,8 +18,6 @@ namespace Itsyazilim.Web.UI.Controllers
 {
     public partial class DataController : Controller
     {
-        Itsyazilim.Web.UI.Models.LtsWebEntities db = new Itsyazilim.Web.UI.Models.LtsWebEntities();
-        // GET: Data
         public ActionResult GetCounties()
         {
             ViewData["Counties"] = MasterBusinessLogic.GetAllCountry();
@@ -28,6 +26,7 @@ namespace Itsyazilim.Web.UI.Controllers
 
         public ActionResult TreeListCountyList()
         {
+            Itsyazilim.Web.UI.Models.LtsWebEntities db = new Itsyazilim.Web.UI.Models.LtsWebEntities();
             var model = db.ManageSelectCountyListForTreeView();
             return PartialView("_TreeListCountyList", model);
         }
