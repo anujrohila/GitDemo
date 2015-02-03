@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\Administrator\AdministratorBusinessLogic.cs" />
-    <Compile Include="BusinessLogic\Administrator\MembershipBusinessLogic.cs" />
+    <Compile Include="BusinessLogic\AdministratorBusinessLogic.cs" />
+    <Compile Include="BusinessLogic\MembershipBusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\LogGenerator.cs" />
   </ItemGroup>
