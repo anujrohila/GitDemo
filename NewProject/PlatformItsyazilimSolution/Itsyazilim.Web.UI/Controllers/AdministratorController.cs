@@ -44,7 +44,7 @@ namespace Itsyazilim.Web.UI.Controllers
         {
             //if (!CheckLogin()) return RedirectToAction("Index", "Manage");
             //return View();
-            var memberDetails = MembershipBusinessLogic.GetMembershipDetails(User.Identity.Name);
+            var memberDetails = MembershipBusinessLogic.GetMembershipDetails("anuj.rohila94@gmail.com");
             Session["LoggedUserId"] = memberDetails.UserId.ToString();
             Session["LoggedUserRoleId"] = "3";
             Session["LoggedUserName"] = memberDetails.Name.ToString();

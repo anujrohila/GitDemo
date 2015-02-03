@@ -55,37 +55,5 @@ namespace Itsyazilim.Web.Database.ORM
         public DbSet<OrderRoute> OrderRoutes { get; set; }
         public DbSet<Order> Orders { get; set; }
     
-        public virtual ObjectResult<AdministratorSelectFirmDetails_Result> AdministratorSelectFirmDetails(Nullable<int> firmId)
-        {
-            var firmIdParameter = firmId.HasValue ?
-                new ObjectParameter("FirmId", firmId) :
-                new ObjectParameter("FirmId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdministratorSelectFirmDetails_Result>("AdministratorSelectFirmDetails", firmIdParameter);
-        }
-    
-        public virtual ObjectResult<AdministratorSelectFirms_Result> AdministratorSelectFirms()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdministratorSelectFirms_Result>("AdministratorSelectFirms");
-        }
-    
-        public virtual ObjectResult<AdministratorSelectUnApprovedFirmDetails_Result> AdministratorSelectUnApprovedFirmDetails(Nullable<int> firmId)
-        {
-            var firmIdParameter = firmId.HasValue ?
-                new ObjectParameter("FirmId", firmId) :
-                new ObjectParameter("FirmId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdministratorSelectUnApprovedFirmDetails_Result>("AdministratorSelectUnApprovedFirmDetails", firmIdParameter);
-        }
-    
-        public virtual ObjectResult<AdministratorSelectUnapprovedFirms_Result> AdministratorSelectUnapprovedFirms()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdministratorSelectUnapprovedFirms_Result>("AdministratorSelectUnapprovedFirms");
-        }
-    
-        public virtual ObjectResult<ManageSelectCountyListForTreeView_Result> ManageSelectCountyListForTreeView()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ManageSelectCountyListForTreeView_Result>("ManageSelectCountyListForTreeView");
-        }
     }
 }
