@@ -8,13 +8,14 @@ using System.Globalization;
 using Itsyazilim.Web.UI.Models;
 using System.Web.Security;
 using Itsyazilim.Web.Domain.Resources;
+using Itsyazilim.Web.BLL;
+using Itsyazilim.Web.Domain;
+
 namespace Itsyazilim.Web.UI.Controllers
 {
     public class AdministratorController : Controller
     {
-        Itsyazilim.Web.UI.Models.LtsWebEntities db = new Itsyazilim.Web.UI.Models.LtsWebEntities();
         public TextInfo Ti = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.ToString(), false).TextInfo;
-
         public bool CheckLogin()
         {
             if (Session["LoggedUserId"] == null) { SetLogin(); }
@@ -30,15 +31,11 @@ namespace Itsyazilim.Web.UI.Controllers
             // 3 Sistem kullanıcısı
             if (Session["LoggedUserId"] == null)
             {
-                using (var db = new LtsWebEntities())
-                {
-                    var user = db.Membership.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
-
-                    Session["LoggedUserId"] = user.UserId.ToString();
-                    Session["LoggedUserRoleId"] = user.RoleId.ToString();
-                    Session["LoggedUserName"] = user.Name.ToString();
-                    Session["LoggedUserSurname"] = user.Surname.ToString();
-                }
+                var memberDetails = MembershipBusinessLogic.GetMembershipDetails(User.Identity.Name);
+                Session["LoggedUserId"] = memberDetails.UserId.ToString();
+                Session["LoggedUserRoleId"] = memberDetails.RoleId.ToString();
+                Session["LoggedUserName"] = memberDetails.Name.ToString();
+                Session["LoggedUserSurname"] = memberDetails.Surname.ToString();
             }
         }
 
@@ -47,15 +44,12 @@ namespace Itsyazilim.Web.UI.Controllers
         {
             //if (!CheckLogin()) return RedirectToAction("Index", "Manage");
             //return View();
-            using (var db = new LtsWebEntities())
-            {
-                var user = db.Membership.FirstOrDefault(u => u.Email == "anuj.rohila94@gmail.com");
-                Session["LoggedUserId"] = user.UserId.ToString();
-                Session["LoggedUserRoleId"] = "3";
-                Session["LoggedUserName"] = user.Name.ToString();
-                Session["LoggedUserSurname"] = user.Surname.ToString();
-                FormsAuthentication.SetAuthCookie(user.Email, true);
-            }
+            var memberDetails = MembershipBusinessLogic.GetMembershipDetails(User.Identity.Name);
+            Session["LoggedUserId"] = memberDetails.UserId.ToString();
+            Session["LoggedUserRoleId"] = "3";
+            Session["LoggedUserName"] = memberDetails.Name.ToString();
+            Session["LoggedUserSurname"] = memberDetails.Surname.ToString();
+            FormsAuthentication.SetAuthCookie(memberDetails.Email, true);
             return View();
         }
 
@@ -63,14 +57,14 @@ namespace Itsyazilim.Web.UI.Controllers
         {
             if (!CheckLogin()) return RedirectToAction("Index", "Manage");
 
-            var model = db.AdministratorSelectFirms();
+            var model = AdministratorBusinessLogic.GetAllFirms();
             return View(model);
         }
 
         [ValidateInput(false)]
         public ActionResult GridViewFirmList()
         {
-            var model = db.AdministratorSelectFirms();
+            var model = AdministratorBusinessLogic.GetAllFirms();
             return PartialView("_GridViewFirmList", model.ToList());
         }
 
@@ -80,10 +74,10 @@ namespace Itsyazilim.Web.UI.Controllers
 
             if (id >= 0)
             {
-                IEnumerable<AdministratorSelectFirmDetails_Result> model = db.AdministratorSelectFirmDetails(id).ToList();
-                if (model.Any())
+                var firmDetails = AdministratorBusinessLogic.GetFirm(id);
+                if (firmDetails != null)
                 {
-                    return View(model);
+                    return View(firmDetails);
                 }
             }
             return RedirectToAction("FirmList");
@@ -98,7 +92,7 @@ namespace Itsyazilim.Web.UI.Controllers
             //                           where firm.IsApproved == false
             //                           select new IEnumerable<Firm> { firm.FirmName }).ToList();
 
-            var model = db.AdministratorSelectUnapprovedFirms();
+            var unApprovedFirmList = AdministratorBusinessLogic.GetAllStatusBasedFirmList(false);
 
             //IEnumerable<Firm> model = db.Firms.Where(f => f.IsApproved == false).Join(db.Memberships, user => user.)
             //.Where(cm => cm.DeviceTypeId == deviceTypeId)
@@ -110,13 +104,13 @@ namespace Itsyazilim.Web.UI.Controllers
             //     Text = (cg.Name).Trim(),
             //     Value = cg.Id.ToString()
             // }).ToList();
-            return View(model);
+            return View(unApprovedFirmList);
         }
 
         [ValidateInput(false)]
         public ActionResult GridViewUnApprovedFirmList()
         {
-            var model = db.AdministratorSelectUnapprovedFirms();
+            var unApprovedFirmList = AdministratorBusinessLogic.GetAllStatusBasedFirmList(false);
             //var model = (from firm in db.Firms
             //             select new
             //             {
@@ -124,7 +118,7 @@ namespace Itsyazilim.Web.UI.Controllers
             //                 FirmName = firm.FirmName,
             //                 IsApproved = firm.IsApproved
             //             });
-            return PartialView("_GridViewUnApprovedFirmList", model.ToList());
+            return PartialView("_GridViewUnApprovedFirmList", unApprovedFirmList);
         }
 
 
@@ -135,10 +129,10 @@ namespace Itsyazilim.Web.UI.Controllers
 
             if (id >= 0)
             {
-                IEnumerable<AdministratorSelectUnApprovedFirmDetails_Result> model = db.AdministratorSelectUnApprovedFirmDetails(id).ToList();
-                if (model.Any())
+                var firmDetails = AdministratorBusinessLogic.GetFirm(id ?? 0);
+                if (firmDetails != null)
                 {
-                    return View(model);
+                    return View(firmDetails);
                 }
             }
             return RedirectToAction("UnApprovedFirmList");
@@ -157,20 +151,21 @@ namespace Itsyazilim.Web.UI.Controllers
             if (id >= 0)
             {
                 var LoggedUserId = Convert.ToInt32(Session["LoggedUserId"]);
-                var firm = db.Firms.Where(r => r.FirmId == id && r.IsApproved == false).FirstOrDefault();
+                var firm = AdministratorBusinessLogic.GetFirm(id ?? 0);
                 if (firm != null)
                 {
                     firm.IsApproved = true;
-                    firm.ApprovedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    firm.ApprovedBy = LoggedUserId;
                     firm.ApprovedOn = DateTime.Now;
 
-                    var map = db.MapFirmToUser.Where(r => r.FirmId == LoggedUserId).FirstOrDefault();
-                    map.IsActive = true;
+                    // IsActive map to firm
+                    var mapToFirm = AdministratorBusinessLogic.GetMapToFirm(id ?? 0);
+                    mapToFirm.IsActive = true;
+                    AdministratorBusinessLogic.SaveMapToFirm(mapToFirm);
 
-                    db.SaveChanges();
-
-                    var user = db.Membership.Where(r => r.UserId == firm.CreatedBy).FirstOrDefault();
-                    CommunicationController.SendSMSToUserForFirmAccepted(user.Name + " " + user.Surname, firm.MobilePhone.ToString());
+                    // get Memeber details
+                    var memberDetails = MembershipBusinessLogic.GetMembershipDetails(LoggedUserId);
+                    CommunicationController.SendSMSToUserForFirmAccepted(memberDetails.Name + " " + memberDetails.Surname, firm.MobilePhone.ToString());
                 }
             }
             return RedirectToAction("UnApprovedFirmList");
@@ -189,27 +184,23 @@ namespace Itsyazilim.Web.UI.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewDefVehicleTypes()
         {
-            var model = db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName);
-            return PartialView("_GridViewDefVehicleTypes", model.ToList());
+            var vehicleTypesList = AdministratorBusinessLogic.GetAllVehicleType().Where(vehicleType => vehicleType.IsDeleted == false);
+            return PartialView("_GridViewDefVehicleTypes", vehicleTypesList);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefVehicleTypesAddNew(DefVehicleTypes item)
+        public ActionResult GridViewDefVehicleTypesAddNew(DefVehicleTypeDTO defVehicleTypeDTO)
         {
-            var model = db.DefVehicleTypes;
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    item.VehicleTypeName = Ti.ToTitleCase(item.VehicleTypeName.Trim().ToLower());
-                    item.VehicleVolume = Math.Round(Convert.ToDecimal(item.VehicleWidth * item.VehicleHeight * item.VehicleLength), 2);
-                    item.VehicleDesi = Convert.ToInt32(item.VehicleVolume * 1000 / 3);
-                    item.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                    item.CreatedOn = DateTime.Now;
-
-                    model.Add(item);
-                    db.SaveChanges();
+                    defVehicleTypeDTO.VehicleTypeName = Ti.ToTitleCase(defVehicleTypeDTO.VehicleTypeName.Trim().ToLower());
+                    defVehicleTypeDTO.VehicleVolume = Math.Round(Convert.ToDecimal(defVehicleTypeDTO.VehicleWidth * defVehicleTypeDTO.VehicleHeight * defVehicleTypeDTO.VehicleLength), 2);
+                    defVehicleTypeDTO.VehicleDesi = Convert.ToInt32(defVehicleTypeDTO.VehicleVolume * 1000 / 3);
+                    defVehicleTypeDTO.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    defVehicleTypeDTO.CreatedOn = DateTime.Now;
+                    AdministratorBusinessLogic.SaveVehicleType(defVehicleTypeDTO);
                 }
                 catch
                 {
@@ -218,30 +209,28 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
+            var vehicleTypesList = AdministratorBusinessLogic.GetAllVehicleType().Where(vehicleType => vehicleType.IsDeleted == false);
+            return PartialView("_GridViewDefVehicleTypes", vehicleTypesList);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefVehicleTypesUpdate(DefVehicleTypes item)
+        public ActionResult GridViewDefVehicleTypesUpdate(DefVehicleTypeDTO defVehicleTypeDTO)
         {
-            var model = db.DefVehicleTypes;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.VehicleTypeId == item.VehicleTypeId);
-                    if (modelItem != null)
+                    var vehicleTypeDetails = AdministratorBusinessLogic.GetVehicleType(defVehicleTypeDTO.VehicleTypeId);
+                    if (vehicleTypeDetails != null)
                     {
-                        modelItem.VehicleTypeName = Ti.ToTitleCase(item.VehicleTypeName.Trim().ToLower());
-                        modelItem.VehicleVolume = Math.Round(Convert.ToDecimal(item.VehicleWidth * item.VehicleHeight * item.VehicleLength), 2);
-                        modelItem.VehicleDesi = Convert.ToInt32(Convert.ToDecimal(Convert.ToDecimal(item.VehicleWidth * item.VehicleHeight * item.VehicleLength) * 1000 / 3));
-                        modelItem.VehicleHeight = item.VehicleHeight;
-                        modelItem.VehicleLength = item.VehicleLength;
-                        modelItem.VehicleWeight = item.VehicleWeight;
-                        modelItem.VehicleWidth = item.VehicleWidth;
+                        vehicleTypeDetails.VehicleTypeName = Ti.ToTitleCase(defVehicleTypeDTO.VehicleTypeName.Trim().ToLower());
+                        vehicleTypeDetails.VehicleVolume = Math.Round(Convert.ToDecimal(defVehicleTypeDTO.VehicleWidth * defVehicleTypeDTO.VehicleHeight * defVehicleTypeDTO.VehicleLength), 2);
+                        vehicleTypeDetails.VehicleDesi = Convert.ToInt32(Convert.ToDecimal(Convert.ToDecimal(defVehicleTypeDTO.VehicleWidth * defVehicleTypeDTO.VehicleHeight * defVehicleTypeDTO.VehicleLength) * 1000 / 3));
+                        vehicleTypeDetails.VehicleHeight = defVehicleTypeDTO.VehicleHeight;
+                        vehicleTypeDetails.VehicleLength = defVehicleTypeDTO.VehicleLength;
+                        vehicleTypeDetails.VehicleWeight = defVehicleTypeDTO.VehicleWeight;
+                        vehicleTypeDetails.VehicleWidth = defVehicleTypeDTO.VehicleWidth;
 
-                        db.DefVehicleTypes.Attach(modelItem);
-                        db.Entry(modelItem).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        AdministratorBusinessLogic.SaveVehicleType(vehicleTypeDetails);
                     }
                 }
                 catch
@@ -251,24 +240,24 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
+            var vehicleTypesList = AdministratorBusinessLogic.GetAllVehicleType().Where(vehicleType => vehicleType.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList();
+            return PartialView("_GridViewDefVehicleTypes", vehicleTypesList);
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefVehicleTypesDelete(System.Byte VehicleTypeId)
         {
-            var model = db.DefVehicleTypes;
             if (VehicleTypeId != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.VehicleTypeId == VehicleTypeId && it.IsDeleted == false);
-                    if (item != null)
+                    var vehicleTypeDetails = AdministratorBusinessLogic.GetVehicleType(VehicleTypeId);
+                    if (vehicleTypeDetails != null)
                     {
-                        item.IsDeleted = true;
-                        item.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                        item.DeletedOn = DateTime.Now;
-                        db.SaveChanges();
+                        vehicleTypeDetails.IsDeleted = true;
+                        vehicleTypeDetails.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                        vehicleTypeDetails.DeletedOn = DateTime.Now;
+                        AdministratorBusinessLogic.SaveVehicleType(vehicleTypeDetails);
                     }
                 }
                 catch
@@ -276,7 +265,8 @@ namespace Itsyazilim.Web.UI.Controllers
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
-            return PartialView("_GridViewDefVehicleTypes", db.DefVehicleTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList());
+            var vehicleTypesList = AdministratorBusinessLogic.GetAllVehicleType().Where(vehicleType => vehicleType.IsDeleted == false).OrderBy(r => r.VehicleTypeName).ToList();
+            return PartialView("_GridViewDefVehicleTypes", vehicleTypesList);
         }
 
 
@@ -290,24 +280,22 @@ namespace Itsyazilim.Web.UI.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewDefProductPackages()
         {
-            var model = db.DefProductPackages.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName);
-            return PartialView("_GridViewDefProductPackages", model.ToList());
+            var getAllProductPackageResult = AdministratorBusinessLogic.GetAllProductPackage().Where(productPackage => productPackage.IsDeleted == false)
+                                                                         .OrderBy(r => r.ProductPackageName);
+            return PartialView("_GridViewDefProductPackages", getAllProductPackageResult);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductPackagesAddNew(DefProductPackages item)
+        public ActionResult GridViewDefProductPackagesAddNew(DefProductPackageDTO defProductPackageDTO)
         {
-            var model = db.DefProductPackages;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    item.ProductPackageName = Ti.ToTitleCase(item.ProductPackageName.Trim().ToLower());
-                    item.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                    item.CreatedOn = DateTime.Now;
-
-                    model.Add(item);
-                    db.SaveChanges();
+                    defProductPackageDTO.ProductPackageName = Ti.ToTitleCase(defProductPackageDTO.ProductPackageName.Trim().ToLower());
+                    defProductPackageDTO.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    defProductPackageDTO.CreatedOn = DateTime.Now;
+                    AdministratorBusinessLogic.SaveProductPackage(defProductPackageDTO);
                 }
                 catch
                 {
@@ -316,23 +304,22 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
+            var getAllProductPackageResult = AdministratorBusinessLogic.GetAllProductPackage().Where(productPackage => productPackage.IsDeleted == false)
+                                                                        .OrderBy(r => r.ProductPackageName);
+            return PartialView("_GridViewDefProductPackages", getAllProductPackageResult);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductPackagesUpdate(DefProductPackages item)
+        public ActionResult GridViewDefProductPackagesUpdate(DefProductPackageDTO defProductPackageDTO)
         {
-            var model = db.DefProductPackages;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ProductPackageId == item.ProductPackageId);
-                    if (modelItem != null)
+                    var getProductPackageResult = AdministratorBusinessLogic.GetProductPackage(defProductPackageDTO.ProductPackageId);
+                    if (getProductPackageResult != null)
                     {
-                        modelItem.ProductPackageName = Ti.ToTitleCase(item.ProductPackageName.Trim().ToLower());
-                        db.DefProductPackages.Attach(modelItem);
-                        db.Entry(modelItem).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        getProductPackageResult.ProductPackageName = Ti.ToTitleCase(defProductPackageDTO.ProductPackageName.Trim().ToLower());
+                        AdministratorBusinessLogic.SaveProductPackage(getProductPackageResult);
                     }
                 }
                 catch
@@ -342,23 +329,25 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
+            var getAllProductPackageResult = AdministratorBusinessLogic.GetAllProductPackage().Where(productPackage => productPackage.IsDeleted == false)
+                                                                        .OrderBy(r => r.ProductPackageName);
+            return PartialView("_GridViewDefProductPackages", getAllProductPackageResult);
         }
+
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefProductPackagesDelete(System.Byte ProductPackageId)
         {
-            var model = db.DefProductPackages;
             if (ProductPackageId != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ProductPackageId == ProductPackageId && it.IsDeleted == false);
-                    if (item != null)
+                    var getProductPackageResult = AdministratorBusinessLogic.GetProductPackage(ProductPackageId);
+                    if (getProductPackageResult != null)
                     {
-                        item.IsDeleted = true;
-                        item.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                        item.DeletedOn = DateTime.Now;
-                        db.SaveChanges();
+                        getProductPackageResult.IsDeleted = true;
+                        getProductPackageResult.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                        getProductPackageResult.DeletedOn = DateTime.Now;
+                        AdministratorBusinessLogic.SaveProductPackage(getProductPackageResult);
                     }
                 }
                 catch
@@ -366,7 +355,9 @@ namespace Itsyazilim.Web.UI.Controllers
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
-            return PartialView("_GridViewDefProductPackages", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPackageName).ToList());
+            var getAllProductPackageResult = AdministratorBusinessLogic.GetAllProductPackage().Where(productPackage => productPackage.IsDeleted == false)
+                                                                       .OrderBy(r => r.ProductPackageName);
+            return PartialView("_GridViewDefProductPackages", getAllProductPackageResult);
         }
 
 
@@ -381,24 +372,21 @@ namespace Itsyazilim.Web.UI.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewDefProductUnits()
         {
-            var model = db.DefProductUnits.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName);
-            return PartialView("_GridViewDefProductUnits", model.ToList());
+            var getAllProductUnitResult = AdministratorBusinessLogic.GetAllProductUnit().Where(productUnit => productUnit.IsDeleted == false).OrderBy(r => r.ProductUnitName);
+            return PartialView("_GridViewDefProductUnits", getAllProductUnitResult);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductUnitsAddNew(DefProductUnits item)
+        public ActionResult GridViewDefProductUnitsAddNew(DefProductUnitDTO defProductUnitDTO)
         {
-            var model = db.DefProductUnits;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    item.ProductUnitName = Ti.ToTitleCase(item.ProductUnitName.Trim().ToLower());
-                    item.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                    item.CreatedOn = DateTime.Now;
-
-                    model.Add(item);
-                    db.SaveChanges();
+                    defProductUnitDTO.ProductUnitName = Ti.ToTitleCase(defProductUnitDTO.ProductUnitName.Trim().ToLower());
+                    defProductUnitDTO.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    defProductUnitDTO.CreatedOn = DateTime.Now;
+                    AdministratorBusinessLogic.SaveProductUnit(defProductUnitDTO);
                 }
                 catch
                 {
@@ -407,23 +395,21 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
+            var getAllProductUnitResult = AdministratorBusinessLogic.GetAllProductUnit().Where(productUnit => productUnit.IsDeleted == false).OrderBy(r => r.ProductUnitName);
+            return PartialView("_GridViewDefProductUnits", getAllProductUnitResult);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductUnitsUpdate(DefProductUnits item)
+        public ActionResult GridViewDefProductUnitsUpdate(DefProductUnitDTO defProductUnitDTO)
         {
-            var model = db.DefProductUnits;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ProductUnitId == item.ProductUnitId);
-                    if (modelItem != null)
+                    var productUnitDetails = AdministratorBusinessLogic.GetProductUnit(defProductUnitDTO.ProductUnitId);
+                    if (productUnitDetails != null)
                     {
-                        modelItem.ProductUnitName = Ti.ToTitleCase(item.ProductUnitName.Trim().ToLower());
-                        db.DefProductUnits.Attach(modelItem);
-                        db.Entry(modelItem).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        productUnitDetails.ProductUnitName = Ti.ToTitleCase(defProductUnitDTO.ProductUnitName.Trim().ToLower());
+                        AdministratorBusinessLogic.SaveProductUnit(productUnitDetails);
                     }
                 }
                 catch
@@ -433,23 +419,23 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
+            var getAllProductUnitResult = AdministratorBusinessLogic.GetAllProductUnit().Where(productUnit => productUnit.IsDeleted == false).OrderBy(r => r.ProductUnitName);
+            return PartialView("_GridViewDefProductUnits", getAllProductUnitResult);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefProductUnitsDelete(System.Byte ProductUnitId)
         {
-            var model = db.DefProductUnits;
             if (ProductUnitId != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ProductUnitId == ProductUnitId && it.IsDeleted == false);
-                    if (item != null)
+                    var productUnitDetails = AdministratorBusinessLogic.GetProductUnit(ProductUnitId);
+                    if (productUnitDetails != null)
                     {
-                        item.IsDeleted = true;
-                        item.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                        item.DeletedOn = DateTime.Now;
-                        db.SaveChanges();
+                        productUnitDetails.IsDeleted = true;
+                        productUnitDetails.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                        productUnitDetails.DeletedOn = DateTime.Now;
+                        AdministratorBusinessLogic.SaveProductUnit(productUnitDetails);
                     }
                 }
                 catch
@@ -457,7 +443,8 @@ namespace Itsyazilim.Web.UI.Controllers
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
-            return PartialView("_GridViewDefProductUnits", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductUnitName).ToList());
+            var getAllProductUnitResult = AdministratorBusinessLogic.GetAllProductUnit().Where(productUnit => productUnit.IsDeleted == false).OrderBy(r => r.ProductUnitName);
+            return PartialView("_GridViewDefProductUnits", getAllProductUnitResult);
         }
 
 
@@ -472,24 +459,21 @@ namespace Itsyazilim.Web.UI.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewDefProductProperties()
         {
-            var model = db.DefProductProperties.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName);
-            return PartialView("_GridViewDefProductProperties", model.ToList());
+            var getAllProductPropertyResult = AdministratorBusinessLogic.GetAllProductProperty().Where(productProperty => productProperty.IsDeleted == false).OrderBy(r => r.ProductPropertyName);
+            return PartialView("_GridViewDefProductProperties", getAllProductPropertyResult);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductPropertiesAddNew(DefProductProperties item)
+        public ActionResult GridViewDefProductPropertiesAddNew(DefProductPropertyDTO defProductPropertyDTO)
         {
-            var model = db.DefProductProperties;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    item.ProductPropertyName = Ti.ToTitleCase(item.ProductPropertyName.Trim().ToLower());
-                    item.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                    item.CreatedOn = DateTime.Now;
-
-                    model.Add(item);
-                    db.SaveChanges();
+                    defProductPropertyDTO.ProductPropertyName = Ti.ToTitleCase(defProductPropertyDTO.ProductPropertyName.Trim().ToLower());
+                    defProductPropertyDTO.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    defProductPropertyDTO.CreatedOn = DateTime.Now;
+                    AdministratorBusinessLogic.SaveProductProperty(defProductPropertyDTO);
                 }
                 catch
                 {
@@ -498,23 +482,21 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
+            var getAllProductPropertyResult = AdministratorBusinessLogic.GetAllProductProperty().Where(productProperty => productProperty.IsDeleted == false).OrderBy(r => r.ProductPropertyName);
+            return PartialView("_GridViewDefProductProperties", getAllProductPropertyResult);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductPropertiesUpdate(DefProductProperties item)
+        public ActionResult GridViewDefProductPropertiesUpdate(DefProductPropertyDTO defProductPropertyDTO)
         {
-            var model = db.DefProductProperties;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ProductPropertyId == item.ProductPropertyId);
-                    if (modelItem != null)
+                    var productPropertyDetails = AdministratorBusinessLogic.GetProductProperty(defProductPropertyDTO.ProductPropertyId);
+                    if (productPropertyDetails != null)
                     {
-                        modelItem.ProductPropertyName = Ti.ToTitleCase(item.ProductPropertyName.Trim().ToLower());
-                        db.DefProductProperties.Attach(modelItem);
-                        db.Entry(modelItem).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        productPropertyDetails.ProductPropertyName = Ti.ToTitleCase(defProductPropertyDTO.ProductPropertyName.Trim().ToLower());
+                        AdministratorBusinessLogic.SaveProductProperty(defProductPropertyDTO);
                     }
                 }
                 catch
@@ -524,23 +506,23 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
+            var getAllProductPropertyResult = AdministratorBusinessLogic.GetAllProductProperty().Where(productProperty => productProperty.IsDeleted == false).OrderBy(r => r.ProductPropertyName);
+            return PartialView("_GridViewDefProductProperties", getAllProductPropertyResult);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefProductPropertiesDelete(System.Byte ProductPropertyId)
         {
-            var model = db.DefProductProperties;
-            if (ProductPropertyId != null)
+            if (ProductPropertyId != 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ProductPropertyId == ProductPropertyId && it.IsDeleted == false);
-                    if (item != null)
+                    var productPropertyDetails = AdministratorBusinessLogic.GetProductProperty(ProductPropertyId);
+                    if (productPropertyDetails != null)
                     {
-                        item.IsDeleted = true;
-                        item.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                        item.DeletedOn = DateTime.Now;
-                        db.SaveChanges();
+                        productPropertyDetails.IsDeleted = true;
+                        productPropertyDetails.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                        productPropertyDetails.DeletedOn = DateTime.Now;
+                        AdministratorBusinessLogic.SaveProductProperty(productPropertyDetails);
                     }
                 }
                 catch
@@ -548,7 +530,8 @@ namespace Itsyazilim.Web.UI.Controllers
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
-            return PartialView("_GridViewDefProductProperties", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductPropertyName).ToList());
+            var getAllProductPropertyResult = AdministratorBusinessLogic.GetAllProductProperty().Where(productProperty => productProperty.IsDeleted == false).OrderBy(r => r.ProductPropertyName);
+            return PartialView("_GridViewDefProductProperties", getAllProductPropertyResult);
         }
 
 
@@ -562,24 +545,21 @@ namespace Itsyazilim.Web.UI.Controllers
         [ValidateInput(false)]
         public ActionResult GridViewDefProductTypes()
         {
-            var model = db.DefProductTypes.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName);
-            return PartialView("_GridViewDefProductTypes", model.ToList());
+            var getAllProductTypeResult = AdministratorBusinessLogic.GetAllProductType().Where(productType => productType.IsDeleted == false).OrderBy(r => r.ProductTypeName);
+            return PartialView("_GridViewDefProductTypes", getAllProductTypeResult);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductTypesAddNew(DefProductTypes item)
+        public ActionResult GridViewDefProductTypesAddNew(DefProductTypeDTO defProductTypeDTO)
         {
-            var model = db.DefProductTypes;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    item.ProductTypeName = Ti.ToTitleCase(item.ProductTypeName.Trim().ToLower());
-                    item.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                    item.CreatedOn = DateTime.Now;
-
-                    model.Add(item);
-                    db.SaveChanges();
+                    defProductTypeDTO.ProductTypeName = Ti.ToTitleCase(defProductTypeDTO.ProductTypeName.Trim().ToLower());
+                    defProductTypeDTO.CreatedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                    defProductTypeDTO.CreatedOn = DateTime.Now;
+                    AdministratorBusinessLogic.SaveProductType(defProductTypeDTO);
                 }
                 catch
                 {
@@ -588,23 +568,21 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());
+            var getAllProductTypeResult = AdministratorBusinessLogic.GetAllProductType().Where(productType => productType.IsDeleted == false).OrderBy(r => r.ProductTypeName);
+            return PartialView("_GridViewDefProductTypes", getAllProductTypeResult);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewDefProductTypesUpdate(DefProductTypes item)
+        public ActionResult GridViewDefProductTypesUpdate(DefProductTypeDTO defProductTypeDTO)
         {
-            var model = db.DefProductTypes;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ProductTypeId == item.ProductTypeId);
-                    if (modelItem != null)
+                    var productTypeDetails = AdministratorBusinessLogic.GetProductType(defProductTypeDTO.ProductTypeId);
+                    if (productTypeDetails != null)
                     {
-                        modelItem.ProductTypeName = Ti.ToTitleCase(item.ProductTypeName.Trim().ToLower());
-                        db.DefProductTypes.Attach(modelItem);
-                        db.Entry(modelItem).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        productTypeDetails.ProductTypeName = Ti.ToTitleCase(defProductTypeDTO.ProductTypeName.Trim().ToLower());
+                        AdministratorBusinessLogic.SaveProductType(defProductTypeDTO);
                     }
                 }
                 catch
@@ -614,23 +592,23 @@ namespace Itsyazilim.Web.UI.Controllers
             }
             else
                 ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
-            return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());
+            var getAllProductTypeResult = AdministratorBusinessLogic.GetAllProductType().Where(productType => productType.IsDeleted == false).OrderBy(r => r.ProductTypeName);
+            return PartialView("_GridViewDefProductTypes", getAllProductTypeResult);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewDefProductTypesDelete(System.Byte ProductTypeId)
         {
-            var model = db.DefProductTypes;
-            if (ProductTypeId != null)
+            if (ProductTypeId != 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ProductTypeId == ProductTypeId && it.IsDeleted == false);
-                    if (item != null)
+                    var productTypeDetails = AdministratorBusinessLogic.GetProductType(ProductTypeId);
+                    if (productTypeDetails != null)
                     {
-                        item.IsDeleted = true;
-                        item.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
-                        item.DeletedOn = DateTime.Now;
-                        db.SaveChanges();
+                        productTypeDetails.IsDeleted = true;
+                        productTypeDetails.DeletedBy = Convert.ToInt32(Session["LoggedUserId"]);
+                        productTypeDetails.DeletedOn = DateTime.Now;
+                        AdministratorBusinessLogic.SaveProductType(productTypeDetails);
                     }
                 }
                 catch
@@ -638,7 +616,8 @@ namespace Itsyazilim.Web.UI.Controllers
                     ViewData["EditError"] = ItsyazilimWebResources.lblError;
                 }
             }
-            return PartialView("_GridViewDefProductTypes", model.Where(r => r.IsDeleted == false).OrderBy(r => r.ProductTypeName).ToList());
+            var getAllProductTypeResult = AdministratorBusinessLogic.GetAllProductType().Where(productType => productType.IsDeleted == false).OrderBy(r => r.ProductTypeName);
+            return PartialView("_GridViewDefProductTypes", getAllProductTypeResult);
         }
     }
 }

@@ -15,6 +15,16 @@ namespace Itsyazilim.Web.BLL
 
         #region [Methods
 
+         /// <summary>
+        /// Get Membership Details
+        /// </summary>
+        /// <returns></returns>
+        public static MembershipDTO GetMembershipDetails(int userId)
+        {
+            var membershipRepository = new MembershipRepository();
+            return membershipRepository.GetMembershipDetails(userId);
+        }
+
         /// <summary>
         /// Get Membership Details
         /// </summary>

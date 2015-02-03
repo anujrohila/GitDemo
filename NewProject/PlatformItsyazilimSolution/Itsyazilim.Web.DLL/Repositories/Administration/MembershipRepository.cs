@@ -29,6 +29,18 @@ namespace Itsyazilim.Web.DLL
         /// Get Membership Details
         /// </summary>
         /// <returns></returns>
+        public MembershipDTO GetMembershipDetails(int userId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return (LtsyazilimDatabaseEntities.Memberships.Where(member => member.UserId == userId).FirstOrDefault()).ToDTO();
+            }
+        }
+
+        /// <summary>
+        /// Get Membership Details
+        /// </summary>
+        /// <returns></returns>
         public MembershipDTO GetMembershipDetails(string emailId)
         {
             using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
@@ -135,7 +147,7 @@ namespace Itsyazilim.Web.DLL
             }
         }
 
-        
+
 
         public bool RemoveAllMembershipPasswordRenewal(string emailId)
         {

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Administration\AdministratorRepository.cs" />
     <Compile Include="Repositories\Administration\MembershipRepository.cs" />
     <Compile Include="Utility\CommonFunction.cs" />
   </ItemGroup>
