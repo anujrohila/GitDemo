@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 //using DevExpress.Web.Mvc;
 using System.ComponentModel;
 using Itsyazilim.Web.UI.Models;
+using Itsyazilim.Web.BLL;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -21,7 +22,7 @@ namespace Itsyazilim.Web.UI.Controllers
         // GET: Data
         public ActionResult GetCounties()
         {
-            ViewData["Counties"] = DataProvider.GetCounties();
+            ViewData["Counties"] = MasterBusinessLogic.GetAllCountry();
             return PartialView();
         }
 

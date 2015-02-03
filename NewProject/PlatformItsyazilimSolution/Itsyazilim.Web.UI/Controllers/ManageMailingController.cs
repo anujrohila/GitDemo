@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using Itsyazilim.Web.UI.Models;
 using Itsyazilim.Web.Domain.Resources;
+using Itsyazilim.Web.BLL;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -44,7 +45,7 @@ namespace Itsyazilim.Web.UI.Controllers
             using (var db = new LtsWebEntities())
             {
                 var user = db.Membership.FirstOrDefault(u => u.UserId == NewFirm.CreatedBy);
-                var county = Itsyazilim.Web.UI.Models.DataProvider.GetCountyByCountyId(NewFirm.CountyId);
+                var county = MasterBusinessLogic.GetCountry(NewFirm.CountyId);
                 try
                 {
                     MailAddress From = new MailAddress(Guid.NewGuid().ToString() + "@turksmart.com", "Lts Tübitak");
@@ -57,7 +58,7 @@ namespace Itsyazilim.Web.UI.Controllers
                     string Body = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewFirmBody").ToString();
                     Body = Body.Replace("%UserName%", user.Name + " " + user.Surname);
                     Body = Body.Replace("%FirmName%", NewFirm.FirmName);
-                    Body = Body.Replace("%County%", county);
+                    Body = Body.Replace("%County%", county.Name);
                     Body = Body.Replace("%Address%", NewFirm.Address);
                     Body = Body.Replace("%TaxOffice%", NewFirm.TaxOffice);
                     Body = Body.Replace("%TaxNo%", NewFirm.TaxNo);

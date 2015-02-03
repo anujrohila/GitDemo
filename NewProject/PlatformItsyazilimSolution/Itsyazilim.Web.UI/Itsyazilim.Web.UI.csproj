@@ -516,7 +516,6 @@
     <Compile Include="Models\C_OrderStartPositions.cs">
       <DependentUpon>LtsWebModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\DefLocationCities.cs">
       <DependentUpon>LtsWebModel.tt</DependentUpon>
     </Compile>

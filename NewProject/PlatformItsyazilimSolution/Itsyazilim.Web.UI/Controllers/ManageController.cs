@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Globalization;
 using Itsyazilim.Web.UI.Models;
-
+using Itsyazilim.Web.BLL;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -135,11 +135,11 @@ namespace Itsyazilim.Web.UI.Controllers
                                 db.SaveChanges();
 
                                 var user = db.Membership.FirstOrDefault(u => u.UserId == NewFirm.CreatedBy);
-                                var county = Itsyazilim.Web.UI.Models.DataProvider.GetCountyByCountyId(NewFirm.CountyId);
+                                var county = MasterBusinessLogic.GetCountry(NewFirm.CountyId);
                                 string newFirmMailBody = HttpContext.GetGlobalResourceObject("Email", "ManageMailNewFirmBody").ToString();
                                 newFirmMailBody = newFirmMailBody.Replace("%UserName%", user.Name + " " + user.Surname);
                                 newFirmMailBody = newFirmMailBody.Replace("%FirmName%", NewFirm.FirmName);
-                                newFirmMailBody = newFirmMailBody.Replace("%County%", county);
+                                newFirmMailBody = newFirmMailBody.Replace("%County%", county.Name);
                                 newFirmMailBody = newFirmMailBody.Replace("%Address%", NewFirm.Address);
                                 newFirmMailBody = newFirmMailBody.Replace("%TaxOffice%", NewFirm.TaxOffice);
                                 newFirmMailBody = newFirmMailBody.Replace("%TaxNo%", NewFirm.TaxNo);
