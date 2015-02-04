@@ -949,4 +949,22 @@
     <value>An error occurred while processing your request.</value>
     <comment>İsteğiniz işlenirken bir hata oluştu.</comment>
   </data>
+  <data name="lblDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblMemeberRoleMapping" xml:space="preserve">
+    <value>Member Role Mapping</value>
+  </data>
+  <data name="lblModule" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="lblRoels" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="lblRoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="lblUsersRoles" xml:space="preserve">
+    <value>Users Roles</value>
+  </data>
 </root>
