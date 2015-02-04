@@ -454,6 +454,7 @@ namespace Itsyazilim.Web.UI.Controllers
 
                     else
                     {
+                        var db = new LtsWebEntities();
                         DateTime earliestDate = DateTime.Now.AddMinutes(-59);
                         var LastPasswordRenewal = MembershipBusinessLogic.GetMembershipPasswordRenewal(model.Email, earliestDate);
                         if (LastPasswordRenewal == null)

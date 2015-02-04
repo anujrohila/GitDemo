@@ -121,8 +121,6 @@ namespace Itsyazilim.Web.UI.Controllers
             return PartialView("_GridViewUnApprovedFirmList", unApprovedFirmList);
         }
 
-
-
         public ActionResult UnApprovedFirmDetails(int? id)
         {
             if (!CheckLogin()) return RedirectToAction("Home");
@@ -619,5 +617,83 @@ namespace Itsyazilim.Web.UI.Controllers
             var getAllProductTypeResult = AdministratorBusinessLogic.GetAllProductType().Where(productType => productType.IsDeleted == false).OrderBy(r => r.ProductTypeName);
             return PartialView("_GridViewDefProductTypes", getAllProductTypeResult);
         }
+
+
+
+        [ValidateInput(false)]
+        public ActionResult RoleList()
+        {
+            return View();
+        }
+
+        [ValidateInput(false)]
+        public ActionResult _GridViewRoleList()
+        {
+            var getAllRoleResult = AdministratorBusinessLogic.GetAllRole().OrderBy(r => r.RoleName);
+            return PartialView("_GridViewRoleList", getAllRoleResult);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult AddRole(RoleDTO roleDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    roleDTO.RoleName = Ti.ToTitleCase(roleDTO.RoleName.Trim().ToLower());
+                    roleDTO.Description = Ti.ToTitleCase(roleDTO.Description.Trim().ToLower());
+                    AdministratorBusinessLogic.SaveRole(roleDTO);
+                }
+                catch
+                {
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
+                }
+            }
+            else
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
+            var getAllRoleResult = AdministratorBusinessLogic.GetAllRole().OrderBy(r => r.RoleName);
+            return PartialView("_GridViewRoleList", getAllRoleResult);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult UpdateRole(RoleDTO roleDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    roleDTO.RoleName = Ti.ToTitleCase(roleDTO.RoleName.Trim().ToLower());
+                    roleDTO.Description = Ti.ToTitleCase(roleDTO.Description.Trim().ToLower());
+                    AdministratorBusinessLogic.SaveRole(roleDTO);
+                }
+                catch
+                {
+                    ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
+                }
+            }
+            else
+                ViewData["EditError"] = ItsyazilimWebResources.valRequiredAllFields;
+            var getAllRoleResult = AdministratorBusinessLogic.GetAllRole().OrderBy(r => r.RoleName);
+            return PartialView("_GridViewRoleList", getAllRoleResult);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult DeleteRole(int roleId)
+        {
+            if (roleId != 0)
+            {
+                try
+                {
+                    AdministratorBusinessLogic.DeleteRole(roleId);
+                }
+                catch
+                {
+                    ViewData["EditError"] = ItsyazilimWebResources.lblError;
+                }
+            }
+            var getAllRoleResult = AdministratorBusinessLogic.GetAllRole().OrderBy(r => r.RoleName);
+            return PartialView("_GridViewRoleList", getAllRoleResult);
+        }
+
     }
 }
