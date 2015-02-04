@@ -160,6 +160,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Mapping.
+        /// </summary>
+        public static string lblAddMapping {
+            get {
+                return ResourceManager.GetString("lblAddMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Package Type.
         /// </summary>
         public static string lblAddPackageType {
@@ -291,6 +300,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblByCreatingAccount {
             get {
                 return ResourceManager.GetString("lblByCreatingAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string lblCancel {
+            get {
+                return ResourceManager.GetString("lblCancel", resourceCulture);
             }
         }
         
@@ -511,6 +529,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string lblDelete {
+            get {
+                return ResourceManager.GetString("lblDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string lblDescription {
@@ -543,6 +570,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblDidYouForgotYourPassword {
             get {
                 return ResourceManager.GetString("lblDidYouForgotYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string lblEdit {
+            get {
+                return ResourceManager.GetString("lblEdit", resourceCulture);
             }
         }
         
@@ -1150,6 +1186,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Module Role Mapping.
+        /// </summary>
+        public static string lblModuleRoleMapping {
+            get {
+                return ResourceManager.GetString("lblModuleRoleMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Neighborhood - Street - Door Number.
         /// </summary>
         public static string lblNeighborhoodStreetDoorNumber {
@@ -1591,6 +1636,24 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string lblSave {
+            get {
+                return ResourceManager.GetString("lblSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SaveMapping.
+        /// </summary>
+        public static string lblSaveMapping {
+            get {
+                return ResourceManager.GetString("lblSaveMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Request Type.
         /// </summary>
         public static string lblSelectRequestType {
@@ -1857,6 +1920,51 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string lblYourAccountVerifiedBefore {
             get {
                 return ResourceManager.GetString("lblYourAccountVerifiedBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this record?.
+        /// </summary>
+        public static string msgConfirmDelete {
+            get {
+                return ResourceManager.GetString("msgConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted Successfully..
+        /// </summary>
+        public static string msgDeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("msgDeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module role mapping removed successfully..
+        /// </summary>
+        public static string msgDeleteModuleRoleMapping {
+            get {
+                return ResourceManager.GetString("msgDeleteModuleRoleMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Module role mapping already exists..
+        /// </summary>
+        public static string msgDuplicateModuleRoleMapping {
+            get {
+                return ResourceManager.GetString("msgDuplicateModuleRoleMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in performing operation try again later..
+        /// </summary>
+        public static string msgErrorPerformingOperation {
+            get {
+                return ResourceManager.GetString("msgErrorPerformingOperation", resourceCulture);
             }
         }
         

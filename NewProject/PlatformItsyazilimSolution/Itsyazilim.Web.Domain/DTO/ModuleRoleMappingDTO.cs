@@ -14,7 +14,7 @@ using System.Text;
 namespace Itsyazilim.Web.Domain
 {
     [DataContract()]
-    public partial class ModuleRoleMappingDTO
+    public partial class ModuleRoleMappingDTO : CommonModel
     {
         [DataMember()]
         public Int32 ModuleRoleMappingId { get; set; }
@@ -34,5 +34,9 @@ namespace Itsyazilim.Web.Domain
         public string ModuleName { get; set; }
 
         public string RoleName { get; set; }
+
+        public List<RoleDTO> RoleList { get; set; }
+
+        public List<ModuleDTO> ModuleList { get; set; }
     }
 }
