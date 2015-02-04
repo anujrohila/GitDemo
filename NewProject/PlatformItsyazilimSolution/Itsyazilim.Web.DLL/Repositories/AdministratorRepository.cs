@@ -82,7 +82,24 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     firmDetails = LtsyazilimDatabaseEntities.Firms.Where(firm => firm.FirmId == firmDTO.FirmId).FirstOrDefault();
-                    firmDetails = firmDTO.ToEntity();
+                    firmDetails.FirmId = firmDTO.FirmId;
+                    firmDetails.FirmName = firmDTO.FirmName;
+                    firmDetails.CountyId = firmDTO.CountyId;
+                    firmDetails.Address = firmDTO.Address;
+                    firmDetails.Phone1 = firmDTO.Phone1;
+                    firmDetails.Phone2 = firmDTO.Phone2;
+                    firmDetails.Fax = firmDTO.Fax;
+                    firmDetails.MobilePhone = firmDTO.MobilePhone;
+                    firmDetails.Email = firmDTO.Email;
+                    firmDetails.WebSite = firmDTO.WebSite;
+                    firmDetails.TaxOffice = firmDTO.TaxOffice;
+                    firmDetails.TaxNo = firmDTO.TaxNo;
+                    firmDetails.CreatedBy = firmDTO.CreatedBy;
+                    firmDetails.IsApproved = firmDTO.IsApproved;
+                    firmDetails.ApprovedBy = firmDTO.ApprovedBy;
+                    firmDetails.ApprovedOn = firmDTO.ApprovedOn;
+                    firmDetails.CreatedOn = firmDTO.CreatedOn;
+                    firmDetails.UpdatedOn = firmDTO.UpdatedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return firmDetails.FirmId;
@@ -118,7 +135,12 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     mapFirmToUserDetails = LtsyazilimDatabaseEntities.MapFirmToUsers.Where(firm => firm.FirmId == mapFirmToUserDTO.FirmId).FirstOrDefault();
-                    mapFirmToUserDetails = mapFirmToUserDTO.ToEntity();
+                    mapFirmToUserDetails.MapId = mapFirmToUserDTO.MapId;
+                    mapFirmToUserDetails.FirmId = mapFirmToUserDTO.FirmId;
+                    mapFirmToUserDetails.UserId = mapFirmToUserDTO.UserId;
+                    mapFirmToUserDetails.IsAdmin = mapFirmToUserDTO.IsAdmin;
+                    mapFirmToUserDetails.IsActive = mapFirmToUserDTO.IsActive;
+                    mapFirmToUserDetails.CreatedOn = mapFirmToUserDTO.CreatedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return Convert.ToInt32(mapFirmToUserDetails.MapId);
@@ -172,9 +194,21 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     vehicleTypeDetails = LtsyazilimDatabaseEntities.DefVehicleTypes.Where(firm => firm.VehicleTypeId == defVehicleTypeDTO.VehicleTypeId).FirstOrDefault();
-                    vehicleTypeDetails = defVehicleTypeDTO.ToEntity();
+                    vehicleTypeDetails.VehicleTypeId = defVehicleTypeDTO.VehicleTypeId;
+                    vehicleTypeDetails.VehicleTypeName = defVehicleTypeDTO.VehicleTypeName;
+                    vehicleTypeDetails.VehicleWidth = defVehicleTypeDTO.VehicleWidth;
+                    vehicleTypeDetails.VehicleLength = defVehicleTypeDTO.VehicleLength;
+                    vehicleTypeDetails.VehicleHeight = defVehicleTypeDTO.VehicleHeight;
+                    vehicleTypeDetails.VehicleVolume = defVehicleTypeDTO.VehicleVolume;
+                    vehicleTypeDetails.VehicleDesi = defVehicleTypeDTO.VehicleDesi;
+                    vehicleTypeDetails.VehicleWeight = defVehicleTypeDTO.VehicleWeight;
+                    vehicleTypeDetails.IsDeleted = defVehicleTypeDTO.IsDeleted;
+                    vehicleTypeDetails.DeletedBy = defVehicleTypeDTO.DeletedBy;
+                    vehicleTypeDetails.DeletedOn = defVehicleTypeDTO.DeletedOn;
                 }
+
                 LtsyazilimDatabaseEntities.SaveChanges();
+                
                 return vehicleTypeDetails.VehicleTypeId;
             }
         }
@@ -224,7 +258,13 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     ProductPackageDetails = LtsyazilimDatabaseEntities.DefProductPackages.Where(firm => firm.ProductPackageId == defProductPackageDTO.ProductPackageId).FirstOrDefault();
-                    ProductPackageDetails = defProductPackageDTO.ToEntity();
+                    ProductPackageDetails.ProductPackageId = defProductPackageDTO.ProductPackageId;
+                    ProductPackageDetails.ProductPackageName = defProductPackageDTO.ProductPackageName;
+                    ProductPackageDetails.CreatedBy = defProductPackageDTO.CreatedBy;
+                    ProductPackageDetails.CreatedOn = defProductPackageDTO.CreatedOn;
+                    ProductPackageDetails.IsDeleted = defProductPackageDTO.IsDeleted;
+                    ProductPackageDetails.DeletedBy = defProductPackageDTO.DeletedBy;
+                    ProductPackageDetails.DeletedOn = defProductPackageDTO.DeletedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return ProductPackageDetails.ProductPackageId;
@@ -276,7 +316,13 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     ProductUnitDetails = LtsyazilimDatabaseEntities.DefProductUnits.Where(firm => firm.ProductUnitId == defProductUnitDTO.ProductUnitId).FirstOrDefault();
-                    ProductUnitDetails = defProductUnitDTO.ToEntity();
+                    ProductUnitDetails.ProductUnitId = defProductUnitDTO.ProductUnitId;
+                    ProductUnitDetails.ProductUnitName = defProductUnitDTO.ProductUnitName;
+                    ProductUnitDetails.CreatedBy = defProductUnitDTO.CreatedBy;
+                    ProductUnitDetails.CreatedOn = defProductUnitDTO.CreatedOn;
+                    ProductUnitDetails.IsDeleted = defProductUnitDTO.IsDeleted;
+                    ProductUnitDetails.DeletedBy = defProductUnitDTO.DeletedBy;
+                    ProductUnitDetails.DeletedOn = defProductUnitDTO.DeletedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return ProductUnitDetails.ProductUnitId;
@@ -328,7 +374,13 @@ namespace Itsyazilim.Web.DLL
                 else
                 {
                     ProductPropertyDetails = LtsyazilimDatabaseEntities.DefProductProperties.Where(firm => firm.ProductPropertyId == defProductPropertyDTO.ProductPropertyId).FirstOrDefault();
-                    ProductPropertyDetails = defProductPropertyDTO.ToEntity();
+                    ProductPropertyDetails.ProductPropertyId = defProductPropertyDTO.ProductPropertyId;
+                    ProductPropertyDetails.ProductPropertyName = defProductPropertyDTO.ProductPropertyName;
+                    ProductPropertyDetails.CreatedBy = defProductPropertyDTO.CreatedBy;
+                    ProductPropertyDetails.CreatedOn = defProductPropertyDTO.CreatedOn;
+                    ProductPropertyDetails.IsDeleted = defProductPropertyDTO.IsDeleted;
+                    ProductPropertyDetails.DeletedBy = defProductPropertyDTO.DeletedBy;
+                    ProductPropertyDetails.DeletedOn = defProductPropertyDTO.DeletedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return ProductPropertyDetails.ProductPropertyId;
@@ -381,6 +433,13 @@ namespace Itsyazilim.Web.DLL
                 {
                     ProductTypeDetails = LtsyazilimDatabaseEntities.DefProductTypes.Where(firm => firm.ProductTypeId == defProductTypeDTO.ProductTypeId).FirstOrDefault();
                     ProductTypeDetails = defProductTypeDTO.ToEntity();
+                    ProductTypeDetails.ProductTypeId = defProductTypeDTO.ProductTypeId;
+                    ProductTypeDetails.ProductTypeName = defProductTypeDTO.ProductTypeName;
+                    ProductTypeDetails.CreatedBy = defProductTypeDTO.CreatedBy;
+                    ProductTypeDetails.CreatedOn = defProductTypeDTO.CreatedOn;
+                    ProductTypeDetails.IsDeleted = defProductTypeDTO.IsDeleted;
+                    ProductTypeDetails.DeletedBy = defProductTypeDTO.DeletedBy;
+                    ProductTypeDetails.DeletedOn = defProductTypeDTO.DeletedOn;
                 }
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return ProductTypeDetails.ProductTypeId;
@@ -389,7 +448,74 @@ namespace Itsyazilim.Web.DLL
 
         #endregion
 
-        
+        #region [Role]
+
+        /// <summary>
+        /// Get All Role
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleDTO> GetAllRole()
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return (LtsyazilimDatabaseEntities.Roles.ToDTOs());
+            }
+        }
+
+        /// <summary>
+        /// Get Product Type
+        /// </summary>
+        /// <returns></returns>
+        public RoleDTO GetRole(int RoleId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return LtsyazilimDatabaseEntities.Roles.Where(type => type.RoleId == RoleId).FirstOrDefault().ToDTO();
+            }
+        }
+
+        /// <summary>
+        /// Save Role
+        /// </summary>
+        /// <returns></returns>
+        public int SaveRole(RoleDTO roleDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var roleDetails = new Role();
+                if (roleDTO.RoleId == 0)
+                {
+                    roleDetails = roleDTO.ToEntity();
+                    LtsyazilimDatabaseEntities.Roles.Add(roleDetails);
+                }
+                else
+                {
+                    roleDetails = LtsyazilimDatabaseEntities.Roles.Where(firm => firm.RoleId == roleDTO.RoleId).FirstOrDefault();
+                    roleDetails.RoleId = roleDTO.RoleId;
+                    roleDetails.RoleName = roleDTO.RoleName;
+                    roleDetails.Description = roleDTO.Description;
+                }
+                LtsyazilimDatabaseEntities.SaveChanges();
+                return roleDetails.RoleId;
+            }
+        }
+
+        /// <summary>
+        /// Delete role
+        /// </summary>
+        /// <returns></returns>
+        public bool DeleteRole(int roleId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var roleDetails = LtsyazilimDatabaseEntities.Roles.Find(roleId);
+                LtsyazilimDatabaseEntities.Roles.Remove(roleDetails);
+                LtsyazilimDatabaseEntities.SaveChanges();
+                return true;
+            }
+        }
+
+        #endregion
 
         #endregion
     }
