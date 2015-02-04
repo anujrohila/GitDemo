@@ -10,6 +10,7 @@ using System.Web.Security;
 using Itsyazilim.Web.Domain.Resources;
 using Itsyazilim.Web.BLL;
 using Itsyazilim.Web.Domain;
+using Telerik.Web.Mvc;
 
 namespace Itsyazilim.Web.UI.Controllers
 {
@@ -703,11 +704,83 @@ namespace Itsyazilim.Web.UI.Controllers
             return View();
         }
 
-        [ValidateInput(false)]
-        public ActionResult _GridViewModuleRoleMappingList()
+        /// <summary>
+        /// List All Module Role Mapping Ajax
+        /// </summary>
+        /// <returns></returns>
+        [GridAction]
+        public ActionResult ListAllModuleRoleMappingAjax()
         {
             var getAllModuleRoleMapping = AdministratorBusinessLogic.GetAllModuleRoleMapping().OrderBy(r => r.ModuleName);
-            return PartialView("_GridViewModuleRoleMappingList", getAllModuleRoleMapping);
+            return View(new GridModel(getAllModuleRoleMapping));
+        }
+
+        /// <summary>
+        /// Save Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        [GridAction]
+        public ActionResult SaveModuleRoleMapping(int id)
+        {
+            var moduleRoleMappingDTO = new ModuleRoleMappingDTO();
+            if (id > 0)
+            {
+                moduleRoleMappingDTO = AdministratorBusinessLogic.GetModuleRoleMapping(id);
+            }
+
+            moduleRoleMappingDTO = FillModuleRoleMappingCombo(moduleRoleMappingDTO);
+            return View(moduleRoleMappingDTO);
+        }
+
+        /// <summary>
+        /// Save module role mapping
+        /// </summary>
+        /// <returns></returns>
+        [GridAction]
+        [HttpPost]
+        public ActionResult SaveModuleRoleMapping(ModuleRoleMappingDTO moduleRoleMappingDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                if (AdministratorBusinessLogic.CheckIsModuleRoleMappingExists(moduleRoleMappingDTO.RoleId ?? 0, moduleRoleMappingDTO.ModuleId ?? 0, moduleRoleMappingDTO.ModuleRoleMappingId))
+                {
+                    ModelState.AddModelError("ModuleRoleMappingId", ItsyazilimWebResources.msgDuplicateModuleRoleMapping);
+                }
+                else
+                {
+                    AdministratorBusinessLogic.SaveModuleRoleMapping(moduleRoleMappingDTO);
+                    return RedirectToAction("ModuleRoleMappingList");
+                }
+            }
+            moduleRoleMappingDTO = FillModuleRoleMappingCombo(moduleRoleMappingDTO);
+            return View(moduleRoleMappingDTO);
+        }
+
+        /// <summary>
+        /// Fill Module Role Mapping Combo
+        /// </summary>
+        /// <param name="moduleRoleMappingDTO"></param>
+        /// <returns></returns>
+        private ModuleRoleMappingDTO FillModuleRoleMappingCombo(ModuleRoleMappingDTO moduleRoleMappingDTO)
+        {
+            moduleRoleMappingDTO.ModuleList = MasterBusinessLogic.GetAllModule();
+            moduleRoleMappingDTO.RoleList = MasterBusinessLogic.GetAllRoles();
+            return moduleRoleMappingDTO;
+        }
+
+        /// <summary>
+        /// Delete module role mapping
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult DeleteModuleRoleMapping(int moduleRoleMappingId)
+        {
+            var result = AdministratorBusinessLogic.DeleteModuleRoleMapping(moduleRoleMappingId);
+            if (result == true)
+            {
+                return Json(new { Success = true, Message = ItsyazilimWebResources.msgDeletedSuccessfully });
+            }
+            return Json(new { Success = false, Message = ItsyazilimWebResources.msgErrorPerformingOperation });
         }
 
     }

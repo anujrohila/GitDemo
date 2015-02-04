@@ -1,0 +1,28 @@
+﻿@using System.Web.Mvc;
+@model List<Itsyazilim.Web.Domain.ModelMessage>
+<div id="commonErrorRegion">
+    @{if (Model != null)
+    {
+        if (Model.Where(m => m.Type == SportsXstream.Domain.MessageType.Error).Count() > 0)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in Model)
+                {
+                    <p>
+                        @error.Message
+                    </p>
+                }
+            </div>
+        }
+        else if (Model.Where(m => m.Type == SportsXstream.Domain.MessageType.Success).Count() > 0)
+        {
+            <div class="alert alert-info">
+                @foreach (var error in Model)
+                {
+                    @error.Message
+                }
+            </div>
+        }
+    }
+    }
+</div>

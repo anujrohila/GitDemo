@@ -1,0 +1,79 @@
+﻿@model Itsyazilim.Web.Domain.ModuleRoleMappingDTO
+@using System.Web.Mvc
+@using Telerik.Web.Mvc.UI
+@using Itsyazilim.Web.Domain.Resources
+@{
+    ViewBag.Title = ItsyazilimWebResources.lblRoels;
+    Layout = "~/Views/Shared/_Administrator1.cshtml";
+}
+
+<script>
+    $(document).find("a[ActionLink='RoleList']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <span class="fa fa-truck" style="padding: 0px 13px 0px 10px"></span>@ItsyazilimWebResources.lblSaveMapping
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @using (Html.BeginForm("SaveModuleRoleMapping", "Administrator", FormMethod.Post, new { id = "frmEventInfo", @class = "form-horizontal" }))
+    {
+        <div id="hiddenFields">
+            @Html.HiddenFor(model => model.ModuleRoleMappingId)
+        </div>
+        <div class="col-xs-12 col-md-9 col-md-offset-1">
+            <div class="bottom10" id="eventDetails">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @*@Html.Partial("MessageRegionPartial", Model.ModelMessage)*@
+                        @Html.ValidationSummary(false)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleId, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @(Html.Telerik().ComboBoxFor(model => model.RoleId)
+                          .BindTo(new SelectList(Model.RoleList, "RoleId", "RoleName"))
+                                      .SelectedIndex(0).HighlightFirstMatch(true)
+                                      .HtmlAttributes(new { @style = "width:100%;" })
+                                      .Filterable(filtering =>
+                                      {
+                                          filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
+                                      })
+                        )
+                        @Html.ValidationMessageFor(model => model.RoleId)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ModuleId, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @(Html.Telerik().ComboBoxFor(model => model.ModuleId)
+                            .BindTo(new SelectList(Model.ModuleList, "ModuleId", "ModuleName"))
+                                      .SelectedIndex(0).HighlightFirstMatch(true)
+                                      .HtmlAttributes(new { @style = "width:100%;" })
+                                      .Filterable(filtering =>
+                                      {
+                                          filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
+                                      })
+                        )
+                        @Html.ValidationMessageFor(model => model.ModuleId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-3 control-label"></div>
+                    <div class="col-lg-9">
+                        <button type="submit" class="btn btn-submit">@ItsyazilimWebResources.lblSave</button>
+                        <button id="btnEventPopCancel" type="button" class="btn btn-reset" onclick="document.location.href = '@Url.Action("ModuleRoleMappingList", "Administrator")'">@ItsyazilimWebResources.lblCancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script src="~/Scripts/Administrator/MemberRoles.js"></script>

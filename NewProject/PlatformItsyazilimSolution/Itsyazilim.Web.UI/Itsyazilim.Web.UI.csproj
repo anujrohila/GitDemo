@@ -824,6 +824,7 @@
     <Content Include="Content\2013.2.611\Windows7\slider-v.gif" />
     <Content Include="Content\2013.2.611\Windows7\sprite-vertical.png" />
     <Content Include="Content\2013.2.611\Windows7\sprite.png" />
+    <Content Include="Content\CommonStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
@@ -886,6 +887,7 @@
     <Content Include="Scripts\2013.2.611\telerik.treeview.min.js" />
     <Content Include="Scripts\2013.2.611\telerik.upload.min.js" />
     <Content Include="Scripts\2013.2.611\telerik.window.min.js" />
+    <Content Include="Scripts\Administrator\MemberRoles.js" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -931,6 +933,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\CommonFunction.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1042,7 +1045,10 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Administrator\RoleList.cshtml" />
     <Content Include="Views\Administrator\_GridViewRoleList.cshtml" />
-    <Content Include="Views\Administrator\View1.cshtml" />
+    <Content Include="Views\Shared\_Administrator1.cshtml" />
+    <Content Include="Views\Administrator\ModuleRoleMappingList.cshtml" />
+    <Content Include="Views\Administrator\SaveModuleRoleMapping.cshtml" />
+    <Content Include="Views\Shared\MessageRegionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
