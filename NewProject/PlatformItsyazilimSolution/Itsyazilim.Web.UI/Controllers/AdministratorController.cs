@@ -695,5 +695,20 @@ namespace Itsyazilim.Web.UI.Controllers
             return PartialView("_GridViewRoleList", getAllRoleResult);
         }
 
+
+
+        [ValidateInput(false)]
+        public ActionResult ModuleRoleMappingList()
+        {
+            return View();
+        }
+
+        [ValidateInput(false)]
+        public ActionResult _GridViewModuleRoleMappingList()
+        {
+            var getAllModuleRoleMapping = AdministratorBusinessLogic.GetAllModuleRoleMapping().OrderBy(r => r.ModuleName);
+            return PartialView("_GridViewModuleRoleMappingList", getAllModuleRoleMapping);
+        }
+
     }
 }
