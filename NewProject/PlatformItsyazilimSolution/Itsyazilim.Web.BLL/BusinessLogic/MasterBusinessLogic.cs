@@ -34,6 +34,28 @@ namespace Itsyazilim.Web.BLL
             return masterRepository.GetCountry(countryId);
         }
 
+        /// <summary>
+        /// Get All Module
+        /// </summary>
+        /// <returns></returns>
+        public static List<ModuleDTO> GetAllModule()
+        {
+            var masterRepository = new MasterRepository();
+            return masterRepository.GetAllModule();
+        }
+
+        /// <summary>
+        /// Get All Roles
+        /// </summary>
+        /// <returns></returns>
+        public static List<RoleDTO> GetAllRoles()
+        {
+            var masterRepository = new MasterRepository();
+            return masterRepository.GetAllRoles();
+        }
+
+        
+
         #endregion
     }
 }

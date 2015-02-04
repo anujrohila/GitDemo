@@ -284,7 +284,7 @@ namespace Itsyazilim.Web.BLL
             return administratorRepository.SaveRole(roleDTO);
         }
 
-         /// <summary>
+        /// <summary>
         /// Delete role
         /// </summary>
         /// <returns></returns>
@@ -336,6 +336,16 @@ namespace Itsyazilim.Web.BLL
         {
             var administratorRepository = new AdministratorRepository();
             return administratorRepository.DeleteModuleRoleMapping(mappingId);
+        }
+
+        /// <summary>
+        /// Check Is Module Role MappingExists
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckIsModuleRoleMappingExists(int roleId, int moduleId, int moduleRoleMappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.CheckIsModuleRoleMappingExists(roleId, moduleId, moduleRoleMappingId);
         }
 
         #endregion
