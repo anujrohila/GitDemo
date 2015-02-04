@@ -296,6 +296,50 @@ namespace Itsyazilim.Web.BLL
 
         #endregion
 
+        #region [Module Role Mapping]
+
+        /// <summary>
+        /// Get All Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static List<ModuleRoleMappingDTO> GetAllModuleRoleMapping()
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetAllModuleRoleMapping();
+        }
+
+        /// <summary>
+        /// Get Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static ModuleRoleMappingDTO GetModuleRoleMapping(int mappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetModuleRoleMapping(mappingId);
+        }
+
+        /// <summary>
+        /// Save Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static int SaveModuleRoleMapping(ModuleRoleMappingDTO moduleRoleMappingDTO)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.SaveModuleRoleMapping(moduleRoleMappingDTO);
+        }
+
+        /// <summary>
+        /// Delete Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static bool DeleteModuleRoleMapping(int mappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.DeleteModuleRoleMapping(mappingId);
+        }
+
+        #endregion
+
         #endregion
     }
 }

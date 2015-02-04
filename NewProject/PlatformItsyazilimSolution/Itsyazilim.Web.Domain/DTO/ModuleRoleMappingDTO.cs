@@ -31,17 +31,8 @@ namespace Itsyazilim.Web.Domain
         [DataMember()]
         public Int32 Role_RoleId { get; set; }
 
-        public ModuleRoleMappingDTO()
-        {
-        }
+        public string ModuleName { get; set; }
 
-        public ModuleRoleMappingDTO(Int32 moduleRoleMappingId, Nullable<Int32> roleId, Nullable<Int32> moduleId, Int32 module_ModuleId, Int32 role_RoleId)
-        {
-			this.ModuleRoleMappingId = moduleRoleMappingId;
-			this.RoleId = roleId;
-			this.ModuleId = moduleId;
-			this.Module_ModuleId = module_ModuleId;
-			this.Role_RoleId = role_RoleId;
-        }
+        public string RoleName { get; set; }
     }
 }

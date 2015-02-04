@@ -208,7 +208,7 @@ namespace Itsyazilim.Web.DLL
                 }
 
                 LtsyazilimDatabaseEntities.SaveChanges();
-                
+
                 return vehicleTypeDetails.VehicleTypeId;
             }
         }
@@ -510,6 +510,91 @@ namespace Itsyazilim.Web.DLL
             {
                 var roleDetails = LtsyazilimDatabaseEntities.Roles.Find(roleId);
                 LtsyazilimDatabaseEntities.Roles.Remove(roleDetails);
+                LtsyazilimDatabaseEntities.SaveChanges();
+                return true;
+            }
+        }
+
+        #endregion
+
+        #region [Module Role Mapping]
+
+        /// <summary>
+        /// Get All Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public List<ModuleRoleMappingDTO> GetAllModuleRoleMapping()
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return (from mapping in LtsyazilimDatabaseEntities.ModuleRoleMappings
+                        select new ModuleRoleMappingDTO
+                        {
+                            ModuleRoleMappingId = mapping.ModuleRoleMappingId,
+                            ModuleId = mapping.ModuleId,
+                            RoleId = mapping.RoleId,
+                            ModuleName = mapping.Module.ModuleName,
+                            RoleName = mapping.Role.RoleName
+                        }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Get Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public ModuleRoleMappingDTO GetModuleRoleMapping(int mappingId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return (from mapping in LtsyazilimDatabaseEntities.ModuleRoleMappings
+                        where mapping.ModuleRoleMappingId == mappingId
+                        select new ModuleRoleMappingDTO
+                        {
+                            ModuleRoleMappingId = mapping.ModuleRoleMappingId,
+                            ModuleId = mapping.ModuleId,
+                            RoleId = mapping.RoleId,
+                            ModuleName = mapping.Module.ModuleName,
+                            RoleName = mapping.Role.RoleName
+                        }).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Save Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public int SaveModuleRoleMapping(ModuleRoleMappingDTO moduleRoleMappingDTO)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var moduleRoleMappingDetails = new ModuleRoleMapping();
+                if (moduleRoleMappingDTO.ModuleRoleMappingId == 0)
+                {
+                    moduleRoleMappingDetails = moduleRoleMappingDTO.ToEntity();
+                    LtsyazilimDatabaseEntities.ModuleRoleMappings.Add(moduleRoleMappingDetails);
+                }
+                else
+                {
+                    moduleRoleMappingDetails = LtsyazilimDatabaseEntities.ModuleRoleMappings.Where(mapping => mapping.ModuleRoleMappingId == moduleRoleMappingDTO.ModuleRoleMappingId).FirstOrDefault();
+                    moduleRoleMappingDetails.RoleId = moduleRoleMappingDTO.RoleId;
+                    moduleRoleMappingDetails.ModuleId = moduleRoleMappingDTO.ModuleId;
+                }
+                LtsyazilimDatabaseEntities.SaveChanges();
+                return moduleRoleMappingDetails.ModuleRoleMappingId;
+            }
+        }
+
+        /// <summary>
+        /// Delete Module Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public bool DeleteModuleRoleMapping(int mappingId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var moduleRoleMappingDetails = LtsyazilimDatabaseEntities.ModuleRoleMappings.Where(mapping => mapping.ModuleRoleMappingId == mappingId).FirstOrDefault();
+                LtsyazilimDatabaseEntities.ModuleRoleMappings.Remove(moduleRoleMappingDetails);
                 LtsyazilimDatabaseEntities.SaveChanges();
                 return true;
             }
