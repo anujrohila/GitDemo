@@ -252,6 +252,50 @@ namespace Itsyazilim.Web.BLL
 
         #endregion
 
+        #region [Role]
+
+        /// <summary>
+        /// Get All Role
+        /// </summary>
+        /// <returns></returns>
+        public static List<RoleDTO> GetAllRole()
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetAllRole();
+        }
+
+        /// <summary>
+        /// Get Product Type
+        /// </summary>
+        /// <returns></returns>
+        public static RoleDTO GetRole(int roleId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetRole(roleId);
+        }
+
+        /// <summary>
+        /// Save Role
+        /// </summary>
+        /// <returns></returns>
+        public static int SaveRole(RoleDTO roleDTO)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.SaveRole(roleDTO);
+        }
+
+         /// <summary>
+        /// Delete role
+        /// </summary>
+        /// <returns></returns>
+        public static bool DeleteRole(int roleId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.DeleteRole(roleId);
+        }
+
+        #endregion
+
         #endregion
     }
 }
