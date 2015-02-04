@@ -1,0 +1,7 @@
+ArrivalTime
+
+1. svd
+2. similarity metrics for smart match
+3. cloud numercis?
+
+ejml : Java library.

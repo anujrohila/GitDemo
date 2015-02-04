@@ -1,0 +1,45 @@
+Project is Based on : logistic sector
+Location is : turkey
+For R & D purpose
+Supported by turkish goverment
+2 logistic company
+there is a 2 database
+Upper knowledgebase and lower knowledgebase
+-------
+
+Modules
+1) Order
+2) Order Match
+3) Optimization part
+
+Order ---
+after we take order we will match orders
+
+Order Match---
+in order match module
+this module is main part
+
+Optimazation
+And also we have some some optimization parts - Java part
+there will ve root planning, load order, load type and so on
+
+
+Database
+1 - Database
+In lower one there will be static rules
+
+2 - Database
+in upper one there will be dynamic rules
+we will enter some rules to the db which is about match procedure
+
+First Day Task-----
+1) Design views compatible with all platforms (Bootstrap + Devexpress)
+2) Complete the development of Login Roles
+3) Create the structure of rule databases( Upper(Static) and lower(Dyanmic) level knowledgebase)
+4) Requests with 4 types
+5) Develop a rule editor(rule entry page)
+6) Request Recomender (smart match)
+7) Prepare the unit test code -
+
+
+

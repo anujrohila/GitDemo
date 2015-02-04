@@ -1,0 +1,26 @@
+Hi,
+
+About Order.
+
+- Order Firm
+- Ordre User
+- Order Type
+- Vechicle Type
+- Departure Date
+- Departure Time
+- Arrival Date
+- Arrival Time
+- Comment
+
+And order have Route
+Order
+Start Country
+End Country
+
+And Order have many order details
+
+
+- Product Unit
+- Product Features
+- Product Package Type
+- Product Types
