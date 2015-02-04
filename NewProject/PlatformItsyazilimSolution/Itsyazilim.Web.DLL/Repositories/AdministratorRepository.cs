@@ -595,8 +595,22 @@ namespace Itsyazilim.Web.DLL
             {
                 var moduleRoleMappingDetails = LtsyazilimDatabaseEntities.ModuleRoleMappings.Where(mapping => mapping.ModuleRoleMappingId == mappingId).FirstOrDefault();
                 LtsyazilimDatabaseEntities.ModuleRoleMappings.Remove(moduleRoleMappingDetails);
-                LtsyazilimDatabaseEntities.SaveChanges();
-                return true;
+                return LtsyazilimDatabaseEntities.SaveChanges() > 0;
+            }
+        }
+
+        /// <summary>
+        /// Check Is Module Role MappingExists
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckIsModuleRoleMappingExists(int roleId, int moduleId, int moduleRoleMappingId)
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                var moduleRoleMappingDetails = LtsyazilimDatabaseEntities.ModuleRoleMappings.Where(mapping => mapping.RoleId == roleId 
+                                                                                                    && mapping.ModuleId == moduleId 
+                                                                                                    && mapping.ModuleRoleMappingId != moduleRoleMappingId);
+                return moduleRoleMappingDetails.Count() > 0;
             }
         }
 

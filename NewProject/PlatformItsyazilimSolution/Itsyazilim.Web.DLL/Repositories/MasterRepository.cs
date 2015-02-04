@@ -37,6 +37,7 @@ namespace Itsyazilim.Web.DLL
             }
 
         }
+
         /// <summary>
         /// Get country
         /// </summary>
@@ -46,6 +47,30 @@ namespace Itsyazilim.Web.DLL
             using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
             {
                 return LtsyazilimDatabaseEntities.DefLocationCounties.Where(country => country.CountyId == countryId).FirstOrDefault().ToDTO();
+            }
+        }
+
+        /// <summary>
+        /// Get All Module
+        /// </summary>
+        /// <returns></returns>
+        public List<ModuleDTO> GetAllModule()
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return LtsyazilimDatabaseEntities.Modules.ToDTOs();
+            }
+        }
+
+        /// <summary>
+        /// Get All Roles
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleDTO> GetAllRoles()
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return LtsyazilimDatabaseEntities.Roles.ToDTOs();
             }
         }
 
