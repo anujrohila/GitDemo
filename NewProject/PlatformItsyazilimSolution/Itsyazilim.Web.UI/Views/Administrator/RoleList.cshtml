@@ -1,0 +1,30 @@
+﻿@using Itsyazilim.Web.Domain.Resources
+@using DevExpress.Web.Mvc.UI;
+@using DevExpress.Web;
+@using DevExpress.Utils;
+@{
+    ViewBag.Title = ItsyazilimWebResources.lblRoels;
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+}
+
+<script>
+    $(document).find("a[ActionLink='RoleList']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <span class="fa fa-truck" style="padding: 0px 13px 0px 10px"></span>@ItsyazilimWebResources.lblVehicleTypes
+                </h2>
+            </td>
+            <td style="text-align: right">
+                <a href="javascript:GridViewRoleList.AddNewRow()" class="btn btn-sm btn-primary">
+                    <i class="fa fa-plus" style="padding-right:5px"></i>@ItsyazilimWebResources.lblRoels
+                </a>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @Html.Action("_GridViewRoleList")
+</div>
