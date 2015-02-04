@@ -142,10 +142,22 @@
     <Compile Include="ORM\MapFirmToUser.cs">
       <DependentUpon>Itsyazilim.tt</DependentUpon>
     </Compile>
+    <Compile Include="ORM\MemberRole.cs">
+      <DependentUpon>Itsyazilim.tt</DependentUpon>
+    </Compile>
     <Compile Include="ORM\Membership.cs">
       <DependentUpon>Itsyazilim.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\MembershipPasswordRenewal.cs">
+      <DependentUpon>Itsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\MemeberRoleMapping.cs">
+      <DependentUpon>Itsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Module.cs">
+      <DependentUpon>Itsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\ModuleRoleMapping.cs">
       <DependentUpon>Itsyazilim.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\Order.cs">
@@ -158,6 +170,9 @@
       <DependentUpon>Itsyazilim.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\OrderRoute.cs">
+      <DependentUpon>Itsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Role.cs">
       <DependentUpon>Itsyazilim.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
