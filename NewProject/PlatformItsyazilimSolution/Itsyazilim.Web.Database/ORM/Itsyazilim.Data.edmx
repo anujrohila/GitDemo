@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LtsyazilimDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LtsyazilimDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="_OrderEndPositions">
           <Key>
             <PropertyRef Name="OrderEndPositionId" />
@@ -223,6 +223,14 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="MemberRoles">
+          <Key>
+            <PropertyRef Name="MemberRolesId" />
+          </Key>
+          <Property Name="MemberRolesId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="MemberId" Type="int" />
+        </EntityType>
         <EntityType Name="Membership">
           <Key>
             <PropertyRef Name="UserId" />
@@ -253,6 +261,30 @@
           <Property Name="ActivateCode" Type="nvarchar" MaxLength="36" Nullable="false" />
           <Property Name="IP" Type="nvarchar" MaxLength="15" />
           <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemeberRoleMapping">
+          <Key>
+            <PropertyRef Name="RoleMappingId" />
+          </Key>
+          <Property Name="RoleMappingId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="ModuleRoleMapping">
+          <Key>
+            <PropertyRef Name="ModuleRoleMappingId" />
+          </Key>
+          <Property Name="ModuleRoleMappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="ModuleId" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -306,6 +338,62 @@
           <Property Name="CreatedOn" Type="smalldatetime" Nullable="false" />
           <Property Name="UpdatedOn" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_MemeberRoleMapping_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="0..1" />
+          <End Role="MemeberRoleMapping" Type="Self.MemeberRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MemeberRoleMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemeberRoleMapping_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="MemeberRoleMapping" Type="Self.MemeberRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MemeberRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRoleMapping_ModuleRoleMapping">
+          <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+          <End Role="ModuleRoleMapping" Type="Self.ModuleRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="ModuleRoleMapping">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRoleMapping_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="ModuleRoleMapping" Type="Self.ModuleRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="ModuleRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="AdministratorSelectFirmDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirmId" Type="int" Mode="In" />
         </Function>
@@ -336,18 +424,155 @@
           <EntitySet Name="LogMembershipSendPasswordRenewalCodes" EntityType="Self.LogMembershipSendPasswordRenewalCodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogSystemMailSend" EntityType="Self.LogSystemMailSend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MapFirmToUser" EntityType="Self.MapFirmToUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberRoles" EntityType="Self.MemberRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Membership" EntityType="Self.Membership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembershipPasswordRenewals" EntityType="Self.MembershipPasswordRenewals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemeberRoleMapping" EntityType="Self.MemeberRoleMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleRoleMapping" EntityType="Self.ModuleRoleMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderProductProperties" EntityType="Self.OrderProductProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderRoutes" EntityType="Self.OrderRoutes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MemeberRoleMapping_Membership" Association="Self.FK_MemeberRoleMapping_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="MemeberRoleMapping" EntitySet="MemeberRoleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemeberRoleMapping_Roles" Association="Self.FK_MemeberRoleMapping_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="MemeberRoleMapping" EntitySet="MemeberRoleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRoleMapping_ModuleRoleMapping" Association="Self.FK_ModuleRoleMapping_ModuleRoleMapping">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleRoleMapping" EntitySet="ModuleRoleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRoleMapping_Roles" Association="Self.FK_ModuleRoleMapping_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="ModuleRoleMapping" EntitySet="ModuleRoleMapping" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LtsyazilimDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LtsyazilimDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="AdministratorSelectFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirmDetails_Result)">
+          <Parameter Name="FirmId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdministratorSelectFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirms_Result)" />
+          <FunctionImport Name="AdministratorSelectUnApprovedFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnApprovedFirmDetails_Result)">
+          <Parameter Name="FirmId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdministratorSelectUnapprovedFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnapprovedFirms_Result)" />
+          <FunctionImport Name="ManageSelectCountyListForTreeView" ReturnType="Collection(LtsyazilimDatabaseModel.ManageSelectCountyListForTreeView_Result)" />
+          <EntitySet Name="C_OrderEndPositions" EntityType="LtsyazilimDatabaseModel.C_OrderEndPositions" />
+          <EntitySet Name="C_OrderStartPositions" EntityType="LtsyazilimDatabaseModel.C_OrderStartPositions" />
+          <EntitySet Name="DefLocationCities" EntityType="LtsyazilimDatabaseModel.DefLocationCity" />
+          <EntitySet Name="DefLocationCounties" EntityType="LtsyazilimDatabaseModel.DefLocationCounty" />
+          <EntitySet Name="DefLocationCountries" EntityType="LtsyazilimDatabaseModel.DefLocationCountry" />
+          <EntitySet Name="DefLocationRegions" EntityType="LtsyazilimDatabaseModel.DefLocationRegion" />
+          <EntitySet Name="DefOrderTypes" EntityType="LtsyazilimDatabaseModel.DefOrderType" />
+          <EntitySet Name="DefProductPackages" EntityType="LtsyazilimDatabaseModel.DefProductPackage" />
+          <EntitySet Name="DefProductProperties" EntityType="LtsyazilimDatabaseModel.DefProductProperty" />
+          <EntitySet Name="DefProductTypes" EntityType="LtsyazilimDatabaseModel.DefProductType" />
+          <EntitySet Name="DefProductUnits" EntityType="LtsyazilimDatabaseModel.DefProductUnit" />
+          <EntitySet Name="DefVehicleTypes" EntityType="LtsyazilimDatabaseModel.DefVehicleType" />
+          <EntitySet Name="Firms" EntityType="LtsyazilimDatabaseModel.Firm" />
+          <EntitySet Name="LogMembershipCheckPasswordRenewalCodes" EntityType="LtsyazilimDatabaseModel.LogMembershipCheckPasswordRenewalCode" />
+          <EntitySet Name="LogMembershipLogins" EntityType="LtsyazilimDatabaseModel.LogMembershipLogin" />
+          <EntitySet Name="LogMembershipRegisterCheckCodes" EntityType="LtsyazilimDatabaseModel.LogMembershipRegisterCheckCode" />
+          <EntitySet Name="LogMembershipRegisterReSendCodes" EntityType="LtsyazilimDatabaseModel.LogMembershipRegisterReSendCode" />
+          <EntitySet Name="LogMembershipSendPasswordRenewalCodes" EntityType="LtsyazilimDatabaseModel.LogMembershipSendPasswordRenewalCode" />
+          <EntitySet Name="LogSystemMailSends" EntityType="LtsyazilimDatabaseModel.LogSystemMailSend" />
+          <EntitySet Name="MapFirmToUsers" EntityType="LtsyazilimDatabaseModel.MapFirmToUser" />
+          <EntitySet Name="MemberRoles" EntityType="LtsyazilimDatabaseModel.MemberRole" />
+          <EntitySet Name="Memberships" EntityType="LtsyazilimDatabaseModel.Membership" />
+          <EntitySet Name="MembershipPasswordRenewals" EntityType="LtsyazilimDatabaseModel.MembershipPasswordRenewal" />
+          <EntitySet Name="MemeberRoleMappings" EntityType="LtsyazilimDatabaseModel.MemeberRoleMapping" />
+          <EntitySet Name="Modules" EntityType="LtsyazilimDatabaseModel.Module" />
+          <EntitySet Name="ModuleRoleMappings" EntityType="LtsyazilimDatabaseModel.ModuleRoleMapping" />
+          <EntitySet Name="OrderDetails" EntityType="LtsyazilimDatabaseModel.OrderDetail" />
+          <EntitySet Name="OrderProductProperties" EntityType="LtsyazilimDatabaseModel.OrderProductProperty" />
+          <EntitySet Name="OrderRoutes" EntityType="LtsyazilimDatabaseModel.OrderRoute" />
+          <EntitySet Name="Orders" EntityType="LtsyazilimDatabaseModel.Order" />
+          <EntitySet Name="Roles" EntityType="LtsyazilimDatabaseModel.Role" />
+          <AssociationSet Name="FK_MemeberRoleMapping_Membership" Association="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Membership">
+            <End Role="Membership" EntitySet="Memberships" />
+            <End Role="MemeberRoleMapping" EntitySet="MemeberRoleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemeberRoleMapping_Roles" Association="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="MemeberRoleMapping" EntitySet="MemeberRoleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRoleMapping_ModuleRoleMapping" Association="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_ModuleRoleMapping">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModuleRoleMapping" EntitySet="ModuleRoleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRoleMapping_Roles" Association="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="ModuleRoleMapping" EntitySet="ModuleRoleMappings" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="AdministratorSelectFirmDetails_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectFirms_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectUnApprovedFirmDetails_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
+        </ComplexType>
+        <ComplexType Name="AdministratorSelectUnapprovedFirms_Result">
+          <Property Type="Int32" Name="FirmId" Nullable="false" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="ManageSelectCountyListForTreeView_Result">
+          <Property Type="Int32" Name="CityId" Nullable="true" />
+          <Property Type="Int32" Name="CountyId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" />
+        </ComplexType>
         <EntityType Name="C_OrderEndPositions">
           <Key>
             <PropertyRef Name="OrderEndPositionId" />
@@ -369,7 +594,7 @@
             <PropertyRef Name="CityId" />
           </Key>
           <Property Name="CityId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CountryId" Type="Byte" Nullable="false" />
           <Property Name="LocalCode" Type="Int16" Nullable="false" />
         </EntityType>
@@ -378,7 +603,7 @@
             <PropertyRef Name="CountyId" />
           </Key>
           <Property Name="CountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CityId" Type="Int16" Nullable="false" />
           <Property Name="LocalCode" Type="Int16" Nullable="false" />
         </EntityType>
@@ -387,14 +612,14 @@
             <PropertyRef Name="CountryId" />
           </Key>
           <Property Name="CountryId" Type="Byte" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DefLocationRegion">
           <Key>
             <PropertyRef Name="RegionId" />
           </Key>
           <Property Name="RegionId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CountryId" Type="Byte" Nullable="false" />
           <Property Name="LocalCode" Type="Byte" Nullable="false" />
         </EntityType>
@@ -410,7 +635,7 @@
             <PropertyRef Name="ProductPackageId" />
           </Key>
           <Property Name="ProductPackageId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductPackageName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductPackageName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -422,7 +647,7 @@
             <PropertyRef Name="ProductPropertyId" />
           </Key>
           <Property Name="ProductPropertyId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductPropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductPropertyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -434,7 +659,7 @@
             <PropertyRef Name="ProductTypeId" />
           </Key>
           <Property Name="ProductTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -446,7 +671,7 @@
             <PropertyRef Name="ProductUnitId" />
           </Key>
           <Property Name="ProductUnitId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductUnitName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductUnitName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -458,11 +683,11 @@
             <PropertyRef Name="VehicleTypeId" />
           </Key>
           <Property Name="VehicleTypeId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VehicleTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="VehicleWidth" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="VehicleLength" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="VehicleHeight" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="VehicleVolume" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleWidth" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="VehicleLength" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="VehicleHeight" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="VehicleVolume" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="VehicleDesi" Type="Int32" Nullable="false" />
           <Property Name="VehicleWeight" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
@@ -476,17 +701,17 @@
             <PropertyRef Name="FirmId" />
           </Key>
           <Property Name="FirmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirmName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CountyId" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone1" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone1" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
           <Property Name="Phone2" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
           <Property Name="MobilePhone" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="WebSite" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="TaxOffice" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TaxNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaxOffice" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
           <Property Name="ApprovedBy" Type="Int32" />
@@ -566,13 +791,21 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
+        <EntityType Name="MemberRole">
+          <Key>
+            <PropertyRef Name="MemberRolesId" />
+          </Key>
+          <Property Name="MemberRolesId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="MemberId" Type="Int32" />
+        </EntityType>
         <EntityType Name="Membership">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
@@ -586,16 +819,46 @@
           <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MemeberRoleMappings" Relationship="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Membership" FromRole="Membership" ToRole="MemeberRoleMapping" />
         </EntityType>
         <EntityType Name="MembershipPasswordRenewal">
           <Key>
             <PropertyRef Name="RenewalId" />
           </Key>
           <Property Name="RenewalId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ActivateCode" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ActivateCode" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="MemeberRoleMapping">
+          <Key>
+            <PropertyRef Name="RoleMappingId" />
+          </Key>
+          <Property Name="RoleMappingId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Membership" Relationship="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Membership" FromRole="MemeberRoleMapping" ToRole="Membership" />
+          <NavigationProperty Name="Role" Relationship="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Roles" FromRole="MemeberRoleMapping" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ModuleRoleMappings" Relationship="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_ModuleRoleMapping" FromRole="Module" ToRole="ModuleRoleMapping" />
+        </EntityType>
+        <EntityType Name="ModuleRoleMapping">
+          <Key>
+            <PropertyRef Name="ModuleRoleMappingId" />
+          </Key>
+          <Property Name="ModuleRoleMappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="ModuleId" Type="Int32" />
+          <NavigationProperty Name="Module" Relationship="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_ModuleRoleMapping" FromRole="ModuleRoleMapping" ToRole="Module" />
+          <NavigationProperty Name="Role" Relationship="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_Roles" FromRole="ModuleRoleMapping" ToRole="Role" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -607,8 +870,8 @@
           <Property Name="LoadProductPackageId" Type="Byte" Nullable="false" />
           <Property Name="LoadProductTypeId" Type="Int16" Nullable="false" />
           <Property Name="LoadProductWeight" Type="Int32" Nullable="false" />
-          <Property Name="LoadProductVolume" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="LoadProductVisibleVolume" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="LoadProductVolume" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="LoadProductVisibleVolume" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="LoadProductVolumeVisibleUnitId" Type="Byte" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
@@ -649,435 +912,70 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityContainer Name="LtsyazilimDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C_OrderEndPositions" EntityType="Self.C_OrderEndPositions" />
-          <EntitySet Name="C_OrderStartPositions" EntityType="Self.C_OrderStartPositions" />
-          <EntitySet Name="DefLocationCities" EntityType="Self.DefLocationCity" />
-          <EntitySet Name="DefLocationCounties" EntityType="Self.DefLocationCounty" />
-          <EntitySet Name="DefLocationCountries" EntityType="Self.DefLocationCountry" />
-          <EntitySet Name="DefLocationRegions" EntityType="Self.DefLocationRegion" />
-          <EntitySet Name="DefOrderTypes" EntityType="Self.DefOrderType" />
-          <EntitySet Name="DefProductPackages" EntityType="Self.DefProductPackage" />
-          <EntitySet Name="DefProductProperties" EntityType="Self.DefProductProperty" />
-          <EntitySet Name="DefProductTypes" EntityType="Self.DefProductType" />
-          <EntitySet Name="DefProductUnits" EntityType="Self.DefProductUnit" />
-          <EntitySet Name="DefVehicleTypes" EntityType="Self.DefVehicleType" />
-          <EntitySet Name="Firms" EntityType="Self.Firm" />
-          <EntitySet Name="LogMembershipCheckPasswordRenewalCodes" EntityType="Self.LogMembershipCheckPasswordRenewalCode" />
-          <EntitySet Name="LogMembershipLogins" EntityType="Self.LogMembershipLogin" />
-          <EntitySet Name="LogMembershipRegisterCheckCodes" EntityType="Self.LogMembershipRegisterCheckCode" />
-          <EntitySet Name="LogMembershipRegisterReSendCodes" EntityType="Self.LogMembershipRegisterReSendCode" />
-          <EntitySet Name="LogMembershipSendPasswordRenewalCodes" EntityType="Self.LogMembershipSendPasswordRenewalCode" />
-          <EntitySet Name="LogSystemMailSends" EntityType="Self.LogSystemMailSend" />
-          <EntitySet Name="MapFirmToUsers" EntityType="Self.MapFirmToUser" />
-          <EntitySet Name="Memberships" EntityType="Self.Membership" />
-          <EntitySet Name="MembershipPasswordRenewals" EntityType="Self.MembershipPasswordRenewal" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-          <EntitySet Name="OrderProductProperties" EntityType="Self.OrderProductProperty" />
-          <EntitySet Name="OrderRoutes" EntityType="Self.OrderRoute" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <FunctionImport Name="AdministratorSelectFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirmDetails_Result)">
-            <Parameter Name="FirmId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AdministratorSelectFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectFirms_Result)" />
-          <FunctionImport Name="AdministratorSelectUnApprovedFirmDetails" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnApprovedFirmDetails_Result)">
-            <Parameter Name="FirmId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AdministratorSelectUnapprovedFirms" ReturnType="Collection(LtsyazilimDatabaseModel.AdministratorSelectUnapprovedFirms_Result)" />
-          <FunctionImport Name="ManageSelectCountyListForTreeView" ReturnType="Collection(LtsyazilimDatabaseModel.ManageSelectCountyListForTreeView_Result)" />
-        </EntityContainer>
-        <ComplexType Name="AdministratorSelectFirmDetails_Result">
-          <Property Type="Int32" Name="FirmId" Nullable="false" />
-          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
-          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
-          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
-          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
-        </ComplexType>
-        <ComplexType Name="AdministratorSelectFirms_Result">
-          <Property Type="Int32" Name="FirmId" Nullable="false" />
-          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
-          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
-        </ComplexType>
-        <ComplexType Name="AdministratorSelectUnApprovedFirmDetails_Result">
-          <Property Type="Int32" Name="FirmId" Nullable="false" />
-          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
-          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="64" />
-          <Property Type="String" Name="WebSite" Nullable="true" MaxLength="64" />
-          <Property Type="String" Name="TaxOffice" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Phone1" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Phone2" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Fax" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="TaxNo" Nullable="true" MaxLength="13" />
-        </ComplexType>
-        <ComplexType Name="AdministratorSelectUnapprovedFirms_Result">
-          <Property Type="Int32" Name="FirmId" Nullable="false" />
-          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="16" />
-          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="User" Nullable="true" MaxLength="61" />
-        </ComplexType>
-        <ComplexType Name="ManageSelectCountyListForTreeView_Result">
-          <Property Type="Int32" Name="CityId" Nullable="true" />
-          <Property Type="Int32" Name="CountyId" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" />
-        </ComplexType>
-      </Schema>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemeberRoleMappings" Relationship="LtsyazilimDatabaseModel.FK_MemeberRoleMapping_Roles" FromRole="Role" ToRole="MemeberRoleMapping" />
+          <NavigationProperty Name="ModuleRoleMappings" Relationship="LtsyazilimDatabaseModel.FK_ModuleRoleMapping_Roles" FromRole="Role" ToRole="ModuleRoleMapping" />
+        </EntityType>
+        <Association Name="FK_MemeberRoleMapping_Membership">
+          <End Type="LtsyazilimDatabaseModel.Membership" Role="Membership" Multiplicity="0..1" />
+          <End Type="LtsyazilimDatabaseModel.MemeberRoleMapping" Role="MemeberRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="MemeberRoleMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemeberRoleMapping_Roles">
+          <End Type="LtsyazilimDatabaseModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="LtsyazilimDatabaseModel.MemeberRoleMapping" Role="MemeberRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MemeberRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRoleMapping_ModuleRoleMapping">
+          <End Type="LtsyazilimDatabaseModel.Module" Role="Module" Multiplicity="0..1" />
+          <End Type="LtsyazilimDatabaseModel.ModuleRoleMapping" Role="ModuleRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="ModuleRoleMapping">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRoleMapping_Roles">
+          <End Type="LtsyazilimDatabaseModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="LtsyazilimDatabaseModel.ModuleRoleMapping" Role="ModuleRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="ModuleRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LtsyazilimDatabaseModelStoreContainer" CdmEntityContainer="LtsyazilimDatabaseEntities">
-          <EntitySetMapping Name="C_OrderEndPositions">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderEndPositions">
-              <MappingFragment StoreEntitySet="_OrderEndPositions">
-                <ScalarProperty Name="OrderEndPositionId" ColumnName="OrderEndPositionId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C_OrderStartPositions">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderStartPositions">
-              <MappingFragment StoreEntitySet="_OrderStartPositions">
-                <ScalarProperty Name="OrderStartPositionId" ColumnName="OrderStartPositionId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefLocationCities">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCity">
-              <MappingFragment StoreEntitySet="DefLocationCities">
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefLocationCounties">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCounty">
-              <MappingFragment StoreEntitySet="DefLocationCounties">
-                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefLocationCountries">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCountry">
-              <MappingFragment StoreEntitySet="DefLocationCountries">
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefLocationRegions">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationRegion">
-              <MappingFragment StoreEntitySet="DefLocationRegions">
-                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefOrderTypes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefOrderType">
-              <MappingFragment StoreEntitySet="DefOrderTypes">
-                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
-                <ScalarProperty Name="OrderTypeName" ColumnName="OrderTypeName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefProductPackages">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductPackage">
-              <MappingFragment StoreEntitySet="DefProductPackages">
-                <ScalarProperty Name="ProductPackageId" ColumnName="ProductPackageId" />
-                <ScalarProperty Name="ProductPackageName" ColumnName="ProductPackageName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefProductProperties">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductProperty">
-              <MappingFragment StoreEntitySet="DefProductProperties">
-                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
-                <ScalarProperty Name="ProductPropertyName" ColumnName="ProductPropertyName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefProductTypes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductType">
-              <MappingFragment StoreEntitySet="DefProductTypes">
-                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
-                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefProductUnits">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductUnit">
-              <MappingFragment StoreEntitySet="DefProductUnits">
-                <ScalarProperty Name="ProductUnitId" ColumnName="ProductUnitId" />
-                <ScalarProperty Name="ProductUnitName" ColumnName="ProductUnitName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefVehicleTypes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefVehicleType">
-              <MappingFragment StoreEntitySet="DefVehicleTypes">
-                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
-                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
-                <ScalarProperty Name="VehicleWidth" ColumnName="VehicleWidth" />
-                <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
-                <ScalarProperty Name="VehicleHeight" ColumnName="VehicleHeight" />
-                <ScalarProperty Name="VehicleVolume" ColumnName="VehicleVolume" />
-                <ScalarProperty Name="VehicleDesi" ColumnName="VehicleDesi" />
-                <ScalarProperty Name="VehicleWeight" ColumnName="VehicleWeight" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Firms">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Firm">
-              <MappingFragment StoreEntitySet="Firms">
-                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
-                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
-                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
-                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
-                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogMembershipCheckPasswordRenewalCodes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipCheckPasswordRenewalCode">
-              <MappingFragment StoreEntitySet="LogMembershipCheckPasswordRenewalCodes">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogMembershipLogins">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipLogin">
-              <MappingFragment StoreEntitySet="LogMembershipLogins">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogMembershipRegisterCheckCodes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterCheckCode">
-              <MappingFragment StoreEntitySet="LogMembershipRegisterCheckCodes">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogMembershipRegisterReSendCodes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterReSendCode">
-              <MappingFragment StoreEntitySet="LogMembershipRegisterReSendCodes">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogMembershipSendPasswordRenewalCodes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipSendPasswordRenewalCode">
-              <MappingFragment StoreEntitySet="LogMembershipSendPasswordRenewalCodes">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Result" ColumnName="Result" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogSystemMailSends">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogSystemMailSend">
-              <MappingFragment StoreEntitySet="LogSystemMailSend">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-                <ScalarProperty Name="PageName" ColumnName="PageName" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MapFirmToUsers">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MapFirmToUser">
-              <MappingFragment StoreEntitySet="MapFirmToUser">
-                <ScalarProperty Name="MapId" ColumnName="MapId" />
-                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Memberships">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Membership">
-              <MappingFragment StoreEntitySet="Membership">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="LastPasswordChangeDate" ColumnName="LastPasswordChangeDate" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="VerifyOn" ColumnName="VerifyOn" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MembershipPasswordRenewals">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MembershipPasswordRenewal">
-              <MappingFragment StoreEntitySet="MembershipPasswordRenewals">
-                <ScalarProperty Name="RenewalId" ColumnName="RenewalId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ActivateCode" ColumnName="ActivateCode" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
-                <ScalarProperty Name="OrderRouteId" ColumnName="OrderRouteId" />
-                <ScalarProperty Name="OrderDetailType" ColumnName="OrderDetailType" />
-                <ScalarProperty Name="LoadProductPackageId" ColumnName="LoadProductPackageId" />
-                <ScalarProperty Name="LoadProductTypeId" ColumnName="LoadProductTypeId" />
-                <ScalarProperty Name="LoadProductWeight" ColumnName="LoadProductWeight" />
-                <ScalarProperty Name="LoadProductVolume" ColumnName="LoadProductVolume" />
-                <ScalarProperty Name="LoadProductVisibleVolume" ColumnName="LoadProductVisibleVolume" />
-                <ScalarProperty Name="LoadProductVolumeVisibleUnitId" ColumnName="LoadProductVolumeVisibleUnitId" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderProductProperties">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderProductProperty">
-              <MappingFragment StoreEntitySet="OrderProductProperties">
-                <ScalarProperty Name="OrderProductPropertiesId" ColumnName="OrderProductPropertiesId" />
-                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
-                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderRoutes">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderRoute">
-              <MappingFragment StoreEntitySet="OrderRoutes">
-                <ScalarProperty Name="OrderRootId" ColumnName="OrderRootId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="StartCountyId" ColumnName="StartCountyId" />
-                <ScalarProperty Name="EndCountyId" ColumnName="EndCountyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
-                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
-                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
-                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
-                <ScalarProperty Name="DepartureDateType" ColumnName="DepartureDateType" />
-                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
-                <ScalarProperty Name="ArrivalDateType" ColumnName="ArrivalDateType" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AdministratorSelectFirmDetails" FunctionName="LtsyazilimDatabaseModel.Store.AdministratorSelectFirmDetails">
             <ResultMapping>
               <ComplexTypeMapping TypeName="LtsyazilimDatabaseModel.AdministratorSelectFirmDetails_Result">
@@ -1157,7 +1055,379 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="C_OrderEndPositions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderEndPositions">
+              <MappingFragment StoreEntitySet="_OrderEndPositions">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderEndPositionId" ColumnName="OrderEndPositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_OrderStartPositions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.C_OrderStartPositions">
+              <MappingFragment StoreEntitySet="_OrderStartPositions">
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderStartPositionId" ColumnName="OrderStartPositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCities">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCity">
+              <MappingFragment StoreEntitySet="DefLocationCities">
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCounties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCounty">
+              <MappingFragment StoreEntitySet="DefLocationCounties">
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationCountries">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationCountry">
+              <MappingFragment StoreEntitySet="DefLocationCountries">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefLocationRegions">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefLocationRegion">
+              <MappingFragment StoreEntitySet="DefLocationRegions">
+                <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefOrderTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefOrderType">
+              <MappingFragment StoreEntitySet="DefOrderTypes">
+                <ScalarProperty Name="OrderTypeName" ColumnName="OrderTypeName" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductPackages">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductPackage">
+              <MappingFragment StoreEntitySet="DefProductPackages">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProductPackageName" ColumnName="ProductPackageName" />
+                <ScalarProperty Name="ProductPackageId" ColumnName="ProductPackageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductProperties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductProperty">
+              <MappingFragment StoreEntitySet="DefProductProperties">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProductPropertyName" ColumnName="ProductPropertyName" />
+                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductType">
+              <MappingFragment StoreEntitySet="DefProductTypes">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefProductUnits">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefProductUnit">
+              <MappingFragment StoreEntitySet="DefProductUnits">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProductUnitName" ColumnName="ProductUnitName" />
+                <ScalarProperty Name="ProductUnitId" ColumnName="ProductUnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefVehicleTypes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.DefVehicleType">
+              <MappingFragment StoreEntitySet="DefVehicleTypes">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="VehicleWeight" ColumnName="VehicleWeight" />
+                <ScalarProperty Name="VehicleDesi" ColumnName="VehicleDesi" />
+                <ScalarProperty Name="VehicleVolume" ColumnName="VehicleVolume" />
+                <ScalarProperty Name="VehicleHeight" ColumnName="VehicleHeight" />
+                <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
+                <ScalarProperty Name="VehicleWidth" ColumnName="VehicleWidth" />
+                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firms">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Firm">
+              <MappingFragment StoreEntitySet="Firms">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipCheckPasswordRenewalCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipCheckPasswordRenewalCode">
+              <MappingFragment StoreEntitySet="LogMembershipCheckPasswordRenewalCodes">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipLogins">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipLogin">
+              <MappingFragment StoreEntitySet="LogMembershipLogins">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipRegisterCheckCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterCheckCode">
+              <MappingFragment StoreEntitySet="LogMembershipRegisterCheckCodes">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipRegisterReSendCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipRegisterReSendCode">
+              <MappingFragment StoreEntitySet="LogMembershipRegisterReSendCodes">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMembershipSendPasswordRenewalCodes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogMembershipSendPasswordRenewalCode">
+              <MappingFragment StoreEntitySet="LogMembershipSendPasswordRenewalCodes">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogSystemMailSends">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.LogSystemMailSend">
+              <MappingFragment StoreEntitySet="LogSystemMailSend">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapFirmToUsers">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MapFirmToUser">
+              <MappingFragment StoreEntitySet="MapFirmToUser">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberRoles">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MemberRole">
+              <MappingFragment StoreEntitySet="MemberRoles">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="MemberRolesId" ColumnName="MemberRolesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Membership">
+              <MappingFragment StoreEntitySet="Membership">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="VerifyOn" ColumnName="VerifyOn" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LastPasswordChangeDate" ColumnName="LastPasswordChangeDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembershipPasswordRenewals">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MembershipPasswordRenewal">
+              <MappingFragment StoreEntitySet="MembershipPasswordRenewals">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ActivateCode" ColumnName="ActivateCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RenewalId" ColumnName="RenewalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemeberRoleMappings">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.MemeberRoleMapping">
+              <MappingFragment StoreEntitySet="MemeberRoleMapping">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleMappingId" ColumnName="RoleMappingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleRoleMappings">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.ModuleRoleMapping">
+              <MappingFragment StoreEntitySet="ModuleRoleMapping">
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleRoleMappingId" ColumnName="ModuleRoleMappingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LoadProductVolumeVisibleUnitId" ColumnName="LoadProductVolumeVisibleUnitId" />
+                <ScalarProperty Name="LoadProductVisibleVolume" ColumnName="LoadProductVisibleVolume" />
+                <ScalarProperty Name="LoadProductVolume" ColumnName="LoadProductVolume" />
+                <ScalarProperty Name="LoadProductWeight" ColumnName="LoadProductWeight" />
+                <ScalarProperty Name="LoadProductTypeId" ColumnName="LoadProductTypeId" />
+                <ScalarProperty Name="LoadProductPackageId" ColumnName="LoadProductPackageId" />
+                <ScalarProperty Name="OrderDetailType" ColumnName="OrderDetailType" />
+                <ScalarProperty Name="OrderRouteId" ColumnName="OrderRouteId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProductProperties">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderProductProperty">
+              <MappingFragment StoreEntitySet="OrderProductProperties">
+                <ScalarProperty Name="ProductPropertyId" ColumnName="ProductPropertyId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="OrderProductPropertiesId" ColumnName="OrderProductPropertiesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderRoutes">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.OrderRoute">
+              <MappingFragment StoreEntitySet="OrderRoutes">
+                <ScalarProperty Name="EndCountyId" ColumnName="EndCountyId" />
+                <ScalarProperty Name="StartCountyId" ColumnName="StartCountyId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderRootId" ColumnName="OrderRootId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ArrivalDateType" ColumnName="ArrivalDateType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="DepartureDateType" ColumnName="DepartureDateType" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="OrderTypeId" ColumnName="OrderTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirmId" ColumnName="FirmId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="LtsyazilimDatabaseModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -1173,7 +1443,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

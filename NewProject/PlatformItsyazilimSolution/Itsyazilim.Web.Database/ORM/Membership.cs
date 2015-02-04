@@ -14,6 +14,11 @@ namespace Itsyazilim.Web.Database.ORM
     
     public partial class Membership
     {
+        public Membership()
+        {
+            this.MemeberRoleMappings = new HashSet<MemeberRoleMapping>();
+        }
+    
         public int UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -30,5 +35,7 @@ namespace Itsyazilim.Web.Database.ORM
         public string IP { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+    
+        public virtual ICollection<MemeberRoleMapping> MemeberRoleMappings { get; set; }
     }
 }

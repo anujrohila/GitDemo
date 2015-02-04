@@ -48,12 +48,17 @@ namespace Itsyazilim.Web.Database.ORM
         public DbSet<LogMembershipSendPasswordRenewalCode> LogMembershipSendPasswordRenewalCodes { get; set; }
         public DbSet<LogSystemMailSend> LogSystemMailSends { get; set; }
         public DbSet<MapFirmToUser> MapFirmToUsers { get; set; }
+        public DbSet<MemberRole> MemberRoles { get; set; }
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<MembershipPasswordRenewal> MembershipPasswordRenewals { get; set; }
+        public DbSet<MemeberRoleMapping> MemeberRoleMappings { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<ModuleRoleMapping> ModuleRoleMappings { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<OrderProductProperty> OrderProductProperties { get; set; }
         public DbSet<OrderRoute> OrderRoutes { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Role> Roles { get; set; }
     
     }
 }
