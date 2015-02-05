@@ -52,158 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ORM\AdministratorSelectFirmDetails_Result.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\AdministratorSelectFirms_Result.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\AdministratorSelectUnApprovedFirmDetails_Result.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\AdministratorSelectUnapprovedFirms_Result.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\C_OrderEndPositions.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\C_OrderStartPositions.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefLocationCity.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefLocationCountry.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefLocationCounty.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefLocationRegion.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefOrderType.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefProductPackage.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefProductProperty.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefProductType.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefProductUnit.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\DefVehicleType.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Firm.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Itsyazilim.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Itsyazilim.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Itsyazilim.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Itsyazilim.Data.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Itsyazilim.Data.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogMembershipCheckPasswordRenewalCode.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogMembershipLogin.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogMembershipRegisterCheckCode.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogMembershipRegisterReSendCode.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogMembershipSendPasswordRenewalCode.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\LogSystemMailSend.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\ManageSelectCountyListForTreeView_Result.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\MapFirmToUser.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\MemberRole.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Membership.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\MembershipPasswordRenewal.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\MemeberRoleMapping.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Module.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\ModuleRoleMapping.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Order.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\OrderDetail.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\OrderProductProperty.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\OrderRoute.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\Role.cs">
-      <DependentUpon>Itsyazilim.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ORM\Itsyazilim.Data.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Itsyazilim.Data.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ORM\Itsyazilim.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Itsyazilim.Data.edmx</DependentUpon>
-      <LastGenOutput>Itsyazilim.Context.cs</LastGenOutput>
-    </None>
-    <None Include="ORM\Itsyazilim.Data.edmx.diagram">
-      <DependentUpon>Itsyazilim.Data.edmx</DependentUpon>
-    </None>
-    <None Include="ORM\Itsyazilim.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Itsyazilim.Data.edmx</DependentUpon>
-      <LastGenOutput>Itsyazilim.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ORM\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="SolutionReference\EntityFramework.dll" />
     <Content Include="SolutionReference\EntityFramework.SqlServer.dll" />
