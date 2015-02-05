@@ -55,7 +55,6 @@
   <ItemGroup>
     <Content Include="ReferenceDLL\EntityFramework.dll" />
     <Content Include="ReferenceDLL\EntityFramework.SqlServer.dll" />
-    <Content Include="ReferenceDLL\SXS-website.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
