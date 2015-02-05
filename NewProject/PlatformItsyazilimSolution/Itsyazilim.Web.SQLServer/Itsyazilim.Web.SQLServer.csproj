@@ -31,15 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ReferenceDLL\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ReferenceDLL\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,14 +48,159 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ORM\AdministratorSelectFirmDetails_Result.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\AdministratorSelectFirms_Result.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\AdministratorSelectUnApprovedFirmDetails_Result.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\AdministratorSelectUnapprovedFirms_Result.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\C_OrderEndPositions.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\C_OrderStartPositions.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefLocationCity.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefLocationCountry.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefLocationCounty.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefLocationRegion.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefOrderType.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefProductPackage.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefProductProperty.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefProductType.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefProductUnit.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\DefVehicleType.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Firm.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogMembershipCheckPasswordRenewalCode.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogMembershipLogin.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogMembershipRegisterCheckCode.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogMembershipRegisterReSendCode.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogMembershipSendPasswordRenewalCode.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\LogSystemMailSend.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Ltsyazilim.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ltsyazilim.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Ltsyazilim.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Ltsyazilim.Data.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ltsyazilim.Data.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\ManageSelectCountyListForTreeView_Result.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\MapFirmToUser.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\MemberRole.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\MemberRoleMapping.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Membership.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\MembershipPasswordRenewal.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Module.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\ModuleRoleMapping.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Order.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\OrderDetail.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\OrderProductProperty.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\OrderRoute.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Role.cs">
+      <DependentUpon>Ltsyazilim.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="ORM\Ltsyazilim.Data.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ltsyazilim.Data.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ORM\Ltsyazilim.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Ltsyazilim.Context.cs</LastGenOutput>
+      <DependentUpon>Ltsyazilim.Data.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\Ltsyazilim.Data.edmx.diagram">
+      <DependentUpon>Ltsyazilim.Data.edmx</DependentUpon>
+    </None>
+    <None Include="ORM\Ltsyazilim.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Ltsyazilim.Data.edmx</DependentUpon>
+      <LastGenOutput>Ltsyazilim.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReferenceDLL\EntityFramework.dll" />
     <Content Include="ReferenceDLL\EntityFramework.SqlServer.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
