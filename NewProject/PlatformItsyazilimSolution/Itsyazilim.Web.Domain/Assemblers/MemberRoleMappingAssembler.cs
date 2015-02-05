@@ -19,35 +19,35 @@ namespace Itsyazilim.Web.Domain
 {
 
     /// <summary>
-    /// Assembler for <see cref="MemeberRoleMapping"/> and <see cref="MemeberRoleMappingDTO"/>.
+    /// Assembler for <see cref="MemberRoleMapping"/> and <see cref="MemberRoleMappingDTO"/>.
     /// </summary>
-    public static partial class MemeberRoleMappingAssembler
+    public static partial class MemberRoleMappingAssembler
     {
         /// <summary>
         /// Invoked when <see cref="ToDTO"/> operation is about to return.
         /// </summary>
-        /// <param name="dto"><see cref="MemeberRoleMappingDTO"/> converted from <see cref="MemeberRoleMapping"/>.</param>
-        static partial void OnDTO(this MemeberRoleMapping entity, MemeberRoleMappingDTO dto);
+        /// <param name="dto"><see cref="MemberRoleMappingDTO"/> converted from <see cref="MemberRoleMapping"/>.</param>
+        static partial void OnDTO(this MemberRoleMapping entity, MemberRoleMappingDTO dto);
 
         /// <summary>
         /// Invoked when <see cref="ToEntity"/> operation is about to return.
         /// </summary>
-        /// <param name="entity"><see cref="MemeberRoleMapping"/> converted from <see cref="MemeberRoleMappingDTO"/>.</param>
-        static partial void OnEntity(this MemeberRoleMappingDTO dto, MemeberRoleMapping entity);
+        /// <param name="entity"><see cref="MemberRoleMapping"/> converted from <see cref="MemberRoleMappingDTO"/>.</param>
+        static partial void OnEntity(this MemberRoleMappingDTO dto, MemberRoleMapping entity);
 
         /// <summary>
-        /// Converts this instance of <see cref="MemeberRoleMappingDTO"/> to an instance of <see cref="MemeberRoleMapping"/>.
+        /// Converts this instance of <see cref="MemberRoleMappingDTO"/> to an instance of <see cref="MemberRoleMapping"/>.
         /// </summary>
-        /// <param name="dto"><see cref="MemeberRoleMappingDTO"/> to convert.</param>
-        public static MemeberRoleMapping ToEntity(this MemeberRoleMappingDTO dto)
+        /// <param name="dto"><see cref="MemberRoleMappingDTO"/> to convert.</param>
+        public static MemberRoleMapping ToEntity(this MemberRoleMappingDTO dto)
         {
             if (dto == null) return null;
 
-            var entity = new MemeberRoleMapping();
+            var entity = new MemberRoleMapping();
 
             entity.RoleMappingId = dto.RoleMappingId;
             entity.RoleId = dto.RoleId;
-            entity.UserId = dto.UserId;
+            entity.MemberId = dto.MemberId;
 
             dto.OnEntity(entity);
 
@@ -55,18 +55,18 @@ namespace Itsyazilim.Web.Domain
         }
 
         /// <summary>
-        /// Converts this instance of <see cref="MemeberRoleMapping"/> to an instance of <see cref="MemeberRoleMappingDTO"/>.
+        /// Converts this instance of <see cref="MemberRoleMapping"/> to an instance of <see cref="MemberRoleMappingDTO"/>.
         /// </summary>
-        /// <param name="entity"><see cref="MemeberRoleMapping"/> to convert.</param>
-        public static MemeberRoleMappingDTO ToDTO(this MemeberRoleMapping entity)
+        /// <param name="entity"><see cref="MemberRoleMapping"/> to convert.</param>
+        public static MemberRoleMappingDTO ToDTO(this MemberRoleMapping entity)
         {
             if (entity == null) return null;
 
-            var dto = new MemeberRoleMappingDTO();
+            var dto = new MemberRoleMappingDTO();
 
             dto.RoleMappingId = entity.RoleMappingId;
             dto.RoleId = entity.RoleId;
-            dto.UserId = entity.UserId;
+            dto.MemberId = entity.MemberId;
 
             entity.OnDTO(dto);
 
@@ -74,11 +74,11 @@ namespace Itsyazilim.Web.Domain
         }
 
         /// <summary>
-        /// Converts each instance of <see cref="MemeberRoleMappingDTO"/> to an instance of <see cref="MemeberRoleMapping"/>.
+        /// Converts each instance of <see cref="MemberRoleMappingDTO"/> to an instance of <see cref="MemberRoleMapping"/>.
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        public static List<MemeberRoleMapping> ToEntities(this IEnumerable<MemeberRoleMappingDTO> dtos)
+        public static List<MemberRoleMapping> ToEntities(this IEnumerable<MemberRoleMappingDTO> dtos)
         {
             if (dtos == null) return null;
 
@@ -86,11 +86,11 @@ namespace Itsyazilim.Web.Domain
         }
 
         /// <summary>
-        /// Converts each instance of <see cref="MemeberRoleMapping"/> to an instance of <see cref="MemeberRoleMappingDTO"/>.
+        /// Converts each instance of <see cref="MemberRoleMapping"/> to an instance of <see cref="MemberRoleMappingDTO"/>.
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public static List<MemeberRoleMappingDTO> ToDTOs(this IEnumerable<MemeberRoleMapping> entities)
+        public static List<MemberRoleMappingDTO> ToDTOs(this IEnumerable<MemberRoleMapping> entities)
         {
             if (entities == null) return null;
 

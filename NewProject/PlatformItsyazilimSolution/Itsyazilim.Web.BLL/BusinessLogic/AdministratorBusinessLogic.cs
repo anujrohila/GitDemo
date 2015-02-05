@@ -350,6 +350,60 @@ namespace Itsyazilim.Web.BLL
 
         #endregion
 
+        #region [Member Role Mapping]
+
+        /// <summary>
+        /// Get All Member Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static List<MemberRoleMappingDTO> GetAllMemberRoleMapping()
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetAllMemberRoleMapping();
+        }
+
+        /// <summary>
+        /// Get Member Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static MemberRoleMappingDTO GetMemberRoleMapping(int mappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.GetMemberRoleMapping(mappingId);
+        }
+
+        /// <summary>
+        /// Save Member Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static int SaveMemberRoleMapping(MemberRoleMappingDTO memberRoleMappingDTO)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.SaveMemberRoleMapping(memberRoleMappingDTO);
+        }
+
+        /// <summary>
+        /// Delete Member Role Mapping
+        /// </summary>
+        /// <returns></returns>
+        public static bool DeleteMemberRoleMapping(int mappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.DeleteMemberRoleMapping(mappingId);
+        }
+
+        /// <summary>
+        /// Check Is Member Role MappingExists
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckIsMemberRoleMappingExists(int roleId, int memberId, int roleMappingId)
+        {
+            var administratorRepository = new AdministratorRepository();
+            return administratorRepository.CheckIsMemberRoleMappingExists(roleId, memberId, roleMappingId);
+        }
+
+        #endregion
+
         #endregion
     }
 }

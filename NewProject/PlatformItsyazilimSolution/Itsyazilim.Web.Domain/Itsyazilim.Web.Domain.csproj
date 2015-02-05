@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -63,7 +64,7 @@
     <Compile Include="Assemblers\MapFirmToUserAssembler.cs" />
     <Compile Include="Assemblers\MembershipAssembler.cs" />
     <Compile Include="Assemblers\MembershipPasswordRenewalAssembler.cs" />
-    <Compile Include="Assemblers\MemeberRoleMappingAssembler.cs" />
+    <Compile Include="Assemblers\MemberRoleMappingAssembler.cs" />
     <Compile Include="Assemblers\ModuleAssembler.cs" />
     <Compile Include="Assemblers\ModuleRoleMappingAssembler.cs" />
     <Compile Include="Assemblers\OrderAssembler.cs" />

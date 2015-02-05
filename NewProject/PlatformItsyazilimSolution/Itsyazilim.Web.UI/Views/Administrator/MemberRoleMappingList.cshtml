@@ -1,0 +1,58 @@
+﻿@using Itsyazilim.Web.Domain.Resources
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = ItsyazilimWebResources.lblMemeberRoleMapping;
+    Layout = "~/Views/Shared/_Administrator1.cshtml";
+}
+
+<script>
+    $(document).find("a[ActionLink='RoleList']").parent().addClass("active");
+</script>
+<div class="padding-10">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <h2>
+                    <span class="fa fa-truck" style="padding: 0px 13px 0px 10px"></span>@ItsyazilimWebResources.lblMemeberRoleMapping
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @(Html.Telerik().Grid<Itsyazilim.Web.Domain.MemberRoleMappingDTO>().Name("ListAllMemberRoleMappingGrid")
+                        .DataKeys(datakKey => datakKey.Add(key => key.RoleMappingId))
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("ListAllMemberRoleMappingAjax", "Administrator"))
+        .Columns(columns =>
+        {
+            columns.Bound(column => column.RoleName).Title(ItsyazilimWebResources.lblRoleName).Width(120);
+            columns.Bound(column => column.MemberName).Title(ItsyazilimWebResources.lblMemberName).Width(120);
+            columns.Bound(column => column.RoleMappingId)
+                    .Filterable(false)
+                    .Sortable(false)
+                    .Groupable(false)
+                    .Width(50)
+                    .Title(String.Empty)
+                   .ClientTemplate("<center><a title='" + ItsyazilimWebResources.lblEdit + "' href=" + Url.Action("SaveModuleRoleMapping", "Administrator", new { id = "<#= RoleMappingId #>" }) + ">Edit</a></center>");
+            columns.Bound(column => column.RoleMappingId)
+                                           .Filterable(false)
+                                           .Sortable(false)
+                                           .Groupable(false)
+                                           .Width(40)
+                                           .ClientTemplate("<center><a title='" + ItsyazilimWebResources.lblDelete + "'  onclick='DeleteModuleRoleMappingGrid(<#= RoleMappingId #>);'>Delete</a></center>")
+                                           .Title(string.Empty);
+        })
+                .ToolBar(commands => commands.Custom().Action("SaveMemberRoleMapping", "Administrator", new { id = "0" })
+            .ButtonType(GridButtonType.Text)
+            .Text(ItsyazilimWebResources.lblAddMapping))
+        .Sortable()
+        .Selectable()
+        .Filterable()
+        .Groupable(group => group.Groups(g => g.Add(eventMaster => eventMaster.RoleName)))
+        .Scrollable(t => t.Height("auto"))
+        .HtmlAttributes(new { style = "width:100%;" })
+        .Resizable(resizing => resizing.Columns(true))
+        .Pageable(paging => paging.PageSize(50).Enabled(true).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+            //.ClientEvents(events => events.OnDataBound("CollapseGroups"))
+    )
+</div>
+<script src="~/Scripts/Administrator/MemberRoles.js"></script>

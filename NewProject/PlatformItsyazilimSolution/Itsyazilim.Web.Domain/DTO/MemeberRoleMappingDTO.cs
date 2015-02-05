@@ -14,16 +14,16 @@ using System.Text;
 namespace Itsyazilim.Web.Domain
 {
     [DataContract()]
-    public partial class MemeberRoleMappingDTO
+    public partial class MemberRoleMappingDTO
     {
         [DataMember()]
         public Int32 RoleMappingId { get; set; }
 
         [DataMember()]
-        public Nullable<Int32> RoleId { get; set; }
+        public Int32 RoleId { get; set; }
 
         [DataMember()]
-        public Nullable<Int32> UserId { get; set; }
+        public Int32 MemberId { get; set; }
 
         [DataMember()]
         public Int32 Membership_UserId { get; set; }
@@ -31,17 +31,12 @@ namespace Itsyazilim.Web.Domain
         [DataMember()]
         public Int32 Role_RoleId { get; set; }
 
-        public MemeberRoleMappingDTO()
-        {
-        }
+        public string RoleName { get; set; }
+        public string MemberName { get; set; }
 
-        public MemeberRoleMappingDTO(Int32 roleMappingId, Nullable<Int32> roleId, Nullable<Int32> userId, Int32 membership_UserId, Int32 role_RoleId)
-        {
-			this.RoleMappingId = roleMappingId;
-			this.RoleId = roleId;
-			this.UserId = userId;
-			this.Membership_UserId = membership_UserId;
-			this.Role_RoleId = role_RoleId;
-        }
+        public List<RoleDTO> RoleList { get; set; }
+        public List<MembershipDTO> MemberList { get; set; }
+
+       
     }
 }

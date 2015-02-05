@@ -8,8 +8,10 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using Itsyazilim.Web.Domain.Resources;
 
 namespace Itsyazilim.Web.Domain
 {
@@ -20,10 +22,12 @@ namespace Itsyazilim.Web.Domain
         public Int32 ModuleRoleMappingId { get; set; }
 
         [DataMember()]
-        public Nullable<Int32> RoleId { get; set; }
+        [Required(ErrorMessageResourceName = "valRequiredSelectRole", ErrorMessageResourceType = typeof(ItsyazilimWebResources))]
+        public Int32 RoleId { get; set; }
 
         [DataMember()]
-        public Nullable<Int32> ModuleId { get; set; }
+        [Required(ErrorMessageResourceName = "valRequiredSelectModule", ErrorMessageResourceType = typeof(ItsyazilimWebResources))]
+        public Int32 ModuleId { get; set; }
 
         [DataMember()]
         public Int32 Module_ModuleId { get; set; }

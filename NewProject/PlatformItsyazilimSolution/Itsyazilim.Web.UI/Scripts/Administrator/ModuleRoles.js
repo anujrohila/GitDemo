@@ -1,7 +1,7 @@
 
 function DeleteModuleRoleMappingGrid(id) {
     var confirmResult = confirm(ItsyazilimWebResources.msgConfirmDelete);
-    var callUrl = $("#webUrl").val() + "/Administrator/DeleteMemberRoleMapping";
+    var callUrl = $("#webUrl").val() + "/Administrator/DeleteModuleRoleMapping";
     var dataToSend = { moduleRoleMappingId: id };
     if (confirmResult) {
         $.ajax({
@@ -12,7 +12,7 @@ function DeleteModuleRoleMappingGrid(id) {
             success: function (result) {
                 if (result.Success == true) {
                     alert(result.Message);
-                    RefreshGrid("ListAllMemberRoleMappingGrid");
+                    RefreshGrid("ListAllModuleRoleMappingGrid");
                 }
                 else {
                     alert(result.Message);

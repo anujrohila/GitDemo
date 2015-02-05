@@ -1,9 +1,9 @@
-﻿@model Itsyazilim.Web.Domain.ModuleRoleMappingDTO
+﻿@model Itsyazilim.Web.Domain.MemberRoleMappingDTO
 @using System.Web.Mvc
 @using Telerik.Web.Mvc.UI
 @using Itsyazilim.Web.Domain.Resources
 @{
-    ViewBag.Title = ItsyazilimWebResources.lblRoels;
+    ViewBag.Title = ItsyazilimWebResources.lblSaveMapping;
     Layout = "~/Views/Shared/_Administrator1.cshtml";
 }
 
@@ -21,10 +21,10 @@
         </tr>
     </table>
     <hr />
-    @using (Html.BeginForm("SaveModuleRoleMapping", "Administrator", FormMethod.Post, new { id = "frmEventInfo", @class = "form-horizontal" }))
+    @using (Html.BeginForm("SaveMemberRoleMapping", "Administrator", FormMethod.Post, new { id = "frmMemberRoleMapping", @class = "form-horizontal" }))
     {
         <div id="hiddenFields">
-            @Html.HiddenFor(model => model.ModuleRoleMappingId)
+            @Html.HiddenFor(model => model.RoleMappingId)
         </div>
         <div class="col-xs-12 col-md-9 col-md-offset-1">
             <div class="bottom10" id="eventDetails">
@@ -51,10 +51,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.Label(ItsyazilimWebResources.lblModule, new { @class = "col-lg-3 control-label" })
+                    @Html.Label(ItsyazilimWebResources.lblMemberName, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
-                        @(Html.Telerik().ComboBoxFor(model => model.ModuleId)
-                            .BindTo(new SelectList(Model.ModuleList, "ModuleId", "ModuleName"))
+                        @(Html.Telerik().ComboBoxFor(model => model.MemberId)
+                            .BindTo(new SelectList(Model.MemberList, "UserId", "Name"))
                                       .SelectedIndex(0).HighlightFirstMatch(true)
                                       .HtmlAttributes(new { @style = "width:100%;" })
                                       .Filterable(filtering =>
@@ -62,7 +62,7 @@
                                           filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
                                       })
                         )
-                        @Html.ValidationMessageFor(model => model.ModuleId)
+                        @Html.ValidationMessageFor(model => model.MemberId)
                     </div>
                 </div>
 
@@ -70,11 +70,11 @@
                     <div class="col-lg-3 control-label"></div>
                     <div class="col-lg-9">
                         <button type="submit" class="btn btn-submit">@ItsyazilimWebResources.lblSave</button>
-                        <button id="btnEventPopCancel" type="button" class="btn btn-reset" onclick="document.location.href = '@Url.Action("ModuleRoleMappingList", "Administrator")'">@ItsyazilimWebResources.lblCancel</button>
+                        <button id="btnEventPopCancel" type="button" class="btn btn-reset" onclick="document.location.href = '@Url.Action("MemberRoleMappingList", "Administrator")'">@ItsyazilimWebResources.lblCancel</button>
                     </div>
                 </div>
             </div>
         </div>
     }
 </div>
-<script src="~/Scripts/Administrator/ModuleRoles.js"></script>
+<script src="~/Scripts/Administrator/MemberRoles.js"></script>

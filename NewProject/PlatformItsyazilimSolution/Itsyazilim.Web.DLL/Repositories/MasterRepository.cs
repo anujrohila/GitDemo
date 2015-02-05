@@ -74,6 +74,18 @@ namespace Itsyazilim.Web.DLL
             }
         }
 
+        /// <summary>
+        /// Get All Member
+        /// </summary>
+        /// <returns></returns>
+        public List<MembershipDTO> GetAllMember()
+        {
+            using (var LtsyazilimDatabaseEntities = new LtsyazilimDatabaseEntities())
+            {
+                return LtsyazilimDatabaseEntities.Memberships.ToDTOs();
+            }
+        }
+
         #endregion
     }
 }

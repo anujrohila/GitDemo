@@ -1003,4 +1003,22 @@
   <data name="msgErrorPerformingOperation" xml:space="preserve">
     <value>Error in performing operation try again later.</value>
   </data>
+  <data name="lblSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="msgDuplicateMemberRoleMapping" xml:space="preserve">
+    <value>Member role mapping already exists.</value>
+  </data>
+  <data name="valRequiredSelectMember" xml:space="preserve">
+    <value>Please select member name.</value>
+  </data>
+  <data name="valRequiredSelectModule" xml:space="preserve">
+    <value>Please select module name.</value>
+  </data>
+  <data name="valRequiredSelectRole" xml:space="preserve">
+    <value>Please select role name.</value>
+  </data>
+  <data name="lblMemberName" xml:space="preserve">
+    <value>Member Name</value>
+  </data>
 </root>

@@ -1150,6 +1150,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Name.
+        /// </summary>
+        public static string lblMemberName {
+            get {
+                return ResourceManager.GetString("lblMemberName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Role Mapping.
         /// </summary>
         public static string lblMemeberRoleMapping {
@@ -1654,6 +1663,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string lblSelect {
+            get {
+                return ResourceManager.GetString("lblSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Request Type.
         /// </summary>
         public static string lblSelectRequestType {
@@ -1951,6 +1969,15 @@ namespace Itsyazilim.Web.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member role mapping already exists..
+        /// </summary>
+        public static string msgDuplicateMemberRoleMapping {
+            get {
+                return ResourceManager.GetString("msgDuplicateMemberRoleMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module role mapping already exists..
         /// </summary>
         public static string msgDuplicateModuleRoleMapping {
@@ -2028,6 +2055,33 @@ namespace Itsyazilim.Web.Domain.Resources {
         public static string valRequiredPassword {
             get {
                 return ResourceManager.GetString("valRequiredPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select member name..
+        /// </summary>
+        public static string valRequiredSelectMember {
+            get {
+                return ResourceManager.GetString("valRequiredSelectMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select module name..
+        /// </summary>
+        public static string valRequiredSelectModule {
+            get {
+                return ResourceManager.GetString("valRequiredSelectModule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select role name..
+        /// </summary>
+        public static string valRequiredSelectRole {
+            get {
+                return ResourceManager.GetString("valRequiredSelectRole", resourceCulture);
             }
         }
         

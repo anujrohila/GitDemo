@@ -65,8 +65,8 @@ namespace Itsyazilim.Web.Domain
             var dto = new ModuleRoleMappingDTO();
 
             dto.ModuleRoleMappingId = entity.ModuleRoleMappingId;
-            dto.RoleId = entity.RoleId;
-            dto.ModuleId = entity.ModuleId;
+            dto.RoleId = entity.RoleId ?? 0;
+            dto.ModuleId = entity.ModuleId ?? 0;
 
             entity.OnDTO(dto);
 

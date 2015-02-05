@@ -54,7 +54,15 @@ namespace Itsyazilim.Web.BLL
             return masterRepository.GetAllRoles();
         }
 
-        
+        /// <summary>
+        /// Get All Member
+        /// </summary>
+        /// <returns></returns>
+        public static List<MembershipDTO> GetAllMember()
+        {
+            var masterRepository = new MasterRepository();
+            return masterRepository.GetAllMember();
+        }
 
         #endregion
     }
